@@ -81,15 +81,15 @@
 
 <meta name="description" content="一直以来写背包问题全靠背模板，对于01背包和完全背包的顺序问题一直存疑而不得理解，今天巧合之下明白了01背包倒序而完全背包顺序的原因，特此记录。01背包要求每个物品只能取一次，在二维状态下状态转移方程如下 1f[i][j] &#x3D; max(f[i - 1][m], f[i - 1][m - w[i]] + v[i]); f[i][j]表示从前i个物品中选出总重量不超过j的物品的最大价值。由此可见每个状">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2021/09/26/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E9%A1%BA%E5%BA%8F%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:title" content="背包问题顺序理解">
+<meta property="og:url" content="http://example.com/2021/09/21/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E9%A1%BA%E5%BA%8F%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一直以来写背包问题全靠背模板，对于01背包和完全背包的顺序问题一直存疑而不得理解，今天巧合之下明白了01背包倒序而完全背包顺序的原因，特此记录。01背包要求每个物品只能取一次，在二维状态下状态转移方程如下 1f[i][j] &#x3D; max(f[i - 1][m], f[i - 1][m - w[i]] + v[i]); f[i][j]表示从前i个物品中选出总重量不超过j的物品的最大价值。由此可见每个状">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/77511d81c8abf5204da97ead1b8845ef.png#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/8a7a155271035e0623ac645a3e85f72e.png#pic_center">
-<meta property="article:published_time" content="2021-09-26T11:12:41.909Z">
-<meta property="article:modified_time" content="2021-09-26T11:12:42.354Z">
+<meta property="article:published_time" content="2021-09-21T13:51:20.000Z">
+<meta property="article:modified_time" content="2021-09-26T11:14:45.837Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/77511d81c8abf5204da97ead1b8845ef.png#pic_center">
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/09/26/背包问题顺序理解/"/>
+  <link rel="canonical" href="http://example.com/2021/09/21/背包问题顺序理解/"/>
 
 
 
 
 
-  <title> | Hexo</title>
+  <title>背包问题顺序理解 | Hexo</title>
   
 
 
@@ -235,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/26/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E9%A1%BA%E5%BA%8F%E7%90%86%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/21/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E9%A1%BA%E5%BA%8F%E7%90%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -252,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">背包问题顺序理解</h1>
         
 
         <div class="post-meta">
@@ -264,8 +264,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-26T19:12:41+08:00">
-                2021-09-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-21T21:51:20+08:00">
+                2021-09-21
               </time>
             
 
@@ -340,8 +340,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/09/21/%E9%94%99%E9%A2%98%E5%B0%8F%E5%BA%97/" rel="next" title="错题小店">
-                <i class="fa fa-chevron-left"></i> 错题小店
+              <a href="/2021/09/21/%E5%9B%BE%E8%AE%BA%E7%AF%87-%E6%9C%80%E7%9F%AD%E8%B7%AF/" rel="next" title="图论篇-最短路">
+                <i class="fa fa-chevron-left"></i> 图论篇-最短路
               </a>
             
           </div>
@@ -349,6 +349,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/21/%E9%94%99%E9%A2%98%E5%B0%8F%E5%BA%97/" rel="prev" title="错题小店">
+                错题小店 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
