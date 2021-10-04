@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -80,11 +80,11 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale">
-<meta property="article:author" content="John Doe">
+<meta property="og:title" content="wwwttlll">
+<meta property="og:url" content="http://wwwttlll.github.io/index.html">
+<meta property="og:site_name" content="wwwttlll">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="wwwttlll">
 <meta name="twitter:card" content="summary">
 
 
@@ -93,7 +93,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -101,7 +101,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'wwwttlll'
     },
     algolia: {
       applicationID: '',
@@ -115,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/"/>
+  <link rel="canonical" href="http://wwwttlll.github.io/"/>
 
 
 
 
 
-  <title>Hexo</title>
+  <title>wwwttlll</title>
   
 
 
@@ -133,7 +133,7 @@
 
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -152,7 +152,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">wwwttlll</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -178,21 +178,51 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
+            
+            Search
           </a>
         </li>
       
@@ -229,16 +259,171 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/21/%E9%94%99%E9%A2%98%E5%B0%8F%E5%BA%97/">
+    <link itemprop="mainEntityOfPage" href="http://wwwttlll.github.io/2021/09/21/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E9%A1%BA%E5%BA%8F%E7%90%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="wwwttlll">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/09/21/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E9%A1%BA%E5%BA%8F%E7%90%86%E8%A7%A3/" itemprop="url">背包问题顺序理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-21T21:51:20+08:00">
+                2021-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/dp/" itemprop="url" rel="index">
+                    <span itemprop="name">dp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一直以来写背包问题全靠背模板，对于01背包和完全背包的顺序问题一直存疑而不得理解，今天巧合之下明白了01背包倒序而完全背包顺序的原因，特此记录。<br>01背包要求每个物品只能取一次，在二维状态下状态转移方程如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[i][j] = <span class="built_in">max</span>(f[i - <span class="number">1</span>][m], f[i - <span class="number">1</span>][m - w[i]] + v[i]);</span><br></pre></td></tr></table></figure>
+<p>f[i][j]表示从前i个物品中选出总重量不超过j的物品的最大价值。<br>由此可见每个状态都来自于前一个物品</p>
+<p>而完全背包中， 每个物品可以无限取，在二维状态下状态转移方程如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[i][j] = <span class="built_in">max</span>(f[i][j] , f[i - <span class="number">1</span>][j - k * w[i]] + k*v[i]);</span><br></pre></td></tr></table></figure>
+<p>当然k的重复计算可以简化<br>过程如下<br><img src="https://img-blog.csdnimg.cn/img_convert/77511d81c8abf5204da97ead1b8845ef.png#pic_center" alt="在这里插入图片描述"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[i][j] = <span class="built_in">max</span>(f[i - <span class="number">1</span>][j],f[i][j - w[i]] + v[i]);</span><br></pre></td></tr></table></figure>
+<p>可以看出完全背包的状态来源于之前的自己</p>
+<p>在通过滚动数组优化成一维后，两者的唯一差别只有枚举j的顺序<br>01</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = W; j &gt;= w[i]; j--)&#123;</span><br><span class="line">		f[j] = <span class="built_in">max</span>(f[j - w[i]] + v[i], f[j]);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完全</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j =  w[i]; j &lt;= W; j++)&#123;</span><br><span class="line">		f[j] = <span class="built_in">max</span>(f[j - w[i]] + v[i], f[j]);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为什么会这样呢<br>举个例子<br>假设你有一个重为2的物品<br>（图中的数学代表枚举的 j）<br><img src="https://img-blog.csdnimg.cn/img_convert/8a7a155271035e0623ac645a3e85f72e.png#pic_center" alt="在这里插入图片描述"><br>在枚举j的过程中，如果顺序枚举 会先更新j = 2的情况，然后根据j = 2 的情况更新j = 4，同理后面的6，8，10 …这样相当于每个物品可以多次使用，符合完全背包的条件。</p>
+<p>而如果倒序枚举 ，会先更新4 然后再更新2 2中的状态与4无关，相当于每个物品只能用一次，符合01 背包。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wwwttlll.github.io/2021/09/21/%E9%94%99%E9%A2%98%E5%B0%8F%E5%BA%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wwwttlll">
     </span>
 
     
@@ -258,9 +443,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-21T21:51:20+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-21T21:51:20+08:00">
                 2021-09-21
               </time>
             
@@ -356,149 +541,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/21/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E9%A1%BA%E5%BA%8F%E7%90%86%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://wwwttlll.github.io/2021/09/21/%E5%9B%BE%E8%AE%BA%E7%AF%87-%E6%9C%80%E7%9F%AD%E8%B7%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/09/21/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E9%A1%BA%E5%BA%8F%E7%90%86%E8%A7%A3/" itemprop="url">背包问题顺序理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-21T21:51:20+08:00">
-                2021-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一直以来写背包问题全靠背模板，对于01背包和完全背包的顺序问题一直存疑而不得理解，今天巧合之下明白了01背包倒序而完全背包顺序的原因，特此记录。<br>01背包要求每个物品只能取一次，在二维状态下状态转移方程如下</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[i][j] = <span class="built_in">max</span>(f[i - <span class="number">1</span>][m], f[i - <span class="number">1</span>][m - w[i]] + v[i]);</span><br></pre></td></tr></table></figure>
-<p>f[i][j]表示从前i个物品中选出总重量不超过j的物品的最大价值。<br>由此可见每个状态都来自于前一个物品</p>
-<p>而完全背包中， 每个物品可以无限取，在二维状态下状态转移方程如下</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[i][j] = <span class="built_in">max</span>(f[i][j] , f[i - <span class="number">1</span>][j - k * w[i]] + k*v[i]);</span><br></pre></td></tr></table></figure>
-<p>当然k的重复计算可以简化<br>过程如下<br><img src="https://img-blog.csdnimg.cn/img_convert/77511d81c8abf5204da97ead1b8845ef.png#pic_center" alt="在这里插入图片描述"></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[i][j] = <span class="built_in">max</span>(f[i - <span class="number">1</span>][j],f[i][j - w[i]] + v[i]);</span><br></pre></td></tr></table></figure>
-<p>可以看出完全背包的状态来源于之前的自己</p>
-<p>在通过滚动数组优化成一维后，两者的唯一差别只有枚举j的顺序<br>01</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = W; j &gt;= w[i]; j--)&#123;</span><br><span class="line">		f[j] = <span class="built_in">max</span>(f[j - w[i]] + v[i], f[j]);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>完全</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j =  w[i]; j &lt;= W; j++)&#123;</span><br><span class="line">		f[j] = <span class="built_in">max</span>(f[j - w[i]] + v[i], f[j]);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>为什么会这样呢<br>举个例子<br>假设你有一个重为2的物品<br>（图中的数学代表枚举的 j）<br><img src="https://img-blog.csdnimg.cn/img_convert/8a7a155271035e0623ac645a3e85f72e.png#pic_center" alt="在这里插入图片描述"><br>在枚举j的过程中，如果顺序枚举 会先更新j = 2的情况，然后根据j = 2 的情况更新j = 4，同理后面的6，8，10 …这样相当于每个物品可以多次使用，符合完全背包的条件。</p>
-<p>而如果倒序枚举 ，会先更新4 然后再更新2 2中的状态与4无关，相当于每个物品只能用一次，符合01 背包。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/21/%E5%9B%BE%E8%AE%BA%E7%AF%87-%E6%9C%80%E7%9F%AD%E8%B7%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="wwwttlll">
     </span>
 
     
@@ -518,9 +570,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-21T21:21:41+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-21T21:21:41+08:00">
                 2021-09-21
               </time>
             
@@ -530,6 +582,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -658,16 +732,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/21/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://wwwttlll.github.io/2021/09/21/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="wwwttlll">
     </span>
 
     
@@ -687,9 +761,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-21T19:05:19+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-21T19:05:19+08:00">
                 2021-09-21
               </time>
             
@@ -729,7 +803,7 @@
       
         
           
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://wwwttlll.github.io/">wwwttlll’s blog</a>! This is your very first post.</p>
+            <p>Welcome to <a href="https://wwwttlll.github.io/">wwwttlll’s blog</a>! This is your very first post.</p>
 <p>My blog was born on Mid-Autumn Festival 2021</p>
 <p>To be countinue…</p>
 
@@ -802,6 +876,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
               <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
@@ -811,22 +889,68 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7C%20archive">
               
                   <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wwwttlll" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/wwwttlll?spm=1001.2100.3001.5343" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.luogu.com.cn/user/155947" target="_blank" title="luogu">
+                      
+                        <i class="fa fa-fw fa-luogu"></i>luogu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="wwwttlll@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -858,13 +982,13 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">wwwttlll</span>
 
   
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
@@ -872,7 +996,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -971,6 +1095,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
 
