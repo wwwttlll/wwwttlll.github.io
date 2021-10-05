@@ -27,10 +27,10 @@
 <p>而如果倒序枚举 ，会先更新4 然后再更新2 2中的状态与4无关，相当于每个物品只能用一次，符合01 背包。</p>
 ]]></content>
       <categories>
-        <category>dp</category>
+        <category>刷题笔记</category>
       </categories>
       <tags>
-        <tag>刷题笔记</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
@@ -88,10 +88,11 @@
 <p>Code</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define inf 0x7ffffff</span><br><span class="line"></span><br><span class="line">int f[111][111],pre[111][111],a[111][111],print[111];</span><br><span class="line">int n,m,cnt,ans=inf,x,y,z;</span><br><span class="line"></span><br><span class="line">void init()&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">		for(int j=1;j&lt;=n;j++)&#123;</span><br><span class="line">			f[i][j]=f[j][i]=a[i][j]=a[j][i]=inf;</span><br><span class="line">			pre[i][j]=i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=1;i&lt;=m;i++)&#123;</span><br><span class="line">		cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">		a[x][y]=a[y][x]=f[x][y]=f[y][x]=min(a[x][y],z);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void floyd()&#123;</span><br><span class="line">	for(int k=1;k&lt;=n;k++)&#123;</span><br><span class="line">		for(int i=1;i&lt;k;i++)&#123;</span><br><span class="line">			for(int j=i+1;j&lt;k;j++)&#123;</span><br><span class="line">				if(a[i][k]+a[k][j]+f[i][j]&lt;ans)&#123;</span><br><span class="line">					ans=a[i][k]+a[k][j]+f[i][j];</span><br><span class="line">					cnt=0;//更新路径</span><br><span class="line">                    //因为有special judge 所以顺序无所谓</span><br><span class="line">					int t=j;</span><br><span class="line">					while(t!=i)&#123;</span><br><span class="line">						print[++cnt]=t;</span><br><span class="line">						t=pre[i][t];</span><br><span class="line">					&#125;</span><br><span class="line">					print[++cnt]=i;</span><br><span class="line">					print[++cnt]=k;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">			for(int j=1;j&lt;=n;j++)&#123;</span><br><span class="line">				if(f[i][k]+f[k][j]&lt;f[i][j])&#123;</span><br><span class="line">					f[i][j]=f[i][k]+f[k][j];</span><br><span class="line">					pre[i][j]=pre[k][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	init();</span><br><span class="line">	floyd();</span><br><span class="line">	if(ans==inf)&#123;</span><br><span class="line">		puts(&quot;No solution.&quot;);</span><br><span class="line">		return  0;</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">        printf(&quot;%d&quot;, print[1]);</span><br><span class="line">        for (int i = 2; i &lt;= cnt; i++)</span><br><span class="line">            printf(&quot; %d&quot;, print[i]);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>图论</category>
+        <category>刷题笔记</category>
       </categories>
       <tags>
-        <tag>刷题笔记</tag>
+        <tag>图论</tag>
+        <tag>最短路</tag>
       </tags>
   </entry>
   <entry>
@@ -106,5 +107,93 @@
 <p>则是先%</p>
 <p>附<a href="https://blog.csdn.net/sozzled_/article/details/107057075">优先级表</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>luogu - 1886 滑动窗口</title>
+    <url>/2021/10/05/luogu-1886-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1886">滑动窗口</a><br>head tail维护单调队列中的队首和队尾 发现新元素<br>枚举i来遍历整个数列</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span> + <span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> n,k;</span><br><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="keyword">int</span> qx[N],qn[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getmax</span><span class="params">()</span></span>&#123;<span class="comment">//求最大值,保持队列单减,保证队首最大</span></span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">0</span>,tail = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qx[tail]] &lt;= a[i])   tail--;</span><br><span class="line">        <span class="comment">//找到前k个数中的最值 一旦遇到了破环队列单调性的值 就清空数列</span></span><br><span class="line">        <span class="comment">//遇到大的就不符合</span></span><br><span class="line">        qx[++tail] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt;= n; i++)&#123;<span class="comment">//同理</span></span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qx[tail]] &lt;= a[i])   tail--;</span><br><span class="line">        qx[++tail] = i;</span><br><span class="line">        <span class="keyword">while</span>(qx[head] &lt;= (i - k))&#123;<span class="comment">//因为题目中限制区间长度为k,队首位置超出区间也要出队</span></span><br><span class="line">            head ++;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; a[qx[head]] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getmin</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">0</span>,tail = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qn[tail]] &gt;= a[i])   tail--;</span><br><span class="line">        qn[++tail] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qx[tail]] &gt;= a[i])   tail--;</span><br><span class="line">        qn[++tail] = i;</span><br><span class="line">        <span class="keyword">while</span>(qn[head] &lt;= (i - k))&#123;</span><br><span class="line">            head ++;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; a[qn[head]] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getmin</span>();</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">getmax</span>();</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>单调队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>luogu - 2698 [USACO12MAR]Flowerpot S</title>
+    <url>/2021/10/05/luogu-2698-USACO12MAR-Flowerpot-S/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P2698">洛谷P2698 [USACO12MAR]Flowerpot S</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span> + <span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> n,d;</span><br><span class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;a[N];</span><br><span class="line"><span class="keyword">int</span> q1[N];</span><br><span class="line"><span class="keyword">int</span> q2[N];</span><br><span class="line"><span class="keyword">int</span> h1,h2,t1,t2;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; d;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i].first &gt;&gt; a[i].second ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n);</span><br><span class="line">    h1 = h2 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">1</span>,r = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">for</span>(l = <span class="number">1</span>; l &lt;= n; l++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(h1 &lt;= t1 &amp;&amp; q1[h1] &lt; l)h1++;<span class="comment">//维护区间 如果队首在左端点左边就右移</span></span><br><span class="line">        <span class="keyword">while</span>(h2 &lt;= t2 &amp;&amp; q2[h2] &lt; l)h2++;</span><br><span class="line">        <span class="keyword">while</span>(a[q1[h1]].second - a[q2[h2]].second &lt; d &amp;&amp; r &lt; n)&#123;</span><br><span class="line">            r++;</span><br><span class="line">            <span class="keyword">while</span>(h1 &lt;= t1 &amp;&amp; a[q1[t1]].second &lt; a[r].second)t1--;<span class="comment">//注意是队尾和边界比较</span></span><br><span class="line">            q1[++t1] = r;</span><br><span class="line">            <span class="keyword">while</span>(h2 &lt;= t2 &amp;&amp; a[q2[t2]].second &gt; a[r].second)t2--;</span><br><span class="line">            q2[++t2] = r;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(a[q1[h1]].second - a[q2[h2]].second &gt;= d)&#123;</span><br><span class="line">            ans = <span class="built_in">min</span>(ans,a[r].first - a[l].first);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ans &lt; <span class="number">0x3f3f3f3f</span>)cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>刷题笔记</category>
+      </categories>
+      <tags>
+        <tag>单调队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单调队列学习笔记</title>
+    <url>/2021/10/05/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>为了学习单调队列优化dp去了解了前置知识。<br><strong>什么是单调队列呢？</strong><br>顾名思义，单调队列的重点分为 “单调” 和 “队列”<br>“单调” 指的是元素的的 “规律”——递增（或递减）<br>“队列” 指的是元素只能从队头和队尾进行操作<br>实际上维护一段变化区间里的单调的序列。</p>
+<p>如<a href="https://oi-wiki.org/ds/monotonous-queue/">oiwiki</a>中有下面的例子</p>
+<p>原序列为</p>
+<blockquote>
+<p>1 3 -1 -3 5 3 6 7</p>
+</blockquote>
+<p>要求的是每连续的 k 个数中的最小值，<br>操作如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">队列状态2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1 入队</td>
+<td align="center">{1}</td>
+</tr>
+<tr>
+<td align="center">3 比 1 大，3 入队</td>
+<td align="center">{1 3}</td>
+</tr>
+<tr>
+<td align="center">-1 比队列中所有元素小，所以清空队列 -1 入队</td>
+<td align="center">{-1}</td>
+</tr>
+<tr>
+<td align="center">-3 比队列中所有元素小，所以清空队列 -3 入队</td>
+<td align="center">{-3}</td>
+</tr>
+<tr>
+<td align="center">5 比 -3 大，直接入队</td>
+<td align="center">{-3 5}</td>
+</tr>
+<tr>
+<td align="center">3 比 5 小，5 出队，3 入队</td>
+<td align="center">{-3 3}</td>
+</tr>
+<tr>
+<td align="center">-3 已经在窗体外，所以 -3 出队；6 比 3 大，6 入队</td>
+<td align="center">{3 6}</td>
+</tr>
+<tr>
+<td align="center">7 比 6 大，7 入队</td>
+<td align="center">{3 6 7}</td>
+</tr>
+</tbody></table>
+<p>总结下来就是:一旦遇到了破环队列单调性的值,就弹出之前队列中的数值,始终保持队列递增的状态.保证队首始终是当前区间里最小的值.</p>
+<p><strong>例题</strong><br><a href="https://www.luogu.com.cn/problem/P1886">滑动窗口</a><br>head tail维护单调队列中的队首和队尾 发现新元素<br>枚举i来遍历整个数列</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span> + <span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> n,k;</span><br><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="keyword">int</span> qx[N],qn[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getmax</span><span class="params">()</span></span>&#123;<span class="comment">//求最大值,保持队列单减,保证队首最大</span></span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">0</span>,tail = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qx[tail]] &lt;= a[i])   tail--;</span><br><span class="line">        <span class="comment">//找到前k个数中的最值 一旦遇到了破环队列单调性的值 就清空数列</span></span><br><span class="line">        <span class="comment">//遇到大的就不符合</span></span><br><span class="line">        qx[++tail] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt;= n; i++)&#123;<span class="comment">//同理</span></span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qx[tail]] &lt;= a[i])   tail--;</span><br><span class="line">        qx[++tail] = i;</span><br><span class="line">        <span class="keyword">while</span>(qx[head] &lt;= (i - k))&#123;<span class="comment">//因为题目中限制区间长度为k,队首位置超出区间也要出队</span></span><br><span class="line">            head ++;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; a[qx[head]] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getmin</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">0</span>,tail = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qn[tail]] &gt;= a[i])   tail--;</span><br><span class="line">        qn[++tail] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qx[tail]] &gt;= a[i])   tail--;</span><br><span class="line">        qn[++tail] = i;</span><br><span class="line">        <span class="keyword">while</span>(qn[head] &lt;= (i - k))&#123;</span><br><span class="line">            head ++;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; a[qn[head]] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getmin</span>();</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">getmax</span>();</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另一道类似的题<br><a href="https://www.luogu.com.cn/problem/P2698">洛谷P2698 [USACO12MAR]Flowerpot S</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span> + <span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> n,d;</span><br><span class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;a[N];</span><br><span class="line"><span class="keyword">int</span> q1[N];</span><br><span class="line"><span class="keyword">int</span> q2[N];</span><br><span class="line"><span class="keyword">int</span> h1,h2,t1,t2;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; d;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i].first &gt;&gt; a[i].second ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n);</span><br><span class="line">    h1 = h2 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">1</span>,r = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">for</span>(l = <span class="number">1</span>; l &lt;= n; l++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(h1 &lt;= t1 &amp;&amp; q1[h1] &lt; l)h1++;<span class="comment">//维护区间 如果队首在左端点左边就右移</span></span><br><span class="line">        <span class="keyword">while</span>(h2 &lt;= t2 &amp;&amp; q2[h2] &lt; l)h2++;</span><br><span class="line">        <span class="keyword">while</span>(a[q1[h1]].second - a[q2[h2]].second &lt; d &amp;&amp; r &lt; n)&#123;</span><br><span class="line">            r++;</span><br><span class="line">            <span class="keyword">while</span>(h1 &lt;= t1 &amp;&amp; a[q1[t1]].second &lt; a[r].second)t1--;<span class="comment">//注意是队尾和边界比较</span></span><br><span class="line">            q1[++t1] = r;</span><br><span class="line">            <span class="keyword">while</span>(h2 &lt;= t2 &amp;&amp; a[q2[t2]].second &gt; a[r].second)t2--;</span><br><span class="line">            q2[++t2] = r;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(a[q1[h1]].second - a[q2[h2]].second &gt;= d)&#123;</span><br><span class="line">            ans = <span class="built_in">min</span>(ans,a[r].first - a[l].first);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ans &lt; <span class="number">0x3f3f3f3f</span>)cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>单调队列</category>
+      </categories>
+      <tags>
+        <tag>刷题笔记</tag>
+      </tags>
   </entry>
 </search>
