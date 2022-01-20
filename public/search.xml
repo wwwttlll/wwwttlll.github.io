@@ -329,7 +329,7 @@
 <p>因为p是个不可知的表示，只存在p[0]、p[1]、p[2]…p[n-1],而且它们分别是指针变量可以用来存放变量地址。但可以这样 <em>p=a; 这里</em>p表示指针数组第一个元素的值，a的首地址的值。</p>
 ]]></content>
       <categories>
-        <category>学习笔记 - c++</category>
+        <category>学习笔记</category>
         <category>指针</category>
       </categories>
       <tags>
@@ -356,7 +356,7 @@
       </tags>
   </entry>
   <entry>
-    <title>指针函数调用数组</title>
+    <title>重载运算符</title>
     <url>/2021/11/07/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
     <content><![CDATA[<h4 id="重载运算符"><a href="#重载运算符" class="headerlink" title="重载运算符"></a>重载运算符</h4><h5 id="n元运算符后有（n-1-个参数"><a href="#n元运算符后有（n-1-个参数" class="headerlink" title="n元运算符后有（n-1)个参数"></a>n元运算符后有（n-1)个参数</h5><h5 id="自增自减运算符重载"><a href="#自增自减运算符重载" class="headerlink" title="自增自减运算符重载"></a>自增自减运算符重载</h5><p>前置++ – 没有参数 当做一元运算符重载</p>
 <p>成员函数</p>
@@ -385,7 +385,7 @@
 </blockquote>
 <h5 id="c-不能把“-gt-”操作符重载为非成员函数"><a href="#c-不能把“-gt-”操作符重载为非成员函数" class="headerlink" title="c++不能把“= [] () -&gt;”操作符重载为非成员函数"></a>c++不能把“= [] () -&gt;”操作符重载为非成员函数</h5>]]></content>
       <categories>
-        <category>学习笔记 - c++</category>
+        <category>学习笔记</category>
         <category>面向对象</category>
       </categories>
       <tags>
