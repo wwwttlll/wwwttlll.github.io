@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="牛客多校round1队友杀疯了 Codeforces Round #807 (Div. 2)B Mark the Dust Sweeper题意赛中没有考虑到初始全为0的情况，被卡了半个小时 牛客多校round2">
+<meta name="description" content="牛客多校round1队友杀疯了 G 签到题 A 也算签到吧，区间覆盖的easy题，vector排序一下，把不考虑包含在里面的情况就行 D 是计算几何，开始以为直接把线段ab当做弦长时的弧长当做答案，但是wa了,卡了很久一度以为是精度问题，后来证明这个算法是伪命题并通过圆心角和圆周角的关系证明了弦过圆心的时候对应的弧长最大，过了。 了解到精度1e-6可以容受一次反三角函数的运算，直接两个反三角函数求">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2022-7-24">
 <meta property="og:url" content="http://wwwttlll.github.io/2022/07/24/2022-7-24/index.html">
 <meta property="og:site_name" content="wwwttlll">
-<meta property="og:description" content="牛客多校round1队友杀疯了 Codeforces Round #807 (Div. 2)B Mark the Dust Sweeper题意赛中没有考虑到初始全为0的情况，被卡了半个小时 牛客多校round2">
+<meta property="og:description" content="牛客多校round1队友杀疯了 G 签到题 A 也算签到吧，区间覆盖的easy题，vector排序一下，把不考虑包含在里面的情况就行 D 是计算几何，开始以为直接把线段ab当做弦长时的弧长当做答案，但是wa了,卡了很久一度以为是精度问题，后来证明这个算法是伪命题并通过圆心角和圆周角的关系证明了弦过圆心的时候对应的弧长最大，过了。 了解到精度1e-6可以容受一次反三角函数的运算，直接两个反三角函数求">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-24T04:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-21T08:59:38.307Z">
+<meta property="article:modified_time" content="2022-07-24T13:19:55.579Z">
 <meta property="article:author" content="wwwttlll">
 <meta property="article:tag" content="训练日志">
 <meta name="twitter:card" content="summary">
@@ -388,8 +388,22 @@
 
       
         <h2 id="牛客多校round1"><a href="#牛客多校round1" class="headerlink" title="牛客多校round1"></a>牛客多校round1</h2><p>队友杀疯了</p>
-<h2 id="Codeforces-Round-807-Div-2"><a href="#Codeforces-Round-807-Div-2" class="headerlink" title="Codeforces Round #807 (Div. 2)"></a>Codeforces Round #807 (Div. 2)</h2><h3 id="B-Mark-the-Dust-Sweeper"><a href="#B-Mark-the-Dust-Sweeper" class="headerlink" title="B Mark the Dust Sweeper"></a>B Mark the Dust Sweeper</h3><h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h4><p>赛中没有考虑到初始全为0的情况，被卡了半个小时</p>
-<h2 id="牛客多校round2"><a href="#牛客多校round2" class="headerlink" title="牛客多校round2"></a>牛客多校round2</h2>
+<p>G 签到题</p>
+<p>A 也算签到吧，区间覆盖的easy题，vector排序一下，把不考虑包含在里面的情况就行</p>
+<p>D 是计算几何，开始以为直接把线段ab当做弦长时的弧长当做答案，但是wa了,卡了很久一度以为是精度问题，后来证明这个算法是伪命题并通过圆心角和圆周角的关系证明了弦过圆心的时候对应的弧长最大，过了。</p>
+<p>了解到精度1e-6可以容受一次反三角函数的运算，直接两个反三角函数求得夹角，然后$l=r\theta$</p>
+<p>I 是道概率dp,队友精通麻将并ac了这道题(bushi)赛后补题，摸牌的策略是摸到的牌可以凑成对子就留下，凑不成就舍弃</p>
+<h2 id="牛客多校round2"><a href="#牛客多校round2" class="headerlink" title="牛客多校round2"></a>牛客多校round2</h2><p>G 首先想法是奇偶对半分然后糊了一发wa了，然后队友举出了反例，并发现最小值应该是sqrt(n)上取整,构造后过了</p>
+<p>J 一眼线性回归最小二乘法，但是套了高中学的的求解公式wa了，原因是用化简后的公式求平均值时会造成精度损失，使用正常的公式可以直接将$\theta_1$和$\theta_0$求出可以通过</p>
+<p>公式如下，添加进板子里了</p>
+<p>$$<br>\begin{align}<br>y = {\theta}<em>0x+{\theta}<em>1\<br>\theta_1 = {\sum</em>{i = 1}^n{x_i}^2\sum</em>{i = 1}^ny_i-\sum_{i = 1}^nx_i\sum_{i = 1}^n{x_iy_i} \over n\sum_{i = 1}^nx_i^2 - (\sum_{i = 1}^nx_i)^2}\ </p>
+<p>\theta_0 = {n\sum_{i = 1}^n{x_iy_i}-\sum_{i = 1}^n{x_i}\sum_{i = 1}^n{y_i} \over n\sum_{i = 1}^nx_i^2 - (\sum_{i = 1}^nx_i)^2}<br>\end{align}<br>$$</p>
+<p>K 队友切掉了，赛后补题感觉像cf原题</p>
+<p>dp[i][j][k]表示对于新串的第 i 个字符，已经匹配了新串的j个字符，当前的新串左括号比右括号多的数量，然后分左右括号分类讨论一下每一位就可以了</p>
+<p>E NTT不会，赛中推了个组合数的公式，但是始终过不了，原因不明</p>
+<p>D 队友赛后几分钟过了，可惜。原因是double爆了，二分系数+spfa判负环，用long double 可以过</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>或许是因为网络赛的缘故，在家并没有比赛的氛围，有点像平时打cf，我并没有很紧张，同时英语阅读的问题导致我一度没有看懂题目，理解题意也消耗了很多时间，以后cf不能在用google翻译了QAQ，另外第二场补题时间不是很充裕，有题没来得及补，下周会抽时间补掉</p>
+
       
     </div>
     
@@ -591,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1round1"><span class="nav-number">1.</span> <span class="nav-text">牛客多校round1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Codeforces-Round-807-Div-2"><span class="nav-number">2.</span> <span class="nav-text">Codeforces Round #807 (Div. 2)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Mark-the-Dust-Sweeper"><span class="nav-number">2.1.</span> <span class="nav-text">B Mark the Dust Sweeper</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">2.1.1.</span> <span class="nav-text">题意</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1round2"><span class="nav-number">3.</span> <span class="nav-text">牛客多校round2</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1round1"><span class="nav-number">1.</span> <span class="nav-text">牛客多校round1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1round2"><span class="nav-number">2.</span> <span class="nav-text">牛客多校round2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
