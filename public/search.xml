@@ -77,8 +77,7 @@
 <h2 id="牛客多校round2"><a href="#牛客多校round2" class="headerlink" title="牛客多校round2"></a>牛客多校round2</h2><p>G 首先想法是奇偶对半分然后糊了一发wa了，然后队友举出了反例，并发现最小值应该是sqrt(n)上取整,构造后过了</p>
 <p>J 一眼线性回归最小二乘法，但是套了高中学的的求解公式wa了，原因是用化简后的公式求平均值时会造成精度损失，使用正常的公式可以直接将$\theta_1$和$\theta_0$求出可以通过</p>
 <p>公式如下，添加进板子里了</p>
-<p>$$<br>\begin{align}<br>y = {\theta}<em>0x+{\theta}<em>1\<br>\theta_1 = {\sum</em>{i = 1}^n{x_i}^2\sum</em>{i = 1}^ny_i-\sum_{i = 1}^nx_i\sum_{i = 1}^n{x_iy_i} \over n\sum_{i = 1}^nx_i^2 - (\sum_{i = 1}^nx_i)^2}\ </p>
-<p>\theta_0 = {n\sum_{i = 1}^n{x_iy_i}-\sum_{i = 1}^n{x_i}\sum_{i = 1}^n{y_i} \over n\sum_{i = 1}^nx_i^2 - (\sum_{i = 1}^nx_i)^2}<br>\end{align}<br>$$</p>
+<p>$$<br>\begin{align}<br>y = {\theta_0}x+{\theta_1}\<br>\theta_1 = {\sum_{i = 1}^n{x_i}^2\sum_{i = 1}^ny_i-\sum_{i = 1}^nx_i\sum_{i = 1}^n{x_iy_i} \over n\sum_{i = 1}^nx_i^2 - (\sum_{i = 1}^nx_i)^2}\<br>\theta_0 = {n\sum_{i = 1}^n{x_iy_i}-\sum_{i = 1}^n{x_i}\sum_{i = 1}^n{y_i} \over n\sum_{i = 1}^nx_i^2 - (\sum_{i = 1}^nx_i)^2}<br>\end{align}<br>$$</p>
 <p>K 队友切掉了，赛后补题感觉像cf原题</p>
 <p>dp[i][j][k]表示对于新串的第 i 个字符，已经匹配了新串的j个字符，当前的新串左括号比右括号多的数量，然后分左右括号分类讨论一下每一位就可以了</p>
 <p>E NTT不会，赛中推了个组合数的公式，但是始终过不了，原因不明</p>
