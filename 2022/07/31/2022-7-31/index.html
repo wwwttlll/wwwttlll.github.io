@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="指针," />
+  <meta name="keywords" content="训练日志," />
 
 
 
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="一维数组数组名是指针常量，指向数组的起始地址。 对于T a[N]，a的类型是T* ,可以将指针赋值成a 使指针指向数组的起始位置  int a[1000]; int *p &#x3D; a;  这也是为什么sort函数是  sort（a , a + n) &#x2F;&#x2F;对a[0] 到 a[n-1] 排序  或者lower_bound  lower_bound(a , a + n, b) - a  一维数组作为函数形参">
+<meta name="description" content="牛客多校round3C:签到 本来考虑是trie树，结果直接sort卡常过了 A:easy 处理出来前后缀lca，利用lca可以合并的性质 H：赛中猜测是sam之类的数据结构处理，但是大家都不会QAQ算法和数据结构还需要进一步学习，书到用时方恨少 J: easy，赛中一眼看出dijkstra跑一下就行，但是给出的图转换格式处理了好久，队友用双端队列先过了 总结：进阶的数据结构掌握仍有欠缺，需要抓紧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指针函数调用数组">
-<meta property="og:url" content="http://wwwttlll.github.io/2021/11/07/%E6%8C%87%E9%92%88/index.html">
+<meta property="og:title" content="2022-7-31">
+<meta property="og:url" content="http://wwwttlll.github.io/2022/07/31/2022-7-31/index.html">
 <meta property="og:site_name" content="wwwttlll">
-<meta property="og:description" content="一维数组数组名是指针常量，指向数组的起始地址。 对于T a[N]，a的类型是T* ,可以将指针赋值成a 使指针指向数组的起始位置  int a[1000]; int *p &#x3D; a;  这也是为什么sort函数是  sort（a , a + n) &#x2F;&#x2F;对a[0] 到 a[n-1] 排序  或者lower_bound  lower_bound(a , a + n, b) - a  一维数组作为函数形参">
+<meta property="og:description" content="牛客多校round3C:签到 本来考虑是trie树，结果直接sort卡常过了 A:easy 处理出来前后缀lca，利用lca可以合并的性质 H：赛中猜测是sam之类的数据结构处理，但是大家都不会QAQ算法和数据结构还需要进一步学习，书到用时方恨少 J: easy，赛中一眼看出dijkstra跑一下就行，但是给出的图转换格式处理了好久，队友用双端队列先过了 总结：进阶的数据结构掌握仍有欠缺，需要抓紧">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-07T06:08:16.000Z">
-<meta property="article:modified_time" content="2022-01-20T10:59:39.735Z">
+<meta property="article:published_time" content="2022-07-31T10:17:19.000Z">
+<meta property="article:modified_time" content="2022-07-31T13:45:36.634Z">
 <meta property="article:author" content="wwwttlll">
-<meta property="article:tag" content="指针">
+<meta property="article:tag" content="训练日志">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwttlll.github.io/2021/11/07/指针/"/>
+  <link rel="canonical" href="http://wwwttlll.github.io/2022/07/31/2022-7-31/"/>
 
 
 
 
 
-  <title>指针函数调用数组 | wwwttlll</title>
+  <title>2022-7-31 | wwwttlll</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wwwttlll.github.io/2021/11/07/%E6%8C%87%E9%92%88/">
+    <link itemprop="mainEntityOfPage" href="http://wwwttlll.github.io/2022/07/31/2022-7-31/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">指针函数调用数组</h1>
+          <h1 class="post-title" itemprop="name headline">2022-7-31</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-11-07T14:08:16+08:00">
-                2021-11-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-07-31T18:17:19+08:00">
+                2022-07-31
               </time>
             
 
@@ -339,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
+                  <a href="/categories/%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/" itemprop="url" rel="index">
+                    <span itemprop="name">训练日志</span>
                   </a>
                 </span>
 
@@ -350,8 +350,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%8C%87%E9%92%88/" itemprop="url" rel="index">
-                    <span itemprop="name">指针</span>
+                  <a href="/categories/%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/%E5%88%B7%E9%A2%98%E6%97%A5%E5%BF%97/" itemprop="url" rel="index">
+                    <span itemprop="name">刷题日志</span>
                   </a>
                 </span>
 
@@ -387,64 +387,16 @@
       
 
       
-        <h4 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h4><p>数组名是指针常量，指向数组的起始地址。</p>
-<p>对于T a[N]，a的类型是T* ,可以将指针赋值成a 使指针指向数组的起始位置</p>
-<blockquote>
-<p>int a[1000];</p>
-<p>int *p = a;</p>
-</blockquote>
-<p>这也是为什么sort函数是</p>
-<blockquote>
-<p>sort（a , a + n) //对a[0] 到 a[n-1] 排序</p>
-</blockquote>
-<p>或者lower_bound</p>
-<blockquote>
-<p>lower_bound(a , a + n, b) - a</p>
-</blockquote>
-<p>一维数组作为函数形参有两种写法</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> *a)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a[])</span></span></span><br><span class="line"><span class="function">...</span></span><br><span class="line"><span class="function"><span class="title">num</span><span class="params">(a)</span></span>;</span><br><span class="line"><span class="comment">//二者等价</span></span><br></pre></td></tr></table></figure>
-
-<p>对形参的数组赋值同样有两种形式如下</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">num</span><span class="params">(<span class="keyword">int</span> *b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        b[i]= i;</span><br><span class="line">        *(b + i) = i;<span class="comment">//因为b是指针 对指针所在地址赋值 用 *b = ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h4><p>定义二维数组</p>
-<blockquote>
-<p>T a[n] [m]</p>
-</blockquote>
-<p>a[i]是一个一维数组 类型是T *</p>
-<p>sizeof(a[i]) = sizeof(T) * n</p>
-<p>a[i]的地址 = a的起始地址 + i * n * sizeof(T)</p>
-<p>调用方式</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[n][<span class="number">3</span>]<span class="comment">//列宽必须一致 </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> (*a)[<span class="number">3</span>])</span><span class="comment">//第二维不能省略</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> a[][<span class="number">3</span>])</span></span></span><br><span class="line"><span class="function">...</span></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(a)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h5 id="字符串数组"><a href="#字符串数组" class="headerlink" title="字符串数组"></a>字符串数组</h5><p>常量名和字符串组名类型都是char*</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *p = (<span class="keyword">char</span>*)<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; p &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; *p &lt;&lt;endl;</span><br><span class="line">cout &lt;&lt; p[<span class="number">0</span>] &lt;&lt;endl;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>hello</p>
-<p>h</p>
-<p>h</p>
-</blockquote>
-<p>字符数组表示的字符串可以被修改内容,字符指针表示的数组不能被修改内容</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">a[<span class="number">0</span>] = <span class="string">&#x27;a&#x27;</span>;<span class="comment">//正确</span></span><br><span class="line"><span class="keyword">char</span> *p - <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">p[<span class="number">0</span>] = <span class="string">&#x27;a&#x27;</span><span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="指针数组与数组指针区分"><a href="#指针数组与数组指针区分" class="headerlink" title="指针数组与数组指针区分"></a>指针数组与数组指针区分</h5><p>优先级</p>
-<p>() &gt;[] &gt; *</p>
-<p>数组指针，定义 int (*p)[n]：</p>
-<p>“()”优先级高，首先说明p是一个指针，指向一个整型的一维数组，这个一维数组的长度是n，也可以说是p的步长。也就是说执行p+1时，p要跨过n个整型数据的长度。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line"><span class="built_in"><span class="keyword">int</span></span> (*p)[<span class="number">4</span>]; <span class="comment">//该语句是定义一个数组指针，指向含4个元素的一维数组。</span></span><br><span class="line"> p=a;        <span class="comment">//将该二维数组的首地址赋给p，也就是a[0]或&amp;a[0][0]</span></span><br><span class="line"> p++;       <span class="comment">//该语句执行过后，也就是p=p+1;p跨过行a[0][]指向了行a[1][]</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[<span class="number">5</span>]=&#123;<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;D&#x27;</span>&#125;;</span><br><span class="line"><span class="built_in"><span class="keyword">char</span></span> (*p3)[<span class="number">5</span>] = &amp;a;<span class="comment">//&amp;a 是数组的首地址</span></span><br><span class="line"><span class="built_in"><span class="keyword">char</span></span> (*p4)[<span class="number">5</span>] = a; <span class="comment">//a是数组首元素地址  这里是错误的两边类型不一致</span></span><br><span class="line"><span class="comment">//应该强制类型转换</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">char</span> <span class="params">(*p4)</span>[5] </span>=(<span class="built_in"><span class="keyword">char</span></span> (*)[<span class="number">5</span>]) a;</span><br><span class="line">cout &lt;&lt; *p3 &lt;&lt; <span class="string">&quot; &quot;</span>&lt;&lt;(p3) &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; *p4 &lt;&lt; <span class="string">&quot; &quot;</span>&lt;&lt;(p4) &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>ABCD 0x61fe1b 0x61fe20</p>
-<p>ABCD 0x61fe1b 0x61fe20</p>
-</blockquote>
-<p>指针数组，定义 int *p[n]：</p>
-<p>[]优先级高，先与p结合成为一个数组，再由int*说明这是一个整型指针数组，它有n个指针类型的数组元素。这里执行p+1时，则p指向下一个数组元素，这样赋值是错误的：p=a；</p>
-<p>因为p是个不可知的表示，只存在p[0]、p[1]、p[2]…p[n-1],而且它们分别是指针变量可以用来存放变量地址。但可以这样 <em>p=a; 这里</em>p表示指针数组第一个元素的值，a的首地址的值。</p>
+        <h2 id="牛客多校round3"><a href="#牛客多校round3" class="headerlink" title="牛客多校round3"></a>牛客多校round3</h2><p>C:签到 本来考虑是trie树，结果直接sort卡常过了</p>
+<p>A:easy 处理出来前后缀lca，利用lca可以合并的性质</p>
+<p>H：赛中猜测是sam之类的数据结构处理，但是大家都不会QAQ<br>算法和数据结构还需要进一步学习，书到用时方恨少</p>
+<p>J: easy，赛中一眼看出dijkstra跑一下就行，但是给出的图转换格式处理了好久，队友用双端队列先过了</p>
+<p>总结：进阶的数据结构掌握仍有欠缺，需要抓紧时间学习。除了刷cf的题锻炼思维，还需要刷一些算法专题掌握知识点。</p>
+<h2 id="牛客多校round4"><a href="#牛客多校round4" class="headerlink" title="牛客多校round4"></a>牛客多校round4</h2><p>D：一开始就去刚D题了，题目给的生成数据的算法没有说明白，一开始使用错误，生成的数据和样例一直不一样，后来百度现学到了正确的写法，然后把我写的二分交上去发现wa.后来分析发现这道题不满足单调性，然后经过队友提示先通过递推预处理出所有情况，然后o(1)查询成功AC</p>
+<p>H: 讨论后发现结果一定是总长的因数，我草草写了暴力验证了一下结论，然后队友猜了个答案成功ac</p>
+<p>N 和 K 在赛中没有直接参与做题</p>
+<p>赛后补题</p>
+<p>k大概是可以重构数组，每位尽可能塞入0或1，然后把重构的数组算方差即可</p>
 
       
     </div>
@@ -462,7 +414,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%8C%87%E9%92%88/" rel="tag"># 指针</a>
+            <a href="/tags/%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97/" rel="tag"># 训练日志</a>
           
         </div>
       
@@ -475,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/11/07/%E9%87%8D%E8%BD%BD%E8%BF%90%E7%AE%97%E7%AC%A6/" rel="next" title="重载运算符">
-                <i class="fa fa-chevron-left"></i> 重载运算符
+              <a href="/2022/07/24/2022-7-24/" rel="next" title="2022-7-24">
+                <i class="fa fa-chevron-left"></i> 2022-7-24
               </a>
             
           </div>
@@ -484,10 +436,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/11/15/python/" rel="prev" title="python">
-                python <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -651,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">一维数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">二维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84"><span class="nav-number">2.1.</span> <span class="nav-text">字符串数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84%E4%B8%8E%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E5%8C%BA%E5%88%86"><span class="nav-number">2.2.</span> <span class="nav-text">指针数组与数组指针区分</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1round3"><span class="nav-number">1.</span> <span class="nav-text">牛客多校round3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1round4"><span class="nav-number">2.</span> <span class="nav-text">牛客多校round4</span></a></li></ol></div>
             
 
           </div>
