@@ -1063,4 +1063,24 @@ y = {\theta}_0x+{\theta}_1\\
         <tag>训练日志</tag>
       </tags>
   </entry>
+  <entry>
+    <title>2022-8-7</title>
+    <url>/2022/08/07/2022-8-14/</url>
+    <content><![CDATA[<h1 id="round-7"><a href="#round-7" class="headerlink" title="round 7"></a>round 7</h1><p>C:赛中队友开c，我开f</p>
+<p>赛后补题:只要把存在的数字位置错排，不存在的任意放即可，是签到题</p>
+<p>F：我手写了链表+双指针，赛中没有发现wa原因，赛后发现判断条件放在最前面可以过</p>
+<p>G：翻译起来比较麻烦，全队一起看的，经过分析可以发现最长的长度为2，然后通过特判直接得出答案，成功ac</p>
+<p>补题：K赛中并没有做出，学习了一下莫队算法<br>奇数的时候有必胜的策略，偶数时谁让堆数-1谁就会输，这样变成了nim游戏，使用莫队离线维护区间异或和不为0可得答案。</p>
+<h1 id="round-8"><a href="#round-8" class="headerlink" title="round 8"></a>round 8</h1><p>这场巨难，到最后也只做出1道题，做了4个多小时牢，太菜了QAQ</p>
+<p>F：看懂题目第一反应是找循环节，找到一个相同的之后就都一样了，讨论后发现队友思路与我相同，gs写的代码wa了，我看了他的代码发现最后一重循环找到直接break掉了，改成遍历数组取max后ac</p>
+<p>总结：一些高级算法还需要学习，面对真正的难题的时候明显感到乏力，平时刷题时要挑战高于自己水平的题目</p>
+]]></content>
+      <categories>
+        <category>训练日志</category>
+        <category>刷题日志</category>
+      </categories>
+      <tags>
+        <tag>训练日志</tag>
+      </tags>
+  </entry>
 </search>
