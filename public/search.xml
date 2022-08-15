@@ -1064,8 +1064,8 @@ y = {\theta}_0x+{\theta}_1\\
       </tags>
   </entry>
   <entry>
-    <title>2022-8-7</title>
-    <url>/2022/08/07/2022-8-14/</url>
+    <title>2022-8-14</title>
+    <url>/2022/08/14/2022-8-14/</url>
     <content><![CDATA[<h1 id="round-7"><a href="#round-7" class="headerlink" title="round 7"></a>round 7</h1><p>C:赛中队友开c，我开f</p>
 <p>赛后补题:只要把存在的数字位置错排，不存在的任意放即可，是签到题</p>
 <p>F：我手写了链表+双指针，赛中没有发现wa原因，赛后发现判断条件放在最前面可以过</p>
