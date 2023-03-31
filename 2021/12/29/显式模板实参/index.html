@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="函数模(mu)板123456789template&lt;class T&gt;void swap(T a, T b)&amp;#123;    int t &#x3D; a;    a &#x3D; b;    b &#x3D; t;&amp;#125;&#x2F;&#x2F;隐式调用int a &#x3D; 1,b &#x3D; 2;swap(a,b);  在一些情况下通过隐式调用编译器无法推演参数类型，这是需要进行显式调用。 显示模板实参的格式为在调用模板函数的时候在函数名后">
+<meta name="description" content="函数模(mu)板123456789template&lt;class T&gt;void swap(T a, T b)&amp;#123;    int t &#x3D; a;    a &#x3D; b;    b &#x3D; t;&amp;#125;&#x2F;&#x2F;隐式调用int a &#x3D; 1,b &#x3D; 2;swap(a,b); 在一些情况下通过隐式调用编译器无法推演参数类型，这是需要进行显式调用。 显示模板实参的格式为在调用模板函数的时候在函数名后用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="显式模板实参">
 <meta property="og:url" content="http://wwwttlll.github.io/2021/12/29/%E6%98%BE%E5%BC%8F%E6%A8%A1%E6%9D%BF%E5%AE%9E%E5%8F%82/index.html">
 <meta property="og:site_name" content="wwwttlll">
-<meta property="og:description" content="函数模(mu)板123456789template&lt;class T&gt;void swap(T a, T b)&amp;#123;    int t &#x3D; a;    a &#x3D; b;    b &#x3D; t;&amp;#125;&#x2F;&#x2F;隐式调用int a &#x3D; 1,b &#x3D; 2;swap(a,b);  在一些情况下通过隐式调用编译器无法推演参数类型，这是需要进行显式调用。 显示模板实参的格式为在调用模板函数的时候在函数名后">
+<meta property="og:description" content="函数模(mu)板123456789template&lt;class T&gt;void swap(T a, T b)&amp;#123;    int t &#x3D; a;    a &#x3D; b;    b &#x3D; t;&amp;#125;&#x2F;&#x2F;隐式调用int a &#x3D; 1,b &#x3D; 2;swap(a,b); 在一些情况下通过隐式调用编译器无法推演参数类型，这是需要进行显式调用。 显示模板实参的格式为在调用模板函数的时候在函数名后用">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-29T02:05:58.000Z">
 <meta property="article:modified_time" content="2022-01-20T10:20:33.390Z">
@@ -399,19 +399,15 @@
 
       
         <h4 id="函数模-mu-板"><a href="#函数模-mu-板" class="headerlink" title="函数模(mu)板"></a>函数模(mu)板</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;class T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(T a, T b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//隐式调用</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>,b = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">swap</span>(a,b);</span><br></pre></td></tr></table></figure>
-
 <p>在一些情况下通过隐式调用编译器无法推演参数类型，这是需要进行显式调用。</p>
 <p><strong>显示模板实参</strong>的格式为<strong>在调用模板函数的时候在函数名后用&lt;&gt;尖括号括住要显示的类型</strong></p>
 <p>例如</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;class T&gt; </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">h</span><span class="params">(T a, T b)</span></span>&#123;&#125;</span><br><span class="line"><span class="built_in">h</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);<span class="comment">//报错</span></span><br><span class="line">h&lt;<span class="keyword">double</span>&gt;(<span class="number">1</span>,<span class="number">1.1</span>)<span class="comment">//正确写法</span></span><br></pre></td></tr></table></figure>
-
-<p>**对于多个模板参数&lt;&gt;中的类型依次对应每个参数，只能省略掉尾部的实参 **</p>
+<p><strong>对于多个模板参数&lt;&gt;中的类型依次对应每个参数，只能省略掉尾部的实参 </strong></p>
 <p>例如</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;class a, class b, class c&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">get</span><span class="params">(b x, c y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * y;</span><br><span class="line">&#125;</span><br><span class="line">get&lt;<span class="keyword">double</span>,<span class="keyword">int</span>&gt;(<span class="number">1.1</span>,<span class="number">1</span>);<span class="comment">//输出1</span></span><br><span class="line">get&lt;<span class="keyword">double</span>,<span class="keyword">double</span>&gt;(<span class="number">1.1</span>,<span class="number">1</span>);<span class="comment">//输出1.1</span></span><br><span class="line">get&lt;<span class="keyword">double</span>,<span class="keyword">int</span>,<span class="keyword">double</span>&gt;(<span class="number">1.1</span>,<span class="number">1.2</span>);<span class="comment">//输出1.2</span></span><br></pre></td></tr></table></figure>
-
 <h4 id="必须使用显性调用的情况"><a href="#必须使用显性调用的情况" class="headerlink" title="必须使用显性调用的情况"></a>必须使用显性调用的情况</h4><h5 id="1-同一个模板实参类型不一致的的情况"><a href="#1-同一个模板实参类型不一致的的情况" class="headerlink" title="1.同一个模板实参类型不一致的的情况"></a>1.同一个模板实参类型不一致的的情况</h5><p>如上上代码段</p>
 <h5 id="2-函数返回值类型为模板实参类型"><a href="#2-函数返回值类型为模板实参类型" class="headerlink" title="2.函数返回值类型为模板实参类型"></a>2.函数返回值类型为模板实参类型</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;class a, class b, class c&gt;</span></span><br><span class="line"><span class="function">a <span class="title">get</span><span class="params">(b x, c y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这种情况下a的类型无法推演</span></span><br><span class="line">get&lt;<span class="keyword">int</span>,<span class="keyword">double</span>,<span class="keyword">double</span>&gt;(<span class="number">1.1</span>,<span class="number">1.2</span>);<span class="comment">//正确</span></span><br></pre></td></tr></table></figure>
-
 <h5 id="3-应用于模板函数的参数中没有出现模板形参的情况"><a href="#3-应用于模板函数的参数中没有出现模板形参的情况" class="headerlink" title="3.应用于模板函数的参数中没有出现模板形参的情况"></a>3.应用于模板函数的参数中没有出现模板形参的情况</h5>
       
     </div>

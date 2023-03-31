@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="汉诺塔问题是非常经典的递归问题，之前只知道问题的移动步数的结论是2 ^ n - 1,具体过程并未思考。今天通过做题了解到这是明显的递归，过程如下。 有a b c三根柱子，先从n &#x3D; 1 的情况开始。先将a 中的盘子移到 c中 ，记作$$ f(1,a,c).$$  如果n &#x3D; 2呢？显然，我们要先将a 中最上面的一个移到b中，再将a中剩下的一个移到c中， 最后将b中的一个移到c中。 那么操作过程是$">
+<meta name="description" content="汉诺塔问题是非常经典的递归问题，之前只知道问题的移动步数的结论是2 ^ n - 1,具体过程并未思考。今天通过做题了解到这是明显的递归，过程如下。 有a b c三根柱子，先从n &#x3D; 1 的情况开始。先将a 中的盘子移到 c中 ，记作   f(1,a,c). 如果n &#x3D; 2呢？显然，我们要先将a 中最上面的一个移到b中，再将a中剩下的一个移到c中， 最后将b中的一个移到c中。 那么操作过程是  f(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="汉诺塔问题">
 <meta property="og:url" content="http://wwwttlll.github.io/2021/10/31/%E6%B1%89%E8%AF%BA%E5%A1%94%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="wwwttlll">
-<meta property="og:description" content="汉诺塔问题是非常经典的递归问题，之前只知道问题的移动步数的结论是2 ^ n - 1,具体过程并未思考。今天通过做题了解到这是明显的递归，过程如下。 有a b c三根柱子，先从n &#x3D; 1 的情况开始。先将a 中的盘子移到 c中 ，记作$$ f(1,a,c).$$  如果n &#x3D; 2呢？显然，我们要先将a 中最上面的一个移到b中，再将a中剩下的一个移到c中， 最后将b中的一个移到c中。 那么操作过程是$">
+<meta property="og:description" content="汉诺塔问题是非常经典的递归问题，之前只知道问题的移动步数的结论是2 ^ n - 1,具体过程并未思考。今天通过做题了解到这是明显的递归，过程如下。 有a b c三根柱子，先从n &#x3D; 1 的情况开始。先将a 中的盘子移到 c中 ，记作   f(1,a,c). 如果n &#x3D; 2呢？显然，我们要先将a 中最上面的一个移到b中，再将a中剩下的一个移到c中， 最后将b中的一个移到c中。 那么操作过程是  f(">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-31T07:37:51.000Z">
 <meta property="article:modified_time" content="2021-10-31T07:58:29.099Z">
@@ -377,13 +377,18 @@
 
       
         <p>汉诺塔问题是非常经典的递归问题，之前只知道问题的移动步数的结论是2 ^ n - 1,具体过程并未思考。今天通过做题了解到这是明显的递归，过程如下。</p>
-<p>有a b c三根柱子，先从n = 1 的情况开始。先将a 中的盘子移到 c中 ，记作<br>$$<br> f(1,a,c).<br>$$</p>
-<p> 如果n = 2呢？显然，我们要先将a 中最上面的一个移到b中，再将a中剩下的一个移到c中， 最后将b中的一个移到c中。</p>
-<p>那么操作过程是<br>$$<br>f(1,a,b)  -&gt; f(1,a,c) -&gt;f(1,b,c)<br>$$</p>
-<p>将情况推广到n。我们需要将a中的n-1个移入b中 将 a中剩下的1个移入c中 在将b中的n-1个移入c中<br>$$<br>f(n-1,a,b)  -&gt; f(1,a,c) -&gt;f(n-1,b,c)<br>$$<br>发现规律了吗，每次的<br>$$<br>f(n) = 2*f(n-1)+1<br>$$<br>通过递归，我们可以得到f(n-1) 来更新f(n);</p>
+<p>有a b c三根柱子，先从n = 1 的情况开始。先将a 中的盘子移到 c中 ，记作</p>
+<script type="math/tex; mode=display">
+ f(1,a,c).</script><p> 如果n = 2呢？显然，我们要先将a 中最上面的一个移到b中，再将a中剩下的一个移到c中， 最后将b中的一个移到c中。</p>
+<p>那么操作过程是</p>
+<script type="math/tex; mode=display">
+f(1,a,b)  -> f(1,a,c) ->f(1,b,c)</script><p>将情况推广到n。我们需要将a中的n-1个移入b中 将 a中剩下的1个移入c中 在将b中的n-1个移入c中</p>
+<script type="math/tex; mode=display">
+f(n-1,a,b)  -> f(1,a,c) ->f(n-1,b,c)</script><p>发现规律了吗，每次的</p>
+<script type="math/tex; mode=display">
+f(n) = 2*f(n-1)+1</script><p>通过递归，我们可以得到f(n-1) 来更新f(n);</p>
 <p>最终过程代码如下</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ret=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>)&#123;<span class="keyword">if</span>(ch==<span class="string">&#x27;-&#x27;</span>)f=-f;ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) ret=ret*<span class="number">10</span>+ch-<span class="string">&#x27;0&#x27;</span>,ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> ret*f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> a,<span class="keyword">char</span> b, <span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c----%c\n&quot;</span>,a,c);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(n<span class="number">-1</span>,a,c,b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c----%c\n&quot;</span>,a,c);</span><br><span class="line">    <span class="built_in">dfs</span>(n<span class="number">-1</span>,b,a,c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(cnt != <span class="number">0</span>)cout &lt;&lt; endl;</span><br><span class="line">        cnt++;</span><br><span class="line">        <span class="built_in">dfs</span>(n,<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
