@@ -87,7 +87,7 @@
 <meta property="og:description" content="to do list预训练模型做法：先通过已有的2d网络选择含有结节的大致区域，将该区域切割出等大的三维张量，使用3d网络进一步分割 2.5D方法是一种在三维医学图像分割中应用的技术。它结合了2D和3D方法的优点，旨在提高分割精度并保持计算效率。 因为它基于2D网络，并引入层间信息来利用空间信息。 此外，2.5D方法可以很大程度上利用空间信息提升模型分割精度 web应用原设定：用户上传ct图像，在">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-03-31T01:17:19.000Z">
-<meta property="article:modified_time" content="2023-03-31T02:11:06.716Z">
+<meta property="article:modified_time" content="2023-03-31T02:16:37.206Z">
 <meta property="article:author" content="wwwttlll">
 <meta name="twitter:card" content="summary">
 
@@ -363,7 +363,7 @@
 <li>[x] 数据预处理</li>
 <li>[x] 2d网络</li>
 <li><p>[ ] 切割2d网络划分区域，获得3维张量</p>
-<p>将2d图像堆叠，还原ct图像，使用k-means(暂定)获取聚类中心$(x,y,z)$，切除$(x \pm 5, y \pm 5 , z \pm 5)$范围的立方体</p>
+<p>将2d图像堆叠，还原ct图像，使用k-means(暂定)获取聚类中心$(x,y,z)$，切除$(x \pm 5, y \pm 5 , z \pm 5)$范围的立方体($10 \times 10 \times 10$)</p>
 </li>
 <li>[ ] 3d网络 (完成了一半？考虑是否更换网络)</li>
 </ul>
