@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="前提RESTful API 统一约束客户端和服务器之间的接口。简化和分离系统架构  请求中使用URI定位资源  用HTTP Verbs[动词]（GET、POST、PUT、DELETE）描述操作（具体表现形式）  数据传递（默认）采用：Content-Type: application&#x2F;json; charset&#x3D;utf-8  api目录register接口功能 用户注册  URL http:&#x2F;&#x2F;l">
+<meta name="description" content="前提RESTful API 统一约束客户端和服务器之间的接口。简化和分离系统架构  请求中使用URI定位资源  用HTTP Verbs（GET、POST、PUT、DELETE）描述操作（具体表现形式）  数据传递（默认）采用：Content-Type: application&#x2F;json; charset&#x3D;utf-8  更新记录 2023.7.20 完善安全验证 加入token生成 以及用户信息验证">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对接文档">
 <meta property="og:url" content="http://wwwttlll.github.io/2023/07/08/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3/index.html">
 <meta property="og:site_name" content="wwwttlll">
-<meta property="og:description" content="前提RESTful API 统一约束客户端和服务器之间的接口。简化和分离系统架构  请求中使用URI定位资源  用HTTP Verbs[动词]（GET、POST、PUT、DELETE）描述操作（具体表现形式）  数据传递（默认）采用：Content-Type: application&#x2F;json; charset&#x3D;utf-8  api目录register接口功能 用户注册  URL http:&#x2F;&#x2F;l">
+<meta property="og:description" content="前提RESTful API 统一约束客户端和服务器之间的接口。简化和分离系统架构  请求中使用URI定位资源  用HTTP Verbs（GET、POST、PUT、DELETE）描述操作（具体表现形式）  数据传递（默认）采用：Content-Type: application&#x2F;json; charset&#x3D;utf-8  更新记录 2023.7.20 完善安全验证 加入token生成 以及用户信息验证">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-08T09:49:16.000Z">
-<meta property="article:modified_time" content="2023-07-08T09:55:52.409Z">
+<meta property="article:modified_time" content="2023-07-20T04:02:45.452Z">
 <meta property="article:author" content="wwwttlll">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
@@ -358,9 +358,12 @@
 <ul>
 <li><p>请求中使用URI定位资源</p>
 </li>
-<li><p>用HTTP Verbs[动词]（GET、POST、PUT、DELETE）描述操作（具体表现形式）</p>
+<li><p>用HTTP Verbs（GET、POST、PUT、DELETE）描述操作（具体表现形式）</p>
 </li>
 <li>数据传递（默认）采用：Content-Type: application/json; charset=utf-8</li>
+</ul>
+<h2 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h2><ul>
+<li>2023.7.20 完善安全验证 加入token生成 以及用户信息验证和加密 （令牌没有加入后续考虑）</li>
 </ul>
 <h2 id="api目录"><a href="#api目录" class="headerlink" title="api目录"></a>api目录</h2><h3 id="register"><a href="#register" class="headerlink" title="register"></a>register</h3><h4 id="接口功能"><a href="#接口功能" class="headerlink" title="接口功能"></a>接口功能</h4><blockquote>
 <p>用户注册</p>
@@ -386,6 +389,12 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align:center">csrf_token</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">token</td>
+</tr>
+<tr>
 <td style="text-align:center">username</td>
 <td style="text-align:center">ture</td>
 <td style="text-align:center">string</td>
@@ -395,19 +404,19 @@
 <td style="text-align:center">password</td>
 <td style="text-align:center">true</td>
 <td style="text-align:center">string</td>
-<td style="text-align:center">请求密码</td>
+<td style="text-align:center">密码 6-16位</td>
+</tr>
+<tr>
+<td style="text-align:center">password2</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">请求密码与password1相同</td>
 </tr>
 <tr>
 <td style="text-align:center">email</td>
 <td style="text-align:center">true</td>
 <td style="text-align:center">string</td>
 <td style="text-align:center">用户邮箱</td>
-</tr>
-<tr>
-<td style="text-align:center">identify</td>
-<td style="text-align:center">true</td>
-<td style="text-align:center">string</td>
-<td style="text-align:center">用户填写验证码</td>
 </tr>
 </tbody>
 </table>
@@ -427,10 +436,15 @@
 <td style="text-align:left">bool</td>
 <td style="text-align:left">返回结果状态true：正常；false：错误。</td>
 </tr>
+<tr>
+<td style="text-align:left">message</td>
+<td style="text-align:left">字典</td>
+<td style="text-align:left">错误信息</td>
+</tr>
 </tbody>
 </table>
 </div>
-<h4 id="接口示例"><a href="#接口示例" class="headerlink" title="接口示例"></a>接口示例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;statue&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="接口示例"><a href="#接口示例" class="headerlink" title="接口示例"></a>接口示例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;message&quot;</span>: &#123;</span><br><span class="line">		<span class="string">&quot;csrf_token&quot;</span>: [</span><br><span class="line">			<span class="string">&quot;The CSRF token is missing.&quot;</span></span><br><span class="line">		]</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="string">&quot;status&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">	</span><br><span class="line">    <span class="string">&quot;message&quot;</span> :&#123;</span><br><span class="line">        <span class="string">&quot;username&quot;</span> : [<span class="string">&quot;username or email is occupied&quot;</span>]</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="string">&quot;status&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="login"><a href="#login" class="headerlink" title="login"></a>login</h3><h4 id="接口功能-1"><a href="#接口功能-1" class="headerlink" title="接口功能"></a>接口功能</h4><blockquote>
 <p>用户登录</p>
 </blockquote>
@@ -455,6 +469,12 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align:center">csrf_token</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">token</td>
+</tr>
+<tr>
 <td style="text-align:center">username</td>
 <td style="text-align:center">ture</td>
 <td style="text-align:center">string</td>
@@ -464,13 +484,7 @@
 <td style="text-align:center">password</td>
 <td style="text-align:center">true</td>
 <td style="text-align:center">string</td>
-<td style="text-align:center">请求密码</td>
-</tr>
-<tr>
-<td style="text-align:center">email</td>
-<td style="text-align:center">true</td>
-<td style="text-align:center">string</td>
-<td style="text-align:center">用户邮箱</td>
+<td style="text-align:center">密码 6-16位</td>
 </tr>
 </tbody>
 </table>
@@ -491,9 +505,9 @@
 <td style="text-align:left">返回结果状态true：正常；false：错误。</td>
 </tr>
 <tr>
-<td style="text-align:left">uid</td>
+<td style="text-align:left">token</td>
 <td style="text-align:left">string</td>
-<td style="text-align:left">用户uid（登录成功时）</td>
+<td style="text-align:left">包括user.uid username 时间戳 HS256加密</td>
 </tr>
 <tr>
 <td style="text-align:left">message</td>
@@ -503,7 +517,86 @@
 </tbody>
 </table>
 </div>
-<h4 id="接口示例-1"><a href="#接口示例-1" class="headerlink" title="接口示例"></a>接口示例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;statue&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;uid&quot;</span>: <span class="string">&quot;1677599728700887040&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;statue&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="string">&quot;message&quot;</span>: <span class="string">&quot;User name or email address has been taken&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="接口示例-1"><a href="#接口示例-1" class="headerlink" title="接口示例"></a>接口示例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;status&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">	<span class="string">&quot;token&quot;</span>: <span class="string">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTY3NzYwNDYzNTc5MzI5NzQwOCIsInVzZXJuYW1lIjoiZHAiLCJleHAiOjE2ODk4MjgyODV9.lKDz9xoO4_jaWUStAgSvwGnFQqTewaZg8uQ5tj53Vyg&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;message&quot;</span>: &#123;</span><br><span class="line">		<span class="string">&quot;csrf_token&quot;</span>: [</span><br><span class="line">			<span class="string">&quot;The CSRF token is missing.&quot;</span></span><br><span class="line">		]</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="string">&quot;status&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="logout"><a href="#logout" class="headerlink" title="logout"></a>logout</h3><h4 id="接口功能-2"><a href="#接口功能-2" class="headerlink" title="接口功能"></a>接口功能</h4><blockquote>
+<p>用户登出</p>
+</blockquote>
+<h4 id="URL-2"><a href="#URL-2" class="headerlink" title="URL"></a>URL</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="http://127.0.0.1:5000/register">http://localhost:port/logout</a></p>
+</blockquote>
+<h4 id="HTTP请求方式-2"><a href="#HTTP请求方式-2" class="headerlink" title="HTTP请求方式"></a>HTTP请求方式</h4><blockquote>
+<p>GET</p>
+<h4 id="返回字段-2"><a href="#返回字段-2" class="headerlink" title="返回字段"></a>返回字段</h4></blockquote>
+<p>重定向到/login</p>
+<h3 id="protect"><a href="#protect" class="headerlink" title="protect"></a>protect</h3><h4 id="接口功能-3"><a href="#接口功能-3" class="headerlink" title="接口功能"></a>接口功能</h4><blockquote>
+<p>保护验证</p>
+</blockquote>
+<h4 id="URL-3"><a href="#URL-3" class="headerlink" title="URL"></a>URL</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="http://127.0.0.1:5000/register">http://localhost:port/login</a></p>
+</blockquote>
+<h4 id="支持格式-2"><a href="#支持格式-2" class="headerlink" title="支持格式"></a>支持格式</h4><blockquote>
+<p>JSON</p>
+</blockquote>
+<h4 id="HTTP请求方式-3"><a href="#HTTP请求方式-3" class="headerlink" title="HTTP请求方式"></a>HTTP请求方式</h4><blockquote>
+<p>get</p>
+</blockquote>
+<h4 id="请求参数-2"><a href="#请求参数-2" class="headerlink" title="请求参数"></a>请求参数</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">必选</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Authorization</td>
+<td style="text-align:center">ture</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">token</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="返回字段-3"><a href="#返回字段-3" class="headerlink" title="返回字段"></a>返回字段</h4><p><strong>失败</strong><br>|返回字段|字段类型|说明                              |<br>|:——-   |:———|:——————————————-   |<br>|status   |int   |401|<br>|message|string|错误信息|</p>
+<p><strong>成功</strong></p>
+<p>重定向到/home</p>
+<h4 id="接口示例-2"><a href="#接口示例-2" class="headerlink" title="接口示例"></a>接口示例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&#x27;message&#x27;</span>: <span class="string">&#x27;Token is missing!&#x27;</span>,</span><br><span class="line">    <span class="string">&quot;status&quot;</span> : <span class="number">401</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="home"><a href="#home" class="headerlink" title="home"></a>home</h3><h4 id="接口功能-4"><a href="#接口功能-4" class="headerlink" title="接口功能"></a>接口功能</h4><blockquote>
+<p>主页</p>
+</blockquote>
+<h4 id="URL-4"><a href="#URL-4" class="headerlink" title="URL"></a>URL</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="http://127.0.0.1:5000/register">http://localhost:port/login</a></p>
+</blockquote>
+<h4 id="支持格式-3"><a href="#支持格式-3" class="headerlink" title="支持格式"></a>支持格式</h4><blockquote>
+<p>JSON</p>
+</blockquote>
+<h4 id="HTTP请求方式-4"><a href="#HTTP请求方式-4" class="headerlink" title="HTTP请求方式"></a>HTTP请求方式</h4><blockquote>
+<p>get</p>
+</blockquote>
+<h4 id="请求参数-3"><a href="#请求参数-3" class="headerlink" title="请求参数"></a>请求参数</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">必选</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Authorization</td>
+<td style="text-align:center">ture</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">token</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="返回字段-4"><a href="#返回字段-4" class="headerlink" title="返回字段"></a>返回字段</h4><h4 id="接口示例-3"><a href="#接口示例-3" class="headerlink" title="接口示例"></a>接口示例</h4>
       
     </div>
     
@@ -705,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%8F%90"><span class="nav-number">1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#api%E7%9B%AE%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">api目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#register"><span class="nav-number">2.1.</span> <span class="nav-text">register</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%8A%9F%E8%83%BD"><span class="nav-number">2.1.1.</span> <span class="nav-text">接口功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL"><span class="nav-number">2.1.2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.1.3.</span> <span class="nav-text">支持格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.4.</span> <span class="nav-text">HTTP请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0"><span class="nav-number">2.1.5.</span> <span class="nav-text">请求参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%AD%97%E6%AE%B5"><span class="nav-number">2.1.6.</span> <span class="nav-text">返回字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.1.7.</span> <span class="nav-text">接口示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#login"><span class="nav-number">2.2.</span> <span class="nav-text">login</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%8A%9F%E8%83%BD-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">接口功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E6%A0%BC%E5%BC%8F-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">支持格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F-1"><span class="nav-number">2.2.4.</span> <span class="nav-text">HTTP请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0-1"><span class="nav-number">2.2.5.</span> <span class="nav-text">请求参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%AD%97%E6%AE%B5-1"><span class="nav-number">2.2.6.</span> <span class="nav-text">返回字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B-1"><span class="nav-number">2.2.7.</span> <span class="nav-text">接口示例</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%8F%90"><span class="nav-number">1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">更新记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#api%E7%9B%AE%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">api目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#register"><span class="nav-number">3.1.</span> <span class="nav-text">register</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%8A%9F%E8%83%BD"><span class="nav-number">3.1.1.</span> <span class="nav-text">接口功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL"><span class="nav-number">3.1.2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.1.3.</span> <span class="nav-text">支持格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="nav-number">3.1.4.</span> <span class="nav-text">HTTP请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0"><span class="nav-number">3.1.5.</span> <span class="nav-text">请求参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%AD%97%E6%AE%B5"><span class="nav-number">3.1.6.</span> <span class="nav-text">返回字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.1.7.</span> <span class="nav-text">接口示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#login"><span class="nav-number">3.2.</span> <span class="nav-text">login</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%8A%9F%E8%83%BD-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">接口功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E6%A0%BC%E5%BC%8F-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">支持格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F-1"><span class="nav-number">3.2.4.</span> <span class="nav-text">HTTP请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0-1"><span class="nav-number">3.2.5.</span> <span class="nav-text">请求参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%AD%97%E6%AE%B5-1"><span class="nav-number">3.2.6.</span> <span class="nav-text">返回字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B-1"><span class="nav-number">3.2.7.</span> <span class="nav-text">接口示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#logout"><span class="nav-number">3.3.</span> <span class="nav-text">logout</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%8A%9F%E8%83%BD-2"><span class="nav-number">3.3.1.</span> <span class="nav-text">接口功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL-2"><span class="nav-number">3.3.2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F-2"><span class="nav-number">3.3.3.</span> <span class="nav-text">HTTP请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%AD%97%E6%AE%B5-2"><span class="nav-number">3.3.4.</span> <span class="nav-text">返回字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#protect"><span class="nav-number">3.4.</span> <span class="nav-text">protect</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%8A%9F%E8%83%BD-3"><span class="nav-number">3.4.1.</span> <span class="nav-text">接口功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL-3"><span class="nav-number">3.4.2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E6%A0%BC%E5%BC%8F-2"><span class="nav-number">3.4.3.</span> <span class="nav-text">支持格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F-3"><span class="nav-number">3.4.4.</span> <span class="nav-text">HTTP请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0-2"><span class="nav-number">3.4.5.</span> <span class="nav-text">请求参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%AD%97%E6%AE%B5-3"><span class="nav-number">3.4.6.</span> <span class="nav-text">返回字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B-2"><span class="nav-number">3.4.7.</span> <span class="nav-text">接口示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#home"><span class="nav-number">3.5.</span> <span class="nav-text">home</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%8A%9F%E8%83%BD-4"><span class="nav-number">3.5.1.</span> <span class="nav-text">接口功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL-4"><span class="nav-number">3.5.2.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E6%A0%BC%E5%BC%8F-3"><span class="nav-number">3.5.3.</span> <span class="nav-text">支持格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F-4"><span class="nav-number">3.5.4.</span> <span class="nav-text">HTTP请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0-3"><span class="nav-number">3.5.5.</span> <span class="nav-text">请求参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%AD%97%E6%AE%B5-4"><span class="nav-number">3.5.6.</span> <span class="nav-text">返回字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E7%A4%BA%E4%BE%8B-3"><span class="nav-number">3.5.7.</span> <span class="nav-text">接口示例</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
