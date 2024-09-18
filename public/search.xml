@@ -11,12 +11,11 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//最小生成树是否唯一</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ret=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>)&#123;<span class="keyword">if</span>(ch==<span class="string">&#x27;-&#x27;</span>)f=-f;ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) ret=ret*<span class="number">10</span>+ch-<span class="string">&#x27;0&#x27;</span>,ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> ret*f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">100001</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,num,t,sum;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">F</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x == f[x] ? x : f[x] = <span class="built_in">F</span>(f[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> vis[<span class="number">100001</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> u,v,w;</span><br><span class="line">&#125;a[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        f[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node a, node b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.w &lt; b.w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    t = <span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        n = <span class="built_in">read</span>(); m = <span class="built_in">read</span>();</span><br><span class="line">        num = <span class="number">0</span>;</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">init</span>(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">            a[i].u = <span class="built_in">read</span>();</span><br><span class="line">            a[i].v = <span class="built_in">read</span>();</span><br><span class="line">            a[i].w = <span class="built_in">read</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + m, cmp);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x = <span class="built_in">F</span>(a[i].u);</span><br><span class="line">            <span class="keyword">int</span> y = <span class="built_in">F</span>(a[i].v);</span><br><span class="line">            <span class="keyword">if</span>(x != y)&#123;</span><br><span class="line">                f[x] = y;</span><br><span class="line">                vis[++num] = i;</span><br><span class="line">                sum += a[i].w;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++)&#123;</span><br><span class="line">            <span class="built_in">init</span>(n);</span><br><span class="line">            <span class="keyword">int</span> sum2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> num2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(j == vis[i])<span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">int</span> x = <span class="built_in">F</span>(a[j].u);</span><br><span class="line">                <span class="keyword">int</span> y = <span class="built_in">F</span>(a[j].v);</span><br><span class="line">                <span class="keyword">if</span>(x != y)&#123;</span><br><span class="line">                    f[x] = y;</span><br><span class="line">                    sum2 += a[j].w;</span><br><span class="line">                    num2 ++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(num2 != num)<span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span>(sum2 == sum)&#123;</span><br><span class="line">                    flag = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(flag == <span class="number">1</span>)<span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">&quot;Not Unique!&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>训练日志</category>
         <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>训练日志</tag>
         <tag>最小生成树</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -33,11 +32,10 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ret=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>)&#123;<span class="keyword">if</span>(ch==<span class="string">&#x27;-&#x27;</span>)f=-f;ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) ret=ret*<span class="number">10</span>+ch-<span class="string">&#x27;0&#x27;</span>,ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> ret*f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n,m,t;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">100001</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> u,v,w;</span><br><span class="line">&#125;;</span><br><span class="line">node a[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">F</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x == f[x] ? x : f[x] = <span class="built_in">F</span>(f[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node a, node b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.w &lt; b.w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    t = <span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        n = <span class="built_in">read</span>(); m = <span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">            f[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">            a[i].u = <span class="built_in">read</span>();</span><br><span class="line">            a[i].v = <span class="built_in">read</span>();</span><br><span class="line">            a[i].w = <span class="built_in">read</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + m, cmp);</span><br><span class="line">        <span class="keyword">int</span> sum1 = <span class="number">0</span>, sum2 = <span class="number">0</span>, num = <span class="number">0</span>, flag = <span class="number">0</span>,tail = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m + <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; tail)&#123;<span class="comment">//tail记录最后长度相同的边的指针</span></span><br><span class="line">                <span class="comment">//sum2记录可以合并的长度相同的边数</span></span><br><span class="line">                <span class="comment">//sum1记录实际最小生成树中连接的边数</span></span><br><span class="line">                <span class="comment">//如果两个不相等说明有可以替换的边，则最小生成树不唯一</span></span><br><span class="line">                <span class="keyword">if</span>(sum1 != sum2)&#123;</span><br><span class="line">                    flag = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                sum1 = <span class="number">0</span>;</span><br><span class="line">                sum2 = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt;= m + <span class="number">1</span>; j++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(a[j].w != a[i].w)&#123;</span><br><span class="line">                        tail = j - <span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(<span class="built_in">F</span>(a[j].u) != <span class="built_in">F</span>(a[j].v))&#123;</span><br><span class="line">                        sum2++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; m)<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">int</span> x = <span class="built_in">F</span>(a[i].u);</span><br><span class="line">            <span class="keyword">int</span> y = <span class="built_in">F</span>(a[i].v);</span><br><span class="line">            <span class="keyword">if</span>(x != y &amp;&amp; num != n<span class="number">-1</span>)&#123;</span><br><span class="line">                f[x] = y;</span><br><span class="line">                num ++;</span><br><span class="line">                sum1++;</span><br><span class="line">                ans += a[i].w;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Not Unique!\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>训练日志</category>
         <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>训练日志</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -53,11 +51,10 @@ tr[x][i] = tr[x << 1][i] + tr[x << 1 | 1][((i + tr[x << 1][i]) % 3 + 3) % 3];</s
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ret=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>)&#123;<span class="keyword">if</span>(ch==<span class="string">&#x27;-&#x27;</span>)f=-f;ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) ret=ret*<span class="number">10</span>+ch-<span class="string">&#x27;0&#x27;</span>,ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> ret*f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">2e5</span> + <span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> n,q;</span><br><span class="line"><span class="keyword">int</span> init[<span class="number">256</span>][<span class="number">3</span>];</span><br><span class="line"><span class="keyword">char</span> c[N];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">setmenttree</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> tr[N &lt;&lt; <span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push_up</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123;</span><br><span class="line">            tr[x][i] = tr[x &lt;&lt; <span class="number">1</span>][i] + tr[x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>][((i + tr[x &lt;&lt; <span class="number">1</span>][i]) % <span class="number">3</span> + <span class="number">3</span>) % <span class="number">3</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l == r)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123;</span><br><span class="line">                <span class="comment">//cout &lt;&lt; i &lt;&lt; endl;</span></span><br><span class="line">                tr[x][i] = init[c[l]][i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">build</span>(x &lt;&lt; <span class="number">1</span>, l, mid);</span><br><span class="line">        <span class="built_in">build</span>(x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, mid + <span class="number">1</span>, r);</span><br><span class="line">        <span class="built_in">push_up</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; <span class="title">query</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> ql,<span class="keyword">int</span> qr,<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(r &lt; ql || qr &lt; l)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">make_pair</span>(<span class="number">0</span>,<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ql &lt;= l &amp;&amp; r &lt;= qr)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">make_pair</span>(tr[x][p],((p + tr[x][p%<span class="number">3</span>]) + <span class="number">3</span>) % <span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">auto</span> xx = <span class="built_in">query</span>(x &lt;&lt; <span class="number">1</span>, l, mid, ql, qr, p);</span><br><span class="line">        <span class="comment">//cout &lt;&lt; l &lt;&lt; &quot; &quot; &lt;&lt; r &lt;&lt; &quot; &quot; &lt;&lt;  xx.first &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">if</span>(xx.second == <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">query</span>(x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, mid + <span class="number">1</span>, r, ql, qr, p);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">auto</span> y = <span class="built_in">query</span>(x &lt;&lt; <span class="number">1</span> | <span class="number">1</span>, mid + <span class="number">1</span>, r, ql, qr, xx.second);</span><br><span class="line">        <span class="keyword">if</span>(y.second == <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> xx;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">make_pair</span>(xx.first + y.first , y.second);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;tree;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    init[<span class="string">&#x27;W&#x27;</span>][<span class="number">0</span>] = init[<span class="string">&#x27;W&#x27;</span>][<span class="number">1</span>] = init[<span class="string">&#x27;W&#x27;</span>][<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">    init[<span class="string">&#x27;D&#x27;</span>][<span class="number">0</span>] = init[<span class="string">&#x27;D&#x27;</span>][<span class="number">1</span>] = init[<span class="string">&#x27;D&#x27;</span>][<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">    init[<span class="string">&#x27;L&#x27;</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    init[<span class="string">&#x27;L&#x27;</span>][<span class="number">1</span>] = init[<span class="string">&#x27;L&#x27;</span>][<span class="number">2</span>] = <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">Init</span>();</span><br><span class="line">    n = <span class="built_in">read</span>();q = <span class="built_in">read</span>();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, c + <span class="number">1</span>);</span><br><span class="line">    tree.<span class="built_in">build</span>(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= q; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> l,r,p;</span><br><span class="line">        l = <span class="built_in">read</span>(); r = <span class="built_in">read</span>(); p = <span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = p + tree.<span class="built_in">query</span>(<span class="number">1</span>,<span class="number">1</span>,n,l,r,p % <span class="number">3</span>).first;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>训练日志</category>
         <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>训练日志</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -86,11 +83,10 @@ y = {\theta_0}x+{\theta_1}\\
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>或许是因为网络赛的缘故，在家并没有比赛的氛围，有点像平时打cf，我并没有很紧张，同时英语阅读的问题导致我一度没有看懂题目，理解题意也消耗了很多时间，以后cf不能在用google翻译了QAQ，另外第二场补题时间不是很充裕，有题没来得及补，下周会抽时间补掉</p>
 ]]></content>
       <categories>
-        <category>训练日志</category>
         <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>训练日志</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -108,11 +104,10 @@ y = {\theta_0}x+{\theta_1}\\
 <p>k大概是可以重构数组，每位尽可能塞入0或1，然后把重构的数组算方差即可</p>
 ]]></content>
       <categories>
-        <category>训练日志</category>
         <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>训练日志</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -128,11 +123,10 @@ y = {\theta_0}x+{\theta_1}\\
 <p>总结：一些高级算法还需要学习，面对真正的难题的时候明显感到乏力，平时刷题时要挑战高于自己水平的题目</p>
 ]]></content>
       <categories>
-        <category>训练日志</category>
         <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>训练日志</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -146,11 +140,10 @@ y = {\theta_0}x+{\theta_1}\\
 <p>总结：这场比赛似乎分工有些不明确，J和G在互不知道的情况下我和队友都在写，然后J我wa了一次，队友wa了两次，最后两份代码几乎同时过了，但是白白多了几次罚时。然后是后期没有思路，我对于博弈相关的内容并不很擅长，需要及时补充相关知识点。</p>
 ]]></content>
       <categories>
-        <category>训练日志</category>
         <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>训练日志</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -200,11 +193,10 @@ y = {\theta_0}x+{\theta_1}\\
 <p>未完待续QwQ</p>
 ]]></content>
       <categories>
-        <category>训练日志</category>
-        <category>比赛日志</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>训练日志</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -216,11 +208,10 @@ y = {\theta_0}x+{\theta_1}\\
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">string s;</span><br><span class="line"><span class="keyword">int</span> t;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        cin &gt;&gt; s;</span><br><span class="line">        <span class="keyword">char</span> minn = <span class="string">&#x27;z&#x27;</span>;</span><br><span class="line">        <span class="keyword">int</span> id = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] &lt; minn)  &#123;</span><br><span class="line">                minn=s[i];</span><br><span class="line">                id = i;</span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; minn &lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == id)<span class="keyword">continue</span>;</span><br><span class="line">            cout &lt;&lt; s[i];</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>训练日志</category>
-        <category>比赛日志</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>训练日志</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -260,7 +251,7 @@ y = {\theta_0}x+{\theta_1}\\
 <p><hw<网络设备类型>&lt;硬件地址&gt; 设置网络设备的类型与硬件地址。<br>io_addr<I/O地址> 设置网络设备的I/O地址。<br>irq<IRQ地址> 设置网络设备的IRQ。<br>media&lt;网络媒介类型&gt; 设置网络设备的媒介类型。<br>mem_start&lt;内存地址&gt; 设置网络设备在主内存所占用的起始地址。<br>metric&lt;数目&gt; 指定在计算数据包的转送次数时，所要加上的数目。<br>mtu&lt;字节&gt; 设置网络设备的MTU。<br>netmask&lt;子网掩码&gt; 设置网络设备的子网掩码。<br>tunnel&lt;地址&gt; 建立IPv4与IPv6之间的隧道通信地址。<br>up 启动指定的网络设备。<br>-broadcast&lt;地址&gt; 将要送往指定地址的数据包当成广播数据包来处理。<br>-pointopoint&lt;地址&gt; 与指定地址的网络设备建立直接连线，此模式具有保密功能。<br>-promisc 关闭或启动指定网络设备的promiscuous模式。<br>[IP地址] 指定网络设备的IP地址。<br>[网络设备] 指定网络设备的名称。<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">rmp</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>-i 表示在系统中安装软件<br>-U 表示在系统中升级软件<br>-e 表示在系统中卸载软件<br>-p 表示对 RPM 包进行查询<br>-f 查询属于哪个软件包<br>-a 查询所有安装的软件包<br>-g 查询属于组的软件包<br>~~~</p>
 ]]></content>
       <categories>
-        <category>Linux</category>
+        <category>学习笔记</category>
       </categories>
       <tags>
         <tag>Linux</tag>
@@ -280,11 +271,11 @@ y = {\theta_0}x+{\theta_1}\\
 <p>个人近几天写线段树易犯的错误：<br>将lson 写成 rson</p>
 ]]></content>
       <categories>
-        <category>刷题笔记</category>
-        <category>线段树</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
         <tag>线段树</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -303,11 +294,11 @@ y = {\theta_0}x+{\theta_1}\\
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ret=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>)&#123;<span class="keyword">if</span>(ch==<span class="string">&#x27;-&#x27;</span>)f=-f;ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) ret=ret*<span class="number">10</span>+ch-<span class="string">&#x27;0&#x27;</span>,ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">return</span> ret*f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n,m,t;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">100001</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> u,v,w;</span><br><span class="line">&#125;;</span><br><span class="line">node a[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">F</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x == f[x] ? x : f[x] = <span class="built_in">F</span>(f[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node a, node b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.w &lt; b.w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    t = <span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        n = <span class="built_in">read</span>(); m = <span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">            f[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">            a[i].u = <span class="built_in">read</span>();</span><br><span class="line">            a[i].v = <span class="built_in">read</span>();</span><br><span class="line">            a[i].w = <span class="built_in">read</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + m, cmp);</span><br><span class="line">        <span class="keyword">int</span> sum1 = <span class="number">0</span>, sum2 = <span class="number">0</span>, num = <span class="number">0</span>, flag = <span class="number">0</span>,tail = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m + <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; tail)&#123;<span class="comment">//tail记录最后长度相同的边的指针</span></span><br><span class="line">                <span class="comment">//sum2记录可以合并的长度相同的边数</span></span><br><span class="line">                <span class="comment">//sum1记录实际最小生成树中连接的边数</span></span><br><span class="line">                <span class="comment">//如果两个不相等说明有可以替换的边，则最小生成树不唯一</span></span><br><span class="line">                <span class="keyword">if</span>(sum1 != sum2)&#123;</span><br><span class="line">                    flag = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                sum1 = <span class="number">0</span>;</span><br><span class="line">                sum2 = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt;= m + <span class="number">1</span>; j++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(a[j].w != a[i].w)&#123;</span><br><span class="line">                        tail = j - <span class="number">1</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(<span class="built_in">F</span>(a[j].u) != <span class="built_in">F</span>(a[j].v))&#123;</span><br><span class="line">                        sum2++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; m)<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">int</span> x = <span class="built_in">F</span>(a[i].u);</span><br><span class="line">            <span class="keyword">int</span> y = <span class="built_in">F</span>(a[i].v);</span><br><span class="line">            <span class="keyword">if</span>(x != y &amp;&amp; num != n<span class="number">-1</span>)&#123;</span><br><span class="line">                f[x] = y;</span><br><span class="line">                num ++;</span><br><span class="line">                sum1++;</span><br><span class="line">                ans += a[i].w;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Not Unique!\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>刷题笔记</category>
-        <category>最小生成树</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
         <tag>最小生成树</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -347,11 +338,10 @@ L_{dice} = {2 \sum_{i=1}^{N} p_i g_i \over {\sum_{i=1}^{N} p_i^2} + \sum_{i=1}^{
 ]]></content>
       <categories>
         <category>学习笔记</category>
-        <category>machine learning</category>
       </categories>
       <tags>
-        <tag>machine learning</tag>
         <tag>deep learning</tag>
+        <tag>cv</tag>
       </tags>
   </entry>
   <entry>
@@ -367,11 +357,11 @@ L_{dice} = {2 \sum_{i=1}^{N} p_i g_i \over {\sum_{i=1}^{N} p_i^2} + \sum_{i=1}^{
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x,y,z;</span><br><span class="line">&#125;a[<span class="number">6011</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">6011</span>],s[<span class="number">6011</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.z &lt; b.z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">F</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x == f[x]) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">return</span> f[x] = <span class="built_in">F</span>(f[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">            cin &gt;&gt; a[i].x &gt;&gt; a[i].y &gt;&gt; a[i].z;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">            f[i] = i;</span><br><span class="line">            s[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(a + <span class="number">1</span>, a + n, cmp);</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> u = <span class="built_in">F</span>(a[i].x);</span><br><span class="line">            <span class="keyword">int</span> v = <span class="built_in">F</span>(a[i].y);</span><br><span class="line">            <span class="keyword">int</span> w = a[i].z;</span><br><span class="line">            <span class="keyword">if</span>(u!=v)&#123;</span><br><span class="line">                f[u] = v;</span><br><span class="line">                ans += (s[v] * s[u] - <span class="number">1</span>) * (w + <span class="number">1</span>);</span><br><span class="line">                s[v] += s[u];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>刷题笔记</category>
-        <category>最小生成树</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
         <tag>最小生成树</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -447,11 +437,11 @@ L_{dice} = {2 \sum_{i=1}^{N} p_i g_i \over {\sum_{i=1}^{N} p_i^2} + \sum_{i=1}^{
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define ll long long</span><br><span class="line">#define endl &#x27;\n&#x27;</span><br><span class="line">long long read()&#123;</span><br><span class="line">    long long ret=0,f=1;char ch=getchar();</span><br><span class="line">    while(ch&gt;&#x27;9&#x27;||ch&lt;&#x27;0&#x27;)&#123;if(ch==&#x27;-&#x27;)f=-f;ch=getchar();&#125;</span><br><span class="line">    while(ch&gt;=&#x27;0&#x27;&amp;&amp;ch&lt;=&#x27;9&#x27;) ret=ret*10+ch-&#x27;0&#x27;,ch=getchar();</span><br><span class="line">    return ret*f;</span><br><span class="line">&#125;</span><br><span class="line">const int p = 1e9 + 7;</span><br><span class="line">const int MAXN = 1e5 + 11;</span><br><span class="line">ll f[MAXN];</span><br><span class="line">int main()&#123;</span><br><span class="line">	ios::sync_with_stdio(0);</span><br><span class="line">    cin.tie();cout.tie();</span><br><span class="line">    f[1] = 1;f[2] = 2;</span><br><span class="line">    for(int i = 3; i &lt;= MAXN; i++)&#123;</span><br><span class="line">        f[i] = (f[i - 1] + f[i - 2]) % p;</span><br><span class="line">    &#125;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    int cnt1 = 0, cnt2 = 0;</span><br><span class="line">    ll ans = 1;</span><br><span class="line">    for(int i = 0; i &lt; s.size(); i++)&#123;</span><br><span class="line">        if(s[i] == &#x27;w&#x27; || s[i] == &#x27;m&#x27;) &#123;</span><br><span class="line">            puts(&quot;0&quot;);</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if(s[i] == &#x27;u&#x27;)cnt1++;</span><br><span class="line">        if(s[i] == &#x27;n&#x27;)cnt2++;</span><br><span class="line">        if(s[i + 1] != &#x27;u&#x27; &amp;&amp; cnt1)&#123;</span><br><span class="line">            ans = ans * f[cnt1] % p;</span><br><span class="line">            cnt1 = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if(s[i + 1] != &#x27;n&#x27; &amp;&amp; cnt2)&#123;</span><br><span class="line">            ans = ans * f[cnt2] % p;</span><br><span class="line">            cnt2 = 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">//u 1</span><br><span class="line">//uu 2</span><br><span class="line">//uuu 3</span><br><span class="line">//uuuu 5</span><br><span class="line">//uuuuu 8</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>刷题笔记</category>
-        <category>dp</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
         <tag>dp</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -460,11 +450,11 @@ L_{dice} = {2 \sum_{i=1}^{N} p_i g_i \over {\sum_{i=1}^{N} p_i^2} + \sum_{i=1}^{
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1886">滑动窗口</a><br>head tail维护单调队列中的队首和队尾 发现新元素<br>枚举i来遍历整个数列<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span> + <span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> n,k;</span><br><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="keyword">int</span> qx[N],qn[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getmax</span><span class="params">()</span></span>&#123;<span class="comment">//求最大值,保持队列单减,保证队首最大</span></span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">0</span>,tail = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qx[tail]] &lt;= a[i])   tail--;</span><br><span class="line">        <span class="comment">//找到前k个数中的最值 一旦遇到了破环队列单调性的值 就清空数列</span></span><br><span class="line">        <span class="comment">//遇到大的就不符合</span></span><br><span class="line">        qx[++tail] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt;= n; i++)&#123;<span class="comment">//同理</span></span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qx[tail]] &lt;= a[i])   tail--;</span><br><span class="line">        qx[++tail] = i;</span><br><span class="line">        <span class="keyword">while</span>(qx[head] &lt;= (i - k))&#123;<span class="comment">//因为题目中限制区间长度为k,队首位置超出区间也要出队</span></span><br><span class="line">            head ++;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; a[qx[head]] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getmin</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">0</span>,tail = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qn[tail]] &gt;= a[i])   tail--;</span><br><span class="line">        qn[++tail] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(head &lt;= tail &amp;&amp; a[qx[tail]] &gt;= a[i])   tail--;</span><br><span class="line">        qn[++tail] = i;</span><br><span class="line">        <span class="keyword">while</span>(qn[head] &lt;= (i - k))&#123;</span><br><span class="line">            head ++;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; a[qn[head]] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getmin</span>();</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">getmax</span>();</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <categories>
-        <category>刷题笔记</category>
-        <category>单调队列</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
         <tag>单调队列</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -474,11 +464,11 @@ L_{dice} = {2 \sum_{i=1}^{N} p_i g_i \over {\sum_{i=1}^{N} p_i^2} + \sum_{i=1}^{
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e6</span> + <span class="number">11</span>;</span><br><span class="line"><span class="keyword">int</span> n,d;</span><br><span class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;a[N];</span><br><span class="line"><span class="keyword">int</span> q1[N];</span><br><span class="line"><span class="keyword">int</span> q2[N];</span><br><span class="line"><span class="keyword">int</span> h1,h2,t1,t2;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; d;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n ; i++)&#123;</span><br><span class="line">        cin &gt;&gt; a[i].first &gt;&gt; a[i].second ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n);</span><br><span class="line">    h1 = h2 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">1</span>,r = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">for</span>(l = <span class="number">1</span>; l &lt;= n; l++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(h1 &lt;= t1 &amp;&amp; q1[h1] &lt; l)h1++;<span class="comment">//维护区间 如果队首在左端点左边就右移</span></span><br><span class="line">        <span class="keyword">while</span>(h2 &lt;= t2 &amp;&amp; q2[h2] &lt; l)h2++;</span><br><span class="line">        <span class="keyword">while</span>(a[q1[h1]].second - a[q2[h2]].second &lt; d &amp;&amp; r &lt; n)&#123;</span><br><span class="line">            r++;</span><br><span class="line">            <span class="keyword">while</span>(h1 &lt;= t1 &amp;&amp; a[q1[t1]].second &lt; a[r].second)t1--;<span class="comment">//注意是队尾和边界比较</span></span><br><span class="line">            q1[++t1] = r;</span><br><span class="line">            <span class="keyword">while</span>(h2 &lt;= t2 &amp;&amp; a[q2[t2]].second &gt; a[r].second)t2--;</span><br><span class="line">            q2[++t2] = r;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(a[q1[h1]].second - a[q2[h2]].second &gt;= d)&#123;</span><br><span class="line">            ans = <span class="built_in">min</span>(ans,a[r].first - a[l].first);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ans &lt; <span class="number">0x3f3f3f3f</span>)cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>刷题笔记</category>
-        <category>单调队列</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
         <tag>单调队列</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -778,11 +768,11 @@ array([[  0,  10,  20,  30],
 <p><a href="https://wwwttlll.github.io/2021/10/05/luogu-2698-USACO12MAR-Flowerpot-S/">USACO12MAR]Flowerpot S</a></p>
 ]]></content>
       <categories>
-        <category>学习笔记</category>
-        <category>单调队列</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
         <tag>单调队列</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -832,11 +822,11 @@ array([[  0,  10,  20,  30],
 <p>Code<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define inf 0x7ffffff</span><br><span class="line"></span><br><span class="line">int f[111][111],pre[111][111],a[111][111],print[111];</span><br><span class="line">int n,m,cnt,ans=inf,x,y,z;</span><br><span class="line"></span><br><span class="line">void init()&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">		for(int j=1;j&lt;=n;j++)&#123;</span><br><span class="line">			f[i][j]=f[j][i]=a[i][j]=a[j][i]=inf;</span><br><span class="line">			pre[i][j]=i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=1;i&lt;=m;i++)&#123;</span><br><span class="line">		cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">		a[x][y]=a[y][x]=f[x][y]=f[y][x]=min(a[x][y],z);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void floyd()&#123;</span><br><span class="line">	for(int k=1;k&lt;=n;k++)&#123;</span><br><span class="line">		for(int i=1;i&lt;k;i++)&#123;</span><br><span class="line">			for(int j=i+1;j&lt;k;j++)&#123;</span><br><span class="line">				if(a[i][k]+a[k][j]+f[i][j]&lt;ans)&#123;</span><br><span class="line">					ans=a[i][k]+a[k][j]+f[i][j];</span><br><span class="line">					cnt=0;//更新路径</span><br><span class="line">                    //因为有special judge 所以顺序无所谓</span><br><span class="line">					int t=j;</span><br><span class="line">					while(t!=i)&#123;</span><br><span class="line">						print[++cnt]=t;</span><br><span class="line">						t=pre[i][t];</span><br><span class="line">					&#125;</span><br><span class="line">					print[++cnt]=i;</span><br><span class="line">					print[++cnt]=k;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">			for(int j=1;j&lt;=n;j++)&#123;</span><br><span class="line">				if(f[i][k]+f[k][j]&lt;f[i][j])&#123;</span><br><span class="line">					f[i][j]=f[i][k]+f[k][j];</span><br><span class="line">					pre[i][j]=pre[k][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">	init();</span><br><span class="line">	floyd();</span><br><span class="line">	if(ans==inf)&#123;</span><br><span class="line">		puts(&quot;No solution.&quot;);</span><br><span class="line">		return  0;</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">        printf(&quot;%d&quot;, print[1]);</span><br><span class="line">        for (int i = 2; i &lt;= cnt; i++)</span><br><span class="line">            printf(&quot; %d&quot;, print[i]);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <categories>
-        <category>学习笔记</category>
-        <category>最短路</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
         <tag>最短路</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1085,8 +1075,11 @@ array([[  0,  10,  20,  30],
 </table>
 </div>
 <h4 id="返回字段-4"><a href="#返回字段-4" class="headerlink" title="返回字段"></a>返回字段</h4><h4 id="接口示例-3"><a href="#接口示例-3" class="headerlink" title="接口示例"></a>接口示例</h4>]]></content>
+      <categories>
+        <category>项目开发</category>
+      </categories>
       <tags>
-        <tag>web</tag>
+        <tag>web开发</tag>
       </tags>
   </entry>
   <entry>
@@ -1144,10 +1137,9 @@ array([[  0,  10,  20,  30],
 ]]></content>
       <categories>
         <category>学习笔记</category>
-        <category>指针</category>
       </categories>
       <tags>
-        <tag>指针</tag>
+        <tag>指针 - c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1162,10 +1154,10 @@ array([[  0,  10,  20,  30],
 ]]></content>
       <categories>
         <category>刷题笔记</category>
-        <category>分块</category>
       </categories>
       <tags>
         <tag>分块</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1250,10 +1242,10 @@ array([[  0,  10,  20,  30],
 <h3 id="马拉车"><a href="#马拉车" class="headerlink" title="马拉车"></a>马拉车</h3><h3 id="kmp"><a href="#kmp" class="headerlink" title="kmp"></a>kmp</h3><h3 id="扩展kmp"><a href="#扩展kmp" class="headerlink" title="扩展kmp"></a>扩展kmp</h3><h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">## 数学</span><br><span class="line"></span><br><span class="line">### 线性回归 最小二乘法</span><br><span class="line"></span><br><span class="line">公式</span><br><span class="line">$$</span><br><span class="line">\begin&#123;align&#125;</span><br><span class="line"></span><br><span class="line">y = &#123;\theta&#125;_0x+&#123;\theta&#125;_1\\</span><br><span class="line">\theta_1 = &#123;\sum_&#123;i = 1&#125;^n&#123;x_i&#125;^2\sum_&#123;i = 1&#125;^ny_i-\sum_&#123;i = 1&#125;^nx_i\sum_&#123;i = 1&#125;^n&#123;x_iy_i&#125; \over n\sum_&#123;i = 1&#125;^nx_i^2 - (\sum_&#123;i = 1&#125;^nx_i)^2&#125;\\ </span><br><span class="line"></span><br><span class="line">\theta_0 = &#123;n\sum_&#123;i = 1&#125;^n&#123;x_iy_i&#125;-\sum_&#123;i = 1&#125;^n&#123;x_i&#125;\sum_&#123;i = 1&#125;^n&#123;y_i&#125; \over n\sum_&#123;i = 1&#125;^nx_i^2 - (\sum_&#123;i = 1&#125;^nx_i)^2&#125;</span><br><span class="line">\end&#123;align&#125;</span><br><span class="line">$$</span><br><span class="line"></span><br><span class="line">### 组合数</span><br><span class="line"></span><br><span class="line">~~~cpp</span><br><span class="line">long long power(long long a, long long b) &#123;</span><br><span class="line">    long long res = 1 % mod;</span><br><span class="line">    while (b) &#123;</span><br><span class="line">        if (b &amp; 1) res = res * a % mod;</span><br><span class="line">        a = a * a % mod;</span><br><span class="line">        b &gt;&gt;= 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">long long fact[N + 10], inv_fact[N + 10];</span><br><span class="line"></span><br><span class="line">long long C(int n, int m) &#123;</span><br><span class="line">    if (m &lt; 0 || m &gt; n) return 0;</span><br><span class="line">    return fact[n] * inv_fact[m] % mod * inv_fact[n - m] % mod; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void init() &#123;</span><br><span class="line">    fact[0] = 1;</span><br><span class="line">    for (int i = 1; i &lt;= N; ++i) &#123;</span><br><span class="line">        fact[i] = fact[i - 1] * i % mod; </span><br><span class="line">    &#125; </span><br><span class="line">    inv_fact[N] = power(fact[N], mod - 2);</span><br><span class="line">    for (int i = N; i &gt;= 1; --i) &#123;</span><br><span class="line">        inv_fact[i - 1] = inv_fact[i] * i % mod;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="dp"><a href="#dp" class="headerlink" title="dp"></a>dp</h2><h2 id="随机"><a href="#随机" class="headerlink" title="随机"></a>随机</h2><h2 id="生成数据与对拍"><a href="#生成数据与对拍" class="headerlink" title="生成数据与对拍"></a>生成数据与对拍</h2>]]></content>
       <categories>
-        <category>模板</category>
+        <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>模板</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1277,7 +1269,7 @@ f(n) = 2*f(n-1)+1</script><p>通过递归，我们可以得到f(n-1) 来更新f(
         <category>刷题笔记</category>
       </categories>
       <tags>
-        <tag>递归</tag>
+        <tag>递归 - 算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1329,12 +1321,11 @@ f(n) = 2*f(n-1)+1</script><p>通过递归，我们可以得到f(n-1) 来更新f(
 ]]></content>
       <categories>
         <category>刷题笔记</category>
-        <category>dp</category>
-        <category>背包</category>
       </categories>
       <tags>
         <tag>dp</tag>
         <tag>背包</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1353,10 +1344,10 @@ f(n) = 2*f(n-1)+1</script><p>通过递归，我们可以得到f(n-1) 来更新f(
 ]]></content>
       <categories>
         <category>刷题笔记</category>
-        <category>线段树</category>
       </categories>
       <tags>
         <tag>线段树</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1375,8 +1366,8 @@ f(n) = 2*f(n-1)+1</script><p>通过递归，我们可以得到f(n-1) 来更新f(
         <category>论文笔记</category>
       </categories>
       <tags>
-        <tag>machine learning</tag>
-        <tag>Neural Networks</tag>
+        <tag>deep learning</tag>
+        <tag>cv</tag>
       </tags>
   </entry>
   <entry>
@@ -1408,11 +1399,10 @@ f(n) = 2*f(n-1)+1</script><p>通过递归，我们可以得到f(n-1) 来更新f(
 <h5 id="c-不能把“-gt-”操作符重载为非成员函数"><a href="#c-不能把“-gt-”操作符重载为非成员函数" class="headerlink" title="c++不能把“= [] () -&gt;”操作符重载为非成员函数"></a>c++不能把“= [] () -&gt;”操作符重载为非成员函数</h5>]]></content>
       <categories>
         <category>学习笔记</category>
-        <category>c++</category>
-        <category>面向对象</category>
       </categories>
       <tags>
         <tag>面向对象</tag>
+        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -1437,7 +1427,7 @@ f(n) = 2*f(n-1)+1</script><p>通过递归，我们可以得到f(n-1) 来更新f(
       </tags>
   </entry>
   <entry>
-    <title>FAIR: Quality-Aware Federated Learning with Precise User Incentive and Model Aggregation 论文笔记</title>
+    <title>FAIR: Quality-Aware Federated Learning with Precise User Incentive and Model Aggregation </title>
     <url>/2024/02/27/FAIR-Quality-Aware-Federated-Learning-with-Precise-User-Incentive-and-Model-Aggregation-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="FAIR-Quality-Aware-Federated-Learning-with-Precise-User-Incentive-and-Model-Aggregation"><a href="#FAIR-Quality-Aware-Federated-Learning-with-Precise-User-Incentive-and-Model-Aggregation" class="headerlink" title="FAIR: Quality-Aware Federated Learning with Precise User Incentive and Model Aggregation"></a>FAIR: Quality-Aware Federated Learning with Precise User Incentive and Model Aggregation</h1><h3 id="联邦学习的背景："><a href="#联邦学习的背景：" class="headerlink" title="联邦学习的背景："></a>联邦学习的背景：</h3><p> MEC 移动设备边缘计算的兴起，移动设备逐渐具备了计算和存储能力，可以实现本地计算和模型训练，这就促进了联邦学习的形成，在保护用户隐私的同时来构件一个全局的训练模型。</p>
 <h3 id="研究问题："><a href="#研究问题：" class="headerlink" title="研究问题："></a>研究问题：</h3><p>1、联邦学习非常依赖节点的参与，如果没有令人满意的回报，节点不会愿意自己花费计算、传输的费用来进行模型训练。</p>
@@ -1463,7 +1453,7 @@ r_{i,j}^{t} - c_{i,j}^{t}, & \text{if } i \in M_{j}^{t}; \\
 \end{cases}</script><p><strong>Truthfulness</strong> 每一个报价都必须是真实的，等于自身的cost，如果不等于，则utility会变小</p>
 <p><strong>Individual Rationality</strong> 每一轮迭代的utility都大于等于0</p>
 <p><strong>Computational Efficiency</strong> 所有算法的执行时间为多项式时间</p>
-<h4 id="质量评估"><a href="#质量评估" class="headerlink" title="质量评估"></a>质量评估</h4><p>training data quality $m$</p>
+<h4 id="质量评估"><a href="#质量评估" class="headerlink" title="质量评估"></a>质量评估</h4><p>training data quality <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.986ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 878 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container></p>
 <script type="math/tex; mode=display">
 m_{i,j}^{t} = \text{loss}_{i}(t_{s}) - \text{loss}_{i,j}(t_{e}). \tag{7}</script><p>learning quality of node i in iteration t</p>
 <script type="math/tex; mode=display">
@@ -1473,9 +1463,363 @@ m_{i,j}^{t} \cdot D_{i,j}^{t}, & \text{if } t_{s} \leq t_{i,j}^{t} \leq t_{e}; \
 \end{cases} \tag{8}</script><p>D是训练数据量</p>
 <p>最近的质量记录比过时的质量记录信息量更大。因此，我们不是给所有质量记录相同的权重，而是根据它们的新鲜度进行加权。我们采用<strong>指数遗忘函数</strong>来分配权重</p>
 <script type="math/tex; mode=display">
-\tilde{q}_{i,j} = \frac{\sum_{k=0}^{r} \rho^{t_r-t_k} \cdot q_{i,j}^{t_k}}{\sum_{k=0}^{r} \rho^{t_r-t_k}}. \tag{9}</script><p>$0 &lt;\rho ≤ 1$ 是遗忘因子 指数遗忘函数<br>$w(t)=e^{−λ(t−T)}$</p>
+\tilde{q}_{i,j} = \frac{\sum_{k=0}^{r} \rho^{t_r-t_k} \cdot q_{i,j}^{t_k}}{\sum_{k=0}^{r} \rho^{t_r-t_k}}. \tag{9}</script><p><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.489ex;" xmlns="http://www.w3.org/2000/svg" width="9.466ex" height="1.995ex" role="img" focusable="false" viewBox="0 -666 4184.1 882"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g><g data-mml-node="mo" transform="translate(777.8,0)"><path data-c="3C" d="M694 -11T694 -19T688 -33T678 -40Q671 -40 524 29T234 166L90 235Q83 240 83 250Q83 261 91 266Q664 540 678 540Q681 540 687 534T694 519T687 505Q686 504 417 376L151 250L417 124Q686 -4 687 -5Q694 -11 694 -19Z"></path></g><g data-mml-node="mi" transform="translate(1833.6,0)"><path data-c="1D70C" d="M58 -216Q25 -216 23 -186Q23 -176 73 26T127 234Q143 289 182 341Q252 427 341 441Q343 441 349 441T359 442Q432 442 471 394T510 276Q510 219 486 165T425 74T345 13T266 -10H255H248Q197 -10 165 35L160 41L133 -71Q108 -168 104 -181T92 -202Q76 -216 58 -216ZM424 322Q424 359 407 382T357 405Q322 405 287 376T231 300Q217 269 193 170L176 102Q193 26 260 26Q298 26 334 62Q367 92 389 158T418 266T424 322Z"></path></g><g data-mml-node="mo" transform="translate(2628.3,0)"><path data-c="2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path></g><g data-mml-node="mn" transform="translate(3684.1,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g></svg></mjx-container> 是遗忘因子 指数遗忘函数<br><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="14.826ex" height="2.587ex" role="img" focusable="false" viewBox="0 -893.3 6553.3 1143.3"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D464" d="M580 385Q580 406 599 424T641 443Q659 443 674 425T690 368Q690 339 671 253Q656 197 644 161T609 80T554 12T482 -11Q438 -11 404 5T355 48Q354 47 352 44Q311 -11 252 -11Q226 -11 202 -5T155 14T118 53T104 116Q104 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Q21 293 29 315T52 366T96 418T161 441Q204 441 227 416T250 358Q250 340 217 250T184 111Q184 65 205 46T258 26Q301 26 334 87L339 96V119Q339 122 339 128T340 136T341 143T342 152T345 165T348 182T354 206T362 238T373 281Q402 395 406 404Q419 431 449 431Q468 431 475 421T483 402Q483 389 454 274T422 142Q420 131 420 107V100Q420 85 423 71T442 42T487 26Q558 26 600 148Q609 171 620 213T632 273Q632 306 619 325T593 357T580 385Z"></path></g><g data-mml-node="mo" transform="translate(716,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1105,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mo" transform="translate(1466,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(2132.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="msup" transform="translate(3188.6,0)"><g data-mml-node="mi"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="TeXAtom" transform="translate(499,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mi" transform="translate(778,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g><g data-mml-node="mo" transform="translate(1361,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1750,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mo" transform="translate(2111,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mi" transform="translate(2889,0)"><path data-c="1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path></g><g data-mml-node="mo" transform="translate(3593,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></g></g></svg></mjx-container></p>
 <h4 id="激励机制"><a href="#激励机制" class="headerlink" title="激励机制"></a>激励机制</h4><p><strong>反向拍卖 <em>Reverse auction</em></strong></p>
 <p><a href="https://www.investopedia.com/terms/r/reverse-auction.asp#toc-example-of-a-reverse-auction">https://www.investopedia.com/terms/r/reverse-auction.asp#toc-example-of-a-reverse-auction</a></p>
 <h3 id="模型聚合"><a href="#模型聚合" class="headerlink" title="模型聚合"></a>模型聚合</h3>]]></content>
+      <categories>
+        <category>论文笔记</category>
+      </categories>
+      <tags>
+        <tag>federated learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2024/09/18/GrabCut%20%E5%A4%8D%E7%8E%B0/</url>
+    <content><![CDATA[<h1 id="GrabCut-复现"><a href="#GrabCut-复现" class="headerlink" title="GrabCut 复现"></a>GrabCut 复现</h1><p><strong>要求</strong></p>
+<p>第一轮要求实现一篇论文，论文信息：“GrabCut” — Interactive Foreground Extraction using Iterated Graph Cuts, ACM SIGGRAPH, 2004. <a href="https://cvg.ethz.ch/teaching/cvl/2012/grabcut-siggraph04.pdf">https://cvg.ethz.ch/teaching/cvl/2012/grabcut-siggraph04.pdf</a></p>
+<p>实现GrabCut任务时请注意：<br>1). Matting部分不是GrabCut算法的精华，这部分可以不做。<br>2). 注意输出整个程序的一些重要中间结果（那些重要自己判断），面试中会有相关问题。<br>3). 如果有期末考试之类的事情，优先准备期末考试，不用急着参与测验。测验问题回答时的错误不要归因于忙期末考试所以没时间细看论文。<br>4). 面试用QQ视频共享桌面的形式。<br>5). 代码请用C++自己实现（GraphCut部分可以调用现成的函数库：<a href="https://vision.cs.uwaterloo.ca/code/">https://vision.cs.uwaterloo.ca/code/</a> 中的Max-flow/min-cut）。图片的输入输出和用户交互部分推荐调用OpenCV。Python 语言不是不让用，但是很难写出实时运行的代码<br>6). 完成这个任务时，请思考一个问题，GMM颜色模型换成颜色直方图（可以参考这篇论文<a href="https://mmcheng.net/zh/salobj/">https://mmcheng.net/zh/salobj/</a> 看看怎么实现快速的彩色颜色的直方图），会对结果有什么影响。<br>7). 对于一个400*600的图像，这个程序运行时间通常是1s以内（实现的好的话，0.1s左右也很正常）。如果你的程序运行时间明显过长，请认真优化。注意测量程序执行时间请用release模式（显示，实际运行等场合用的），而不是debug模式（调试程序用的，经常比release模式慢10倍左右）。</p>
+<p>请在收到这个考核题目10天之内联系老师面试面试。第一轮面试由任博或刘夏雷进行（我已抄送各位老师）。任博老师（微信号：Rabbikun）统一安排。</p>
+<h2 id="论文内容及代码实现"><a href="#论文内容及代码实现" class="headerlink" title="论文内容及代码实现"></a>论文内容及代码实现</h2><h3 id="previous-work-及一些背景知识"><a href="#previous-work-及一些背景知识" class="headerlink" title="previous work 及一些背景知识"></a>previous work 及一些背景知识</h3><p><strong>Magic Wand(魔棒）</strong></p>
+<p><strong>Intelligent Scissors（磁性套索）</strong></p>
+<p>Bayes matting</p>
+<p>…</p>
+<p>Trimap 通常包含以下三种像素值：</p>
+<p>前景像素（Foreground Pixel）： 前景像素通常用较亮的灰度值或白色表示。这些像素属于图像中的前景对象或目标。</p>
+<p>背景像素（Background Pixel）： 背景像素通常用较暗的灰度值或黑色表示。这些像素属于图像的背景区域。</p>
+<p>不确定像素（Uncertain Pixel）： 不确定像素通常位于前景和背景之间，用中等灰度值或灰色表示。这些像素是算法难以确定归属的区域，可能是前景和背景之间的边界区域。</p>
+<h3 id="GrabCut"><a href="#GrabCut" class="headerlink" title="GrabCut"></a>GrabCut</h3><p>解决前景和背景不完全分离时的抠图问题</p>
+<p>首先，我们使用迭代图切割获得“硬”分割（第 2 和 3 节）。然后是边界抠图（第 4 节），其中 alpha 值是在硬分割边界周围的窄带中计算的。最后，GrabCut 不会处理除边界之外的完全透明度。但是，可以使用 [Chuang et al. 2001] 的抠图笔刷来实现，并且根据我们的经验，这在没有足够伪装的区域效果很好</p>
+<p><strong>创新点</strong> </p>
+<p>“迭代估计”和“不完全标记”：通过边框指示的是背景区域，无需标记前景区域</p>
+<p>用于边框抠图的新 alpha 计算机制，通过该机制可以对 alpha 值进行正则化以减少可见伪影。</p>
+<p>The constant γ was obtained as 50 by optimizing performance against ground truth over a training set of 15 images</p>
+<p>GrabCut中新的硬分割算法的三个发展。</p>
+<p>首先，用高斯混合模型(GMM)代替直方图来代替单色图像模型。</p>
+<p>其次，单次最小割估计算法被一种更强大的迭代过程所取代，该过程在估计和参数学习之间交替进行。</p>
+<p>第三，通过允许不完整的标签，放松了对交互用户的要求—用户只为三元图指定TB，这可以简单地通过在对象周围放置一个矩形或套索来实现。</p>
+<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><p><strong>GMM模型</strong></p>
+<h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918142856289.png" alt="image-20240918142856289"></p>
+<ul>
+<li>[x] 用户输入矩形。这个矩形之外的所有内容都将被视为确定的背景（这就是前面提到的矩形应该包括所有对象的原因）。矩形内的所有内容都是未知的。同样，任何指定前景和背景的用户输入都被视为硬标签，这意味着它们在此过程中不会更改。</li>
+<li>[x] 计算机根据我们提供的数据进行初始标记。它标记前景和背景像素（或硬标签）</li>
+<li>[x] 现在使用高斯混合模型（GMM）对前景和背景进行建模。</li>
+<li>[x] 根据我们提供的数据，GMM 会学习并创建新的像素分布。也就是说，未知像素被标记为可能的前景或可能的背景，这取决于它在颜色统计方面与其他硬标记像素的关系（这就像聚类一样）。</li>
+<li>[x] 根据此像素分布构建图形。图形中的节点是像素。添加了另外两个节点，<strong>即“源”节点</strong>和<strong>“接收器”节点</strong>。每个前景像素都连接到源节点，每个背景像素都连接到接收器节点。</li>
+<li>[x] 将像素连接到源节点/结束节点的边的权重由像素为前景/背景的概率定义。像素之间的权重由边缘信息或像素相似度定义。如果像素颜色差异很大，则它们之间的边缘将获得较低的权重。</li>
+<li>[x] 然后使用 mincut 算法对图形进行分割。它将图切成两个分离的源节点和接收节点，具有最小成本函数。成本函数是切割边的所有权重的总和。剪切后，连接到“源”节点的所有像素都将成为前景，连接到“接收器”节点的像素将变成背景。</li>
+<li>[x] 该过程一直持续到分类收敛为止。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>夏令营面试</title>
+    <url>/2024/06/30/%E5%A4%8D%E4%B9%A0%E5%A4%8F%E4%BB%A4%E8%90%A5/</url>
+    <content><![CDATA[<h1 id="夏令营"><a href="#夏令营" class="headerlink" title="夏令营"></a>夏令营</h1><h2 id="面试复习"><a href="#面试复习" class="headerlink" title="面试复习"></a>面试复习</h2><h3 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h3><p><strong>mamba</strong></p>
+<p>Transformer架构：UNETR（UNet with Transformers）是基于Transformer架构的，它能够更好地捕捉图像中的全局特征。这对于复杂的医学图像分割任务非常重要。</p>
+<p><strong>全局视觉上下文建模</strong>：RSSM模块结合了残差结构和Mamba的SSM结构，能够有效融合全局视觉上下文。这与UNETR网络的全局特征提取能力相辅相成。</p>
+<p><strong>位置嵌入</strong>：RSSM模块引入了位置嵌入机制，这与UNETR网络中的位置编码方式兼容，能够更好地保留图像的空间信息。</p>
+<p><strong>扫描方法</strong></p>
+<p>顺序扫描</p>
+<p>Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery: An Experimental Study</p>
+<p>定量研究了22种扫描策略对基于Mamba方法的高分辨率遥感图像语义分割的影响。实验结果表明，无论是单向扫描方向还是其组合，各种扫描策略并未在分割准确率上带来明显提升。</p>
+<p><strong>vnet</strong></p>
+<p><strong>加权交叉熵损失（Weighted Cross-Entropy Loss）</strong>：为少数类样本赋予更高的权重，使模型在训练过程中更多关注少数类样本。</p>
+<p>对少数类样本（肺结节）进行数据增强，如旋转、翻转、平移、缩放等，生成更多的正样本。</p>
+<p><strong>面试问题</strong></p>
+<p>英文问题</p>
+<p>英文单词</p>
+<p>顶会 顶刊top conference top journal</p>
+<p>学术生涯 academia</p>
+<p>创新地 innovatively</p>
+<p>高考 entrance exam </p>
+<p>join a research team 加入课题组</p>
+<p>take part in a research project 参与科研项目</p>
+<p>novelty 创新点</p>
+<p>demonstrate 证实</p>
+<p>The International Conference on Wireless Artificial Intelligent Computing Systems and Applications (WASA) </p>
+<p>图像预处理 sliding window  overlapping</p>
+<p><strong>National College Student Innovation and Entrepreneurship Training Program</strong> 大创</p>
+<p>残差网络通过引入“残差块”和跨层连接，将输入直接加到输出上，从而更容易学习出恒等映射，避免了梯度消失的问题</p>
+<p>英文介绍一下你的项目</p>
+<p>那我选取腹部多器官分割的项目来介绍吧。提 出 R SSM 模 块,创新性地结合残差结构和 M am ba的SSM结构，融合相关全局视觉上下文建模和位置嵌入将RSSM模块应用于U NE TR网 络 ，构 建ReSU- Net模 型,提升特征提取和上下文融合能力使 用Dice和交叉熵加权构建损失函数，在<em>Abdomen MRI</em>数 据集上进行训练并对比其他模型，结果优于多数流行的模型</p>
+<p>then ,I’d like to introduce a project focused on multi-organ segmentation in the abdomen. In this project, I developed the RSSM module, which innovatively combines residual structures with Mamba’s SSM structure, integrating global visual context modeling and positional embedding. I applied this RSSM module to the UNETR network, creating the ReSU-Net model. This significantly improved the model’s ability to extract features and integrate contextual information. To train the model on the Abdomen MRI dataset, I used a loss function that combines Dice and weighted cross-entropy. The results showed that our model outperformed many popular models in this area.</p>
+<p>This paper innovatively proposes the Residual State Space Module (RSSM), which combines the residual structure with Mamba’s State Space Model (SSM). By effectively embedding global visual context and positional information, it significantly enhances the model’s expressiveness and accutacy. We then integrated the RSSM module into the UNETR network, constructing the ReSU-Net model. In experiments on abdominal multi-organ segmentation tasks, the ReSU-Net model demonstrated superior performance, achieving an average dice score of 0.8227, surpassing several popular models including nnUNet and SegResNet.</p>
+<p>项目创新点。</p>
+<p>What is the innovative aspect of your paper/project?</p>
+<p>介绍一下你的家乡</p>
+<p>我来自石家庄，河北省的省会。它位于华北平原的心脏地带，是该地区重要的政治、经济和文化中心。近年来，石家庄发展迅速，已成为重要的交通枢纽和工业城市。它也有一些伟大的历史遗迹，像正定古城和赵州桥。总的来说，这是一个融合了历史和现代生活的城市。</p>
+<p>I’m from Shijiazhuang, the capital of Hebei Province. It’s located in the heart of the North China Plain and is an important center for politics, economy, and culture in the region. Shijiazhuang has developed quickly in recent years, becoming a key transportation hub and industrial city. It also has some great historical sites, like the ancient city of Zhengding and the Zhaozhou Bridge. Overall, it’s a city that blends history with modern life.</p>
+<p>你在项目中负责什么</p>
+<p>我在项目中主负责所有技术问题，ppt中所有的内容均由我独立完成，队友负责一些报告和材料的撰写和汇报答辩。除此之外，我是论文的唯一学生作者，独自完成了网络设计，论文的撰写和对比实验等工作，然后这期间我的指导老师对我撰写的论文进行了修改。</p>
+<p><strong>Q: What was your role in the project?</strong></p>
+<p><strong>A:</strong> I was primarily responsible for all the technical aspects of the project. Every part in the PPT was independently completed by me. My teammates focused on writing reports, preparing materials, and presenting in the final defense. Additionally, I was the sole student author of the paper, handling the network design, writing the paper, and conducting comparison experiments on my own. My advisor provided guidance and revisions for the paper during the process.</p>
+<p>你最喜欢的专业课是什么</p>
+<p>What is your favorite course in your major?</p>
+<p>我最喜欢的专业课是机器学习，因为我相对于纯理论更喜欢结合实践学习一些新知识，在这门课中我不仅仅学习到了经典的机器学习算法，这门课平时的实践包括课后作业要求我们在kaggle完成制定的任务，让我很有成就感</p>
+<p>My favorite course is Machine Learning. I prefer learning through hands-on experience rather than just theory, and this course really allowed me to do that. I got to explore classic machine learning algorithms while applying them to real-world problems. The final project, where we competed in a Kaggle competition, was particularly rewarding and gave me a great sense of accomplishment.</p>
+<p><strong>你为什么想来我们学校</strong></p>
+<p>东南大学历史悠久，一直是是中国工科教育的中流砥柱。拥有比较强的科研团队和领先的科研平台，产生多项重大成果。除此之外，东南大学地处南京，地理位置优异，校内环境优美。</p>
+<p>除此之外，东南大学一直是我的梦校，我在高中时就来过南京参观过东南大学并希望能考入东南大学，可惜高考成绩并不理想，无缘东南大学。</p>
+<p>Southeast University has always been a cornerstone of engineering education in China, with a strong research team and state-of-the-art facilities that have produced many groundbreaking achievements. The university’s beautiful campus and prime location in Nanjing only add to its appeal.</p>
+<p>and Honestly, Southeast University has been my dream school for a long time. I visited the university  in high school and was determined to study here, but unfortunately, my entrance exam results didn’t meet the mark. If I’m fortunate enough to be admitted this time, I wouldn’t pass up the chance to finally attend my dream school.</p>
+<p>组会相关</p>
+<p>I recently joined a research group that mainly focuses on security-related topics, particularly federated learning. A smaller part of the group is dedicated to image segmentation research. Each week, we have group meetings where members take turns presenting top conference papers they’ve read. Being in this group has been an enriching experience—I’m exposed to cutting-edge research in both security and image segmentation, which broadens my understanding and inspires new ideas. The collaborative environment and the opportunity to discuss high-level research with peers are incredibly motivating.</p>
+<p><strong>研究生阶段规划？</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918143956748.png" alt="image-20240918143956748"></p>
+<p><strong>你最感兴趣的研究方向是什么？为什么？</strong></p>
+<p>我的主要科研兴趣集中在计算机视觉领域。通过在本科阶段接触到的计算机视觉相关项目,我发现自己对图像处理、模式识别等方向产生了浓厚的兴趣。在未来的发展道路上,我计划在学术界深耕计算机视觉研究。一方面,我将积极参与科研项目,参与导师的前沿工作并希望在相关顶会发表论文,不断提升自己的研究水平;另一方面,我也希望能积极实践将计算机视觉与其他领域技术相结合,探索新的应用场景。</p>
+<p>My main research interests are in computer vision. During my undergraduate studies, I got involved in projects related to computer vision, which sparked my strong interest in areas like image processing and pattern recognition and so on. Moving forward, I plan to dive deeper into computer vision research in academia. I want to get involved in research projects, contribute to my advisor’s work, and aim to publish papers at top conferences to keep improving my research skills. I’m also interested in exploring how computer vision can be combined with other technologies to find new applications.</p>
+<p>你的性格优势是什么</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144008901.png" alt="image-20240918144008901"></p>
+<p>What’s your plan after graduation? 你毕业后的规划？</p>
+<p>这很难说，我可能会去工作或者读博，这取决于我在研究生阶段有没有实力发出高水平的论文。毕竟我现在只有一篇CCF-C会议的论文，如果我能发出几篇CCF-A会议论文之类的，我应该会选择读博，我还是希望自己有机会</p>
+<p>It is hard to say,I may choose for further study or work in a company . I’ll further my research on artificial intelligence and be a researcher in this field. But it’s more likely that I will choose further education that I’m interested in and might get the opportunity to make some progress or even a breakthrough in the related field. However, whether I choose employment or further education , I will try my best to promote the combination of production and learning, promote the implementation of artificial intelligence, and contribute to the dream of China.</p>
+<p><strong>状态空间模型与腹部多器官分割</strong>：</p>
+<ul>
+<li>请解释状态空间模型（SSM）在医学影像分割中的作用是什么？为何选择SSM用于腹部多器官分割？</li>
+<li>在面对不同患者的腹部影像形态差异时，SSM如何帮助提升分割的鲁棒性？</li>
+</ul>
+<p><strong>RSSM 模块的设计</strong>：</p>
+<ul>
+<li>残差结构和 Mamba 的 SSM 结构是如何在 RSSM 模块中结合的？这种结合如何改进模型的性能？</li>
+</ul>
+<p>首先，输入的特征图通过残差结构直接传递，保留了原始的空间信息。与此同时，特征图一次经过点卷积、三维卷积和线性层也被传入SSM结构，通过状态空间建模提取出丰富的时空特征。最后，这两部分特征在残差连接处进行融合，形成一个既包含原始空间信息，又包含时空特征的增强型特征图</p>
+<p>残差结构能保留原始的图像和通过ssm提取的特征信息，从而避免信息的过度损失同时避免训练过程中梯度消失。这在医学影像分割任务中尤为重要，因为精确的分割往往依赖于对细微结构和边界的准确捕捉。</p>
+<p><strong>ReSU-Net 模型的构建</strong>：</p>
+<ul>
+<li>将 RSSM 模块集成到 UNETR 网络中时，面临了哪些挑战？是如何解决的？</li>
+</ul>
+<p>一方面是框架的兼容性，我尝试使用开源代码，但由于框架兼容性的问题，导致运行时出现了报错。经过进一步研究，我发现MONAI框架已经集成了完善的UNETR模型，并且提供了上采样和下采样模块的独立调用功能。我所使用的其他对比模型，包括VNet、UNet和SegResNet，也都采用了这个框架。通过这个框架，我能够更好地管理和集成各个模块。此外，我还通过仔细设计接口和模块之间的数据传递方式，确保RSSM模块能够顺利地嵌入到UNETR网络中，实现了模块间的无缝对接。</p>
+<p>RSSM模块的引入带来了额外的超参数，特别是在状态空间模型的配置和残差结构的选择上，这增加了模型训练时的调优难度。此外，新增模块可能导致模型的收敛速度变慢，甚至在某些情况下出现不收敛的情况。在模型训练初期，使用小规模数据集和较短的训练周期来快速验证不同超参数的组合效果。在模型训练过程中，应用渐进学习率衰减和自适应优化算法（如AdamW），以加速模型收敛。此外，借助提前停止（early stopping）机制，防止模型过拟合或陷入局部最优解。</p>
+<ul>
+<li>ReSU-Net 与 nnUNet、SegResNet 等流行模型相比，有哪些具体的性能优势？是什么技术手段导致了这些优势？</li>
+</ul>
+<p>全局与局部特征的结合：ReSU-Net通过引入残差结构与状态空间模型（SSM）相结合的方法，在局部特征提取的基础上，增强了对全局视觉上下文的捕捉能力。这种结合使得模型能够更好地理解复杂的解剖结构和细微的差异，提升了模型的表达能力。</p>
+<p>ReSU-Net结合了UNETR（一种基于Transformer的U-Net变体）结构的优势，利用Transformer的自注意力机制加强了对全局信息的捕捉，同时保留了U-Net网络强大的特征提取能力。这种结构的结合使得ReSU-Net在复杂的多器官分割任务中表现得更加稳健。</p>
+<p>性能优势体现在计算效率基本持平的情况下，在腹部多器官分割数据集上分割精度有较为明显的提升</p>
+<p>ReSU-Net的核心创新在于RSSM（Residual State Space Module）模块，这个模块结合了残差结构与Mamba的状态空间模型结构。通过在残差结构中引入状态空间建模，模型能够更好地捕捉到时间和空间上的依赖关系，从而提升了特征表达的丰富性和模型的泛化能力。</p>
+<p><strong>QLoRA</strong> 是一种新的微调大型语言模型（LLM）的方法，它能够在节省内存的同时保持速度。其工作原理是首先将LLM进行4位量化，从而显著减少模型的内存占用。接着，使用低阶适配器（LoRA）方法对量化的LLM进行微调。LoRA使得改进后的模型能够保留原始LLM的大部分准确性，同时具有更小的体积和更快的速度。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144038544.png" alt="image-20240918144038544"></p>
+<p>BGE</p>
+<p>.Pre-Training<br>使用纯文本的悟道语料，不是文本对。目的是得到更强大的表征能力。做法是采用RetroMAE的训练策略：先对text X进行随机Mask，然后进行encoding，再额外训练一个light-weight decoder（如单层transformer）进行重构。通过这一过程，强迫encoder学习到良好的embedding。作者认为，解码器结构简单，只有单层transformer，而且输入句子的掩码率很高，会使得解码变得具有挑战性，可以迫使生成高质量的句子嵌入，以便可以以良好的保真度恢复原始输入。</p>
+<p>2.general-purpose fine-tuning<br>预训练模型通过对 C-MTP（无标签）进行对比学习进行微调，以区分配对文本与其负样本。</p>
+<p>对比学习的一个关键因素是负样本。没有特意挖掘难负样本，而是纯粹依赖批内负样本，并借助大批次（高达 19,200）来提高嵌入的区分性。</p>
+<p>3.Task-specific fine-tuning<br>BGE适合各种类型的任务，如检索、摘要等等。它们包含的任务类型各异，可能会相互影响。<br>为了将通用的也能在各类任务中有优异表现，采用了以下两个方法：</p>
+<p>基于指令的微调： 输入数据会被区分，以帮助模型适应不同任务。对于每个文本对 (p,<br>q)，会在查询侧附加一个特定任务的指令。指令是一个言语提示，明确了任务的性质，例如“为这个句子生成表示以用于检索相关文章：”。<br>负样本更新：除了批内负样本，每个文本对 (p, q) 还会挖掘一个难负样本 q’。难负样本从任务的原始语料库中挖掘，遵循了ANN<br>风格的采样策略。难负样本通常与目标文本相似，但并不匹配，从而增加了模型的训练难度，提升了模型的区分能力。</p>
+<p><strong>计算效率与临床应用</strong>：</p>
+<ul>
+<li>如何在保证分割精度的同时，优化算法的计算效率？具体的优化策略有哪些？</li>
+</ul>
+<p>计算效率：</p>
+<p>mamba计算效率接近线性，相较transformer的n^2复杂度方面有了提升，同时减少模型的参数量和计算复杂度</p>
+<p>跳跃连接与多尺度特征融合：利用跳跃连接（skip connections）和多尺度特征融合，可以在不增加计算复杂度的情况下提升模型性能。</p>
+<p>另一方面就是训练采用多GPU并行化训练，也可以调高训练效率</p>
+<p>算法优化：</p>
+<p>选择能快速收敛的损失函数 这里采用了dice和交叉熵加权的损失函数</p>
+<p>图像预处理：在输入模型之前对图像进行裁剪和下采样，以减少输入数据的尺寸，从而降低计算负担。可以通过上下采样策略来确保关键特征仍然被保留。使用区域兴趣提取（ROI）技术，仅对感兴趣的部分区域进行处理，而不是对整个图像进行分割。</p>
+<ul>
+<li>在临床应用场景中，ReSU-Net 的计算效率如何满足实时性或大规模处理的需求？</li>
+</ul>
+<p>在实际临床部署时,可以构建GPU服务器集群,并行处理多个患者的图像数据,从而显著提升整体的吞吐量和效率,满足更多样本的推理需求。</p>
+<p><strong>实验与结果</strong>：</p>
+<ul>
+<li>Abdomen MRI 数据集的特点是什么？为什么选择这个数据集进行模型验证？</li>
+</ul>
+<p>他们的数据集来着来自Multi-Modality Abdominal Multi-Organ Segmentation Challenge 2022，该比赛提供从多中心、多供应商、多模式、多阶段、多疾病患者收集的 500 次 CT 和 100 次 MRI 扫描，每个患者都有 15 个腹部器官的体素级注释，这些数据从龙岗区中心医院（中国深圳）和龙岗区人民医院（中国深圳）收集，具有较高的可靠性。</p>
+<ul>
+<li>实验中，ReSU-Net 模型是如何在该数据集上表现出优于其他模型的性能的？具体的评估指标和实验条件是什么？</li>
+</ul>
+<p>Abdomen MRI 的验证集中包含50张不同患者的腹部ct影像，我用了dice系数评估多目标分割性能。训练过程使用nnunet框架保证变量一直，只有网络结构不同，所有模型均在单张3090上训练500轮。</p>
+<p><strong>Mamba的基本原理</strong>：</p>
+<ul>
+<li>请解释Mamba在深度学习中的核心思想和原理是什么？与传统的状态空间模型（SSM）相比，它有哪些优势？</li>
+<li>Mamba是如何在序列建模中处理长时间依赖关系的？它与Transformer模型在这方面有何异同？</li>
+</ul>
+<p><strong>Mamba与SSM的结合</strong>：</p>
+<ul>
+<li>在RSSM模块中，Mamba的SSM结构是如何与残差结构结合的？这种结合的具体实现方式是什么？</li>
+<li>Mamba的SSM结构是如何通过全局视觉上下文建模和位置嵌入来增强模型的？这些技术对多器官分割任务有什么独特的贡献？</li>
+</ul>
+<p><strong>Mamba在医学影像中的应用</strong>：</p>
+<ul>
+<li>在腹部多器官分割任务中，Mamba的SSM结构相比其他序列模型（如LSTM或GRU）有哪些独特优势？</li>
+<li>Mamba的SSM结构在应对医学影像中的噪声和不确定性方面表现如何？如何优化Mamba以处理这些挑战？</li>
+</ul>
+<p><strong>Mamba与ReSU-Net的集成</strong>：</p>
+<ul>
+<li>在将Mamba集成到ReSU-Net时，哪些Mamba特性最为关键？它们如何提升了模型的分割精度和计算效率？</li>
+<li>在实际操作中，Mamba的复杂性是否会影响ReSU-Net的训练时间或推理速度？如果有，如何进行权衡和优化？</li>
+</ul>
+<p><strong>Mamba的可解释性</strong>：</p>
+<ul>
+<li>Mamba在捕捉复杂时空依赖关系时，其内部机制的可解释性如何？在临床应用中，如何解释Mamba的输出？</li>
+<li>是否有特定的可视化方法或工具可以帮助理解Mamba在医学影像分割中的决策过程？</li>
+</ul>
+<p><strong>Mamba的未来发展</strong>：</p>
+<ul>
+<li>你认为Mamba在医学影像分析中的应用前景如何？未来的研究方向可能是什么？</li>
+<li>有没有考虑将Mamba与其他新兴技术（如图神经网络或生成对抗网络）结合，以进一步提升医学影像分割的效果？</li>
+</ul>
+<h3 id="专业知识复习"><a href="#专业知识复习" class="headerlink" title="专业知识复习"></a>专业知识复习</h3><p><strong>knn</strong></p>
+<p><img src="C:\Users\wwwttlll\AppData\Roaming\Typora\typora-user-images\image-20240709153633672.png" alt="image-20240709153633672"></p>
+<p>常用的方法：<br>（1）从k=1开始，使用检验集估计分类器的误差率。<br>（2）重复该过程，每次K增值1，允许增加一个近邻。<br>（3）选取产生最小误差率的K。</p>
+<p>注意：<br>（1）一般k的取值不超过20，上限是n的开方，随着数据集的增大，K的值也要增大。<br>（2）一般k值选取比较小的数值，并采用交叉验证法选择最优的k值。</p>
+<p>kd树方法（平衡二叉树）</p>
+<p>依次选择坐标轴对空间切分，选择训练实例点在选定坐标轴上的中位数（一组数据按大小顺序排列起来，处于中间的一个数或最中间两个数的平均值。本文在最中间有两个数时选择最大值作中位数）为切分点，这样得到的kd树是平衡的。注意，平衡的kd树搜索时未必是最优的。</p>
+<p><strong>聚类</strong></p>
+<p>kmeans k个聚类中心，分配数据，计算新的中心</p>
+<p>1、优点<br>  （1）简单易懂：<br>  K-means算法的原理直观易懂，通过迭代的方式将数据划分为K个聚类，使得每个数据点到其所属聚类的质心距离之和最小。这种简单直观的思想使得K-means算法易于被理解和接受，适合初学者入门学习。</p>
+<p>  （2）计算效率高：<br>  K-means算法在迭代过程中，主要涉及到距离计算和均值计算，这些计算相对简单且高效。因此，在处理大规模数据集时，K-means算法通常能够在较短的时间内完成聚类任务，适合用于实时处理或大规模数据处理场景。</p>
+<p>  （3）易于实现：<br>  K-means算法的实现相对简单，只需按照初始化、分配、更新和迭代的步骤进行即可。这使得K-means算法在编程实践中易于实现和调试，降低了使用门槛。</p>
+<p>2、 局限性<br>  （1）对初始聚类中心敏感：<br>  K-means算法的聚类结果在很大程度上受到初始聚类中心选择的影响。如果初始聚类中心选择不当，可能会导致聚类结果出现偏差或不稳定。为了缓解这一问题，可以采用一些启发式方法（如K-means++算法）来优化初始聚类中心的选择。</p>
+<p>  （2）可能陷入局部最优：<br>  K-means算法在迭代过程中采用贪心策略，每一步都试图找到当前最优解。然而，这种策略可能导致算法陷入局部最优解，而无法达到全局最优。为了克服这一问题，可以尝试使用不同的初始聚类中心进行多次运行，或者结合其他优化算法来改进K-means算法的性能。</p>
+<p>  （3）需要预先设定聚类数K：<br>  K-means算法需要提前设定聚类数K，这个值的选择往往需要根据具体问题和数据特点来确定。如果K值选择不当，可能会导致聚类结果不符合实际情况或无法有效揭示数据的内在结构。在实际应用中，可以通过一些评估指标（如轮廓系数、肘部法则等）来辅助确定合适的K值。</p>
+<p>pca</p>
+<p>朴素贝叶斯</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144051482.png" alt="image-20240918144051482"></p>
+<p>决策树</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144059508.png" alt="image-20240918144059508"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144110057.png" alt="image-20240918144110057"></p>
+<p>CART决策树使用基尼指数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144125169.png" alt="image-20240918144125169"></p>
+<p>支持向量机</p>
+<p>找到一个平面<strong>函数间隔</strong>最大化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144143181.png" alt="image-20240918144143181"></p>
+<p>拉格朗日乘子法可得到其“对偶问题”，<strong>SMO</strong>算法是支持向量机学习的一种快速算法，其特点是不断地将原二次规划问题分解为只有两个变量的二次规划子问题，并对子问题进行解析求解，直到所有变量满足 KKT 条件为止。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144209542.png" alt="image-20240918144209542"></p>
+<h3 id="Dice-系数（Dice-Coefficient）"><a href="#Dice-系数（Dice-Coefficient）" class="headerlink" title="Dice 系数（Dice Coefficient）"></a>Dice 系数（Dice Coefficient）</h3><p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144222248.png" alt="image-20240918144222248"></p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li><strong>对类不平衡问题有良好的适应性</strong>：Dice损失在处理正负样本不平衡时表现优越，因为它直接度量预测和真实标签之间的重叠区域。</li>
+<li><strong>直接优化分割性能</strong>：Dice系数是一个衡量两个集合相似度的指标，直接与分割任务的性能相关。</li>
+<li><strong>平滑的梯度</strong>：在分割任务中，Dice损失的梯度相对平滑，有助于稳定训练过程。</li>
+</ol>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li><strong>对小目标不敏感</strong>：在处理包含大量背景的小目标时，Dice损失可能会受到背景区域的影响，从而降低对小目标的敏感性。</li>
+<li><strong>难以解释</strong>：相比于交叉熵损失，Dice损失的数学含义不如交叉熵直观明了。</li>
+<li><strong>数值稳定性问题</strong>：在某些情况下，Dice损失可能会出现数值不稳定的问题，需要进行特殊处理（如加上一个小的常数epsilon）。</li>
+</ol>
+<h3 id="交叉熵损失（Cross-Entropy-Loss）"><a href="#交叉熵损失（Cross-Entropy-Loss）" class="headerlink" title="交叉熵损失（Cross-Entropy Loss）"></a>交叉熵损失（Cross-Entropy Loss）</h3><h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ol>
+<li><strong>直观易懂</strong>：交叉熵损失直接衡量了预测概率与实际类别之间的差异，具有明确的统计学意义。</li>
+<li><strong>适用范围广</strong>：交叉熵损失在分类任务中广泛应用，适用于多种任务和网络架构。</li>
+<li><strong>数值稳定性好</strong>：交叉熵损失在计算过程中通常不会出现数值不稳定的问题。</li>
+</ol>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li><strong>对类不平衡敏感</strong>：交叉熵损失在处理正负样本不平衡时可能表现不佳，通常需要调整权重来应对不平衡问题。</li>
+<li><strong>间接优化分割性能</strong>：交叉熵损失并不直接度量分割性能，可能导致分割边缘不精确。</li>
+<li><strong>对噪声敏感</strong>：在存在噪声的情况下，交叉熵损失可能会受到影响，需要进行额外的预处理或正则化。</li>
+</ol>
+<p>langchain lora</p>
+<h2 id="算法复习"><a href="#算法复习" class="headerlink" title="算法复习"></a>算法复习</h2><h4 id="stl"><a href="#stl" class="headerlink" title="stl"></a><strong>stl</strong></h4><p>迭代器遍历map</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    std::map&lt;std::uint32_t, std::string&gt; myMap = &#123;&#123;1, &quot;one&quot;&#125;, &#123;2, &quot;two&quot;&#125;, &#123;3, &quot;three&quot;&#125;&#125;;</span><br><span class="line"> </span><br><span class="line">    // 使用迭代器倒序遍历map</span><br><span class="line">    std::map&lt;std::uint32_t, std::string&gt;::iterator iter;</span><br><span class="line">    for (iter = myMap.begin(); iter != myMap.end(); ++iter) </span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; iter-&gt;first &lt;&lt; &quot; =&gt; &quot; &lt;&lt; iter-&gt;second &lt;&lt; &#x27;\n&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>map排序</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">//默认定义格式（默认按key升序存储）： key, value，其中key可以是任意类型</span><br><span class="line">std::map&lt;std::uint32_t, std::string&gt; myMap;  //key 值为 std::uint32_t 类型</span><br><span class="line">std::map&lt;std::string, std::string&gt; myMap;    //key 值为 std::string 类型</span><br><span class="line"></span><br><span class="line">//指定数据按key升序存储</span><br><span class="line">std::map&lt;std::uint32_t, std::string, std::greater&lt;std::uint32_t&gt; &gt; myMap; </span><br><span class="line"></span><br><span class="line">//指定数据按key升序存储</span><br><span class="line">std::map&lt;std::uint32_t, std::string, std::less&lt;std::uint32_t&gt; &gt; myMap; </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>vector二分查找元素</p>
+<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>筛法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for(int i = 2; i * i &lt;= N; i++) &#123;</span><br><span class="line">       if(!prime[i])</span><br><span class="line">       for(int j = i * i; j &lt;= N; j += i)&#123;</span><br><span class="line">           prime[j] = 1;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>最小生成树</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define int long long</span><br><span class="line">struct node&#123;</span><br><span class="line">    int v,u,w;</span><br><span class="line">    bool operator &lt; (const node &amp;a) const&#123;</span><br><span class="line">        return w&gt;a.w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">node nd[200011];</span><br><span class="line">priority_queue&lt;node&gt;q;//堆</span><br><span class="line">int f[200011];</span><br><span class="line">int F(int x) &#123;//并查集</span><br><span class="line">	if (f[x] == x) return x;</span><br><span class="line">	return f[x] = F(f[x]);</span><br><span class="line">&#125;</span><br><span class="line">signed main()&#123;</span><br><span class="line">    int n,m; scanf(&quot;%lld%lld&quot;,&amp;n,&amp;m);//多少个点 多少条边</span><br><span class="line">    for(int i = 1; i &lt;= n; i++)f[i] = i;</span><br><span class="line">    for(int i = 1; i &lt;= m; i++)&#123;</span><br><span class="line">        int u,v,x;//u-&gt;v 权值为x;</span><br><span class="line">        scanf(&quot;%lld%lld%lld&quot;,&amp;u,&amp;v,&amp;x);</span><br><span class="line">        nd[i].u = u;</span><br><span class="line">        nd[i].v = v;</span><br><span class="line">        nd[i].w = x;</span><br><span class="line">        q.push(nd[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    while(q.size())&#123;</span><br><span class="line">        node a = q.top(); q.pop();</span><br><span class="line">        int x = F(a.u);</span><br><span class="line">        int y = F(a.v);</span><br><span class="line">        if (x != y) &#123;</span><br><span class="line">            f[x] = y;</span><br><span class="line">            ans += a.w;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%lld\n&quot;,ans);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>二分</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">while (l &lt; r)&#123;</span><br><span class="line">       int mid = l + r &gt;&gt; 1;	//(l+r)/2</span><br><span class="line">       if (check(mid))  r = mid;    // check()判断mid是否满足性质</span><br><span class="line">       else l = mid + 1;</span><br><span class="line">   &#125;</span><br><span class="line">while (l &lt; r)&#123;</span><br><span class="line">       int mid = l + r + 1 &gt;&gt; 1;	//(l+r+1)/2</span><br><span class="line">       if (check(mid))  l = mid;</span><br><span class="line">       else r = mid - 1;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>dijkstra</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define pii pair&lt;int,int&gt;</span><br><span class="line">#define tii tuple&lt;int,int,int&gt;</span><br><span class="line">#define debug() cout &lt;&lt; &quot;wwwttlll&quot; &lt;&lt; endl;</span><br><span class="line">#define author wwwttlll</span><br><span class="line">// #define int long long</span><br><span class="line">#define endl &#x27;\n&#x27;</span><br><span class="line">long long read()&#123;</span><br><span class="line">    long long ret=0,f=1;char ch=getchar();</span><br><span class="line">    while(ch&gt;&#x27;9&#x27;||ch&lt;&#x27;0&#x27;)&#123;if(ch==&#x27;-&#x27;)f=-f;ch=getchar();&#125;</span><br><span class="line">    while(ch&gt;=&#x27;0&#x27;&amp;&amp;ch&lt;=&#x27;9&#x27;) ret=ret*10+ch-&#x27;0&#x27;,ch=getchar();</span><br><span class="line">    return ret*f;</span><br><span class="line">&#125;</span><br><span class="line">const int N = 2e5 + 11;</span><br><span class="line">int n,m,root;</span><br><span class="line">int x,y,z;</span><br><span class="line">priority_queue &lt;pair&lt;int,int&gt; &gt;q;</span><br><span class="line">int d[N];</span><br><span class="line">vector&lt;pair&lt;int,int&gt; &gt;a[N];</span><br><span class="line">// stack&lt;int&gt; s[N];</span><br><span class="line">void dijkstra(int root) &#123;</span><br><span class="line">    memset(d, 0x3f, sizeof d);</span><br><span class="line">    d[root] = 0;</span><br><span class="line">    q.push(&#123;0,root&#125;);</span><br><span class="line">    while(!q.empty())&#123;</span><br><span class="line">        int u1 = q.top().first;</span><br><span class="line">        int u2 = q.top().second;</span><br><span class="line">        q.pop();</span><br><span class="line">        if(-u1 &gt; d[u2] ) continue;</span><br><span class="line">        for(int i = 0 ; i &lt; a[u2].size(); i++)&#123;</span><br><span class="line">            int v = a[u2][i].first;</span><br><span class="line">            int w = a[u2][i].second;</span><br><span class="line">            if(d[v] &gt; d[u2] + w)&#123;</span><br><span class="line">                d[v] = d[u2] + w;</span><br><span class="line">                q.push(&#123;-d[v],v&#125;);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">signed main()&#123;</span><br><span class="line">    n = read(); m = read(); root = read();</span><br><span class="line">    for(int i = 1; i &lt;= m; i++) &#123;</span><br><span class="line">        x = read(); y = read(); z = read();</span><br><span class="line">        a[x].push_back(&#123;y,z&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    dijkstra(root);</span><br><span class="line">    for(int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        cout &lt;&lt; d[i] &lt;&lt; ((i == n) ? &#x27;\n&#x27; : &#x27; &#x27;); ;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>夏令营</category>
+      </categories>
+      <tags>
+        <tag>夏令营</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构复习</title>
+    <url>/2024/06/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="数据结构复习"><a href="#数据结构复习" class="headerlink" title="数据结构复习"></a>数据结构复习</h1><h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>kmp</p>
+<p>马拉车</p>
+<p>trie</p>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><p>树的遍历</p>
+<h3 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h3><p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144304336.png" alt="image-20240918144304336"></p>
+<ul>
+<li>权值越小到根节点路径越长</li>
+<li>n个节点，合并n-1次，共2n-1个节点</li>
+<li>不存在度为1的节点</li>
+<li>不唯一</li>
+</ul>
+<p><strong>哈夫曼编码</strong></p>
+<p>可变长度编码，构造哈夫曼树左边是0右边是1</p>
+<p>前缀编码：没有一个编码是另一个编码的前缀</p>
+<p>并查集</p>
+<h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><h2 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h2><p>图的定义</p>
+<p>图的存储</p>
+<p><strong>十字链表</strong>：有向图</p>
+<p>最小生成树</p>
+<p>拓扑</p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>哈希</p>
+<p>二叉搜索树</p>
+<p>在数据本来有序的情况下二叉搜索树会退化成O（n)</p>
+<p>左 &lt; 根 &lt; 右</p>
+<p>中序是升序的</p>
+<p>删除:</p>
+<p>叶子直接删</p>
+<p>只有左或者右子树，直接用左或右代替</p>
+<p>既有左又有右，选左子树中最大的或者右子树中最小的，替换当前节点，再将替换的节点删除</p>
+<h3 id="平衡二叉树-AVL"><a href="#平衡二叉树-AVL" class="headerlink" title="平衡二叉树(AVL)"></a><strong>平衡二叉树(AVL)</strong></h3><p>平衡因子：左子树的高度-右子树的高度</p>
+<p>所有节点平衡的绝对值&lt;=1就是平衡二叉树</p>
+<p>旋转操作 和二叉搜索树中序遍历相同</p>
+<p>左旋：冲突的左孩子变右孩子</p>
+<p>右旋：冲突的右孩子变左孩子</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144317181.png" alt="image-20240918144317181"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144327951.png" alt="image-20240918144327951"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144335620.png" alt="image-20240918144335620"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144346967.png" alt="image-20240918144346967"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144354546.png" alt="image-20240918144354546"></p>
+<p>插入时：插入节点多个节点失衡，调整最近的祖先节点</p>
+<p>删除时：以此检查祖先节点失衡则调整</p>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>左&lt; 根 &lt; 右</p>
+<p>根和叶子都是黑色</p>
+<p>没有连续的两个红色节点</p>
+<p>任意节点到叶子节点所有路径上黑色节点数相同</p>
+<p>性质 任意节点左右子树高度相差不超过两倍</p>
+<p>插入节点默认是红色</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240816114337304.png" alt="1"></p>
+<h3 id="b树"><a href="#b树" class="headerlink" title="b树"></a>b树</h3><p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240816152235545.png" alt="image-20240816152235545"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240816145114730.png" alt="image-20240816145114730"></p>
+<p>插入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240816145138548.png" alt="image-20240816145138548"></p>
+<p>递归父节点上移，直到不溢出位置</p>
+<p>删除</p>
+<p>删除非叶子节点最终都要转换成删除叶子节点</p>
+<p>出现下溢 </p>
+<p>兄弟够借 父下来 兄上去</p>
+<p>不够借 和兄弟合并 父亲下移 再合并过来 递归父亲节点是否下溢出 要移动子树</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240816152033484.png" alt="image-20240816152033484"></p>
+<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>插入排序</p>
+<p>折半插入排序 插入排序+二分优化</p>
+<p>O（nlogn)</p>
+<p>希尔排序</p>
+<p>按步长分组，每个组里插入排序</p>
+<p>步长折半，再次分组排序</p>
+<p>O（n^1.3)</p>
+<p>快排</p>
+<p>选一个数，比他小的放在左边，比他大的放右边，然后递归排序左边的区间和右边的区间</p>
+<p>Onlogn</p>
+<p>基数排序</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240821172631200.png" alt="image-20240821172631200"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240821182439855.png" alt="image-20240821182439855"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240821182604671.png" alt="image-20240821182604671"></p>
+<p>外部排序</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240821201240911.png" alt="image-20240821201240911"></p>
+<p>败者树优化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240821204023589.png" alt="image-20240821204023589"></p>
+<p>内部排序：待排序记录存放在计算机随机存储器中（说简单点，就是<strong>内存</strong>）进行的排序过程。</p>
+<p>外部排序：待排序记录的数量很大，以致于内存不能一次容纳全部记录，所以在排序过程中<strong>需要对外存进行访问</strong>的排序过程。</p>
+]]></content>
+      <categories>
+        <category>夏令营</category>
+      </categories>
+      <tags>
+        <tag>夏令营</tag>
+      </tags>
   </entry>
 </search>

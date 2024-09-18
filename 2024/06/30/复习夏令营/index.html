@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="夏令营," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="夏令营面试复习项目mamba Transformer架构：UNETR（UNet with Transformers）是基于Transformer架构的，它能够更好地捕捉图像中的全局特征。这对于复杂的医学图像分割任务非常重要。 全局视觉上下文建模：RSSM模块结合了残差结构和Mamba的SSM结构，能够有效融合全局视觉上下文。这与UNETR网络的全局特征提取能力相辅相成。 位置嵌入：RSSM模块引入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="夏令营面试">
+<meta property="og:url" content="http://wwwttlll.github.io/2024/06/30/%E5%A4%8D%E4%B9%A0%E5%A4%8F%E4%BB%A4%E8%90%A5/index.html">
+<meta property="og:site_name" content="wwwttlll">
+<meta property="og:description" content="夏令营面试复习项目mamba Transformer架构：UNETR（UNet with Transformers）是基于Transformer架构的，它能够更好地捕捉图像中的全局特征。这对于复杂的医学图像分割任务非常重要。 全局视觉上下文建模：RSSM模块结合了残差结构和Mamba的SSM结构，能够有效融合全局视觉上下文。这与UNETR网络的全局特征提取能力相辅相成。 位置嵌入：RSSM模块引入">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918143956748.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144008901.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144038544.png">
+<meta property="og:image" content="c:/Users/wwwttlll/AppData/Roaming/Typora/typora-user-images/image-20240709153633672.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144051482.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144059508.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144110057.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144125169.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144143181.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144209542.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144222248.png">
+<meta property="article:published_time" content="2024-06-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-18T06:53:40.096Z">
+<meta property="article:author" content="wwwttlll">
+<meta property="article:tag" content="夏令营">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918143956748.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'wwwttlll'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wwwttlll.github.io/2024/06/30/复习夏令营/"/>
+
+
+
+
+
+  <title>夏令营面试 | wwwttlll</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wwwttlll</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wwwttlll.github.io/2024/06/30/%E5%A4%8D%E4%B9%A0%E5%A4%8F%E4%BB%A4%E8%90%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wwwttlll">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">夏令营面试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-06-30T00:00:00+08:00">
+                2024-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%8F%E4%BB%A4%E8%90%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">夏令营</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="夏令营"><a href="#夏令营" class="headerlink" title="夏令营"></a>夏令营</h1><h2 id="面试复习"><a href="#面试复习" class="headerlink" title="面试复习"></a>面试复习</h2><h3 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h3><p><strong>mamba</strong></p>
+<p>Transformer架构：UNETR（UNet with Transformers）是基于Transformer架构的，它能够更好地捕捉图像中的全局特征。这对于复杂的医学图像分割任务非常重要。</p>
+<p><strong>全局视觉上下文建模</strong>：RSSM模块结合了残差结构和Mamba的SSM结构，能够有效融合全局视觉上下文。这与UNETR网络的全局特征提取能力相辅相成。</p>
+<p><strong>位置嵌入</strong>：RSSM模块引入了位置嵌入机制，这与UNETR网络中的位置编码方式兼容，能够更好地保留图像的空间信息。</p>
+<p><strong>扫描方法</strong></p>
+<p>顺序扫描</p>
+<p>Rethinking Scanning Strategies with Vision Mamba in Semantic Segmentation of Remote Sensing Imagery: An Experimental Study</p>
+<p>定量研究了22种扫描策略对基于Mamba方法的高分辨率遥感图像语义分割的影响。实验结果表明，无论是单向扫描方向还是其组合，各种扫描策略并未在分割准确率上带来明显提升。</p>
+<p><strong>vnet</strong></p>
+<p><strong>加权交叉熵损失（Weighted Cross-Entropy Loss）</strong>：为少数类样本赋予更高的权重，使模型在训练过程中更多关注少数类样本。</p>
+<p>对少数类样本（肺结节）进行数据增强，如旋转、翻转、平移、缩放等，生成更多的正样本。</p>
+<p><strong>面试问题</strong></p>
+<p>英文问题</p>
+<p>英文单词</p>
+<p>顶会 顶刊top conference top journal</p>
+<p>学术生涯 academia</p>
+<p>创新地 innovatively</p>
+<p>高考 entrance exam </p>
+<p>join a research team 加入课题组</p>
+<p>take part in a research project 参与科研项目</p>
+<p>novelty 创新点</p>
+<p>demonstrate 证实</p>
+<p>The International Conference on Wireless Artificial Intelligent Computing Systems and Applications (WASA) </p>
+<p>图像预处理 sliding window  overlapping</p>
+<p><strong>National College Student Innovation and Entrepreneurship Training Program</strong> 大创</p>
+<p>残差网络通过引入“残差块”和跨层连接，将输入直接加到输出上，从而更容易学习出恒等映射，避免了梯度消失的问题</p>
+<p>英文介绍一下你的项目</p>
+<p>那我选取腹部多器官分割的项目来介绍吧。提 出 R SSM 模 块,创新性地结合残差结构和 M am ba的SSM结构，融合相关全局视觉上下文建模和位置嵌入将RSSM模块应用于U NE TR网 络 ，构 建ReSU- Net模 型,提升特征提取和上下文融合能力使 用Dice和交叉熵加权构建损失函数，在<em>Abdomen MRI</em>数 据集上进行训练并对比其他模型，结果优于多数流行的模型</p>
+<p>then ,I’d like to introduce a project focused on multi-organ segmentation in the abdomen. In this project, I developed the RSSM module, which innovatively combines residual structures with Mamba’s SSM structure, integrating global visual context modeling and positional embedding. I applied this RSSM module to the UNETR network, creating the ReSU-Net model. This significantly improved the model’s ability to extract features and integrate contextual information. To train the model on the Abdomen MRI dataset, I used a loss function that combines Dice and weighted cross-entropy. The results showed that our model outperformed many popular models in this area.</p>
+<p>This paper innovatively proposes the Residual State Space Module (RSSM), which combines the residual structure with Mamba’s State Space Model (SSM). By effectively embedding global visual context and positional information, it significantly enhances the model’s expressiveness and accutacy. We then integrated the RSSM module into the UNETR network, constructing the ReSU-Net model. In experiments on abdominal multi-organ segmentation tasks, the ReSU-Net model demonstrated superior performance, achieving an average dice score of 0.8227, surpassing several popular models including nnUNet and SegResNet.</p>
+<p>项目创新点。</p>
+<p>What is the innovative aspect of your paper/project?</p>
+<p>介绍一下你的家乡</p>
+<p>我来自石家庄，河北省的省会。它位于华北平原的心脏地带，是该地区重要的政治、经济和文化中心。近年来，石家庄发展迅速，已成为重要的交通枢纽和工业城市。它也有一些伟大的历史遗迹，像正定古城和赵州桥。总的来说，这是一个融合了历史和现代生活的城市。</p>
+<p>I’m from Shijiazhuang, the capital of Hebei Province. It’s located in the heart of the North China Plain and is an important center for politics, economy, and culture in the region. Shijiazhuang has developed quickly in recent years, becoming a key transportation hub and industrial city. It also has some great historical sites, like the ancient city of Zhengding and the Zhaozhou Bridge. Overall, it’s a city that blends history with modern life.</p>
+<p>你在项目中负责什么</p>
+<p>我在项目中主负责所有技术问题，ppt中所有的内容均由我独立完成，队友负责一些报告和材料的撰写和汇报答辩。除此之外，我是论文的唯一学生作者，独自完成了网络设计，论文的撰写和对比实验等工作，然后这期间我的指导老师对我撰写的论文进行了修改。</p>
+<p><strong>Q: What was your role in the project?</strong></p>
+<p><strong>A:</strong> I was primarily responsible for all the technical aspects of the project. Every part in the PPT was independently completed by me. My teammates focused on writing reports, preparing materials, and presenting in the final defense. Additionally, I was the sole student author of the paper, handling the network design, writing the paper, and conducting comparison experiments on my own. My advisor provided guidance and revisions for the paper during the process.</p>
+<p>你最喜欢的专业课是什么</p>
+<p>What is your favorite course in your major?</p>
+<p>我最喜欢的专业课是机器学习，因为我相对于纯理论更喜欢结合实践学习一些新知识，在这门课中我不仅仅学习到了经典的机器学习算法，这门课平时的实践包括课后作业要求我们在kaggle完成制定的任务，让我很有成就感</p>
+<p>My favorite course is Machine Learning. I prefer learning through hands-on experience rather than just theory, and this course really allowed me to do that. I got to explore classic machine learning algorithms while applying them to real-world problems. The final project, where we competed in a Kaggle competition, was particularly rewarding and gave me a great sense of accomplishment.</p>
+<p><strong>你为什么想来我们学校</strong></p>
+<p>东南大学历史悠久，一直是是中国工科教育的中流砥柱。拥有比较强的科研团队和领先的科研平台，产生多项重大成果。除此之外，东南大学地处南京，地理位置优异，校内环境优美。</p>
+<p>除此之外，东南大学一直是我的梦校，我在高中时就来过南京参观过东南大学并希望能考入东南大学，可惜高考成绩并不理想，无缘东南大学。</p>
+<p>Southeast University has always been a cornerstone of engineering education in China, with a strong research team and state-of-the-art facilities that have produced many groundbreaking achievements. The university’s beautiful campus and prime location in Nanjing only add to its appeal.</p>
+<p>and Honestly, Southeast University has been my dream school for a long time. I visited the university  in high school and was determined to study here, but unfortunately, my entrance exam results didn’t meet the mark. If I’m fortunate enough to be admitted this time, I wouldn’t pass up the chance to finally attend my dream school.</p>
+<p>组会相关</p>
+<p>I recently joined a research group that mainly focuses on security-related topics, particularly federated learning. A smaller part of the group is dedicated to image segmentation research. Each week, we have group meetings where members take turns presenting top conference papers they’ve read. Being in this group has been an enriching experience—I’m exposed to cutting-edge research in both security and image segmentation, which broadens my understanding and inspires new ideas. The collaborative environment and the opportunity to discuss high-level research with peers are incredibly motivating.</p>
+<p><strong>研究生阶段规划？</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918143956748.png" alt="image-20240918143956748"></p>
+<p><strong>你最感兴趣的研究方向是什么？为什么？</strong></p>
+<p>我的主要科研兴趣集中在计算机视觉领域。通过在本科阶段接触到的计算机视觉相关项目,我发现自己对图像处理、模式识别等方向产生了浓厚的兴趣。在未来的发展道路上,我计划在学术界深耕计算机视觉研究。一方面,我将积极参与科研项目,参与导师的前沿工作并希望在相关顶会发表论文,不断提升自己的研究水平;另一方面,我也希望能积极实践将计算机视觉与其他领域技术相结合,探索新的应用场景。</p>
+<p>My main research interests are in computer vision. During my undergraduate studies, I got involved in projects related to computer vision, which sparked my strong interest in areas like image processing and pattern recognition and so on. Moving forward, I plan to dive deeper into computer vision research in academia. I want to get involved in research projects, contribute to my advisor’s work, and aim to publish papers at top conferences to keep improving my research skills. I’m also interested in exploring how computer vision can be combined with other technologies to find new applications.</p>
+<p>你的性格优势是什么</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144008901.png" alt="image-20240918144008901"></p>
+<p>What’s your plan after graduation? 你毕业后的规划？</p>
+<p>这很难说，我可能会去工作或者读博，这取决于我在研究生阶段有没有实力发出高水平的论文。毕竟我现在只有一篇CCF-C会议的论文，如果我能发出几篇CCF-A会议论文之类的，我应该会选择读博，我还是希望自己有机会</p>
+<p>It is hard to say,I may choose for further study or work in a company . I’ll further my research on artificial intelligence and be a researcher in this field. But it’s more likely that I will choose further education that I’m interested in and might get the opportunity to make some progress or even a breakthrough in the related field. However, whether I choose employment or further education , I will try my best to promote the combination of production and learning, promote the implementation of artificial intelligence, and contribute to the dream of China.</p>
+<p><strong>状态空间模型与腹部多器官分割</strong>：</p>
+<ul>
+<li>请解释状态空间模型（SSM）在医学影像分割中的作用是什么？为何选择SSM用于腹部多器官分割？</li>
+<li>在面对不同患者的腹部影像形态差异时，SSM如何帮助提升分割的鲁棒性？</li>
+</ul>
+<p><strong>RSSM 模块的设计</strong>：</p>
+<ul>
+<li>残差结构和 Mamba 的 SSM 结构是如何在 RSSM 模块中结合的？这种结合如何改进模型的性能？</li>
+</ul>
+<p>首先，输入的特征图通过残差结构直接传递，保留了原始的空间信息。与此同时，特征图一次经过点卷积、三维卷积和线性层也被传入SSM结构，通过状态空间建模提取出丰富的时空特征。最后，这两部分特征在残差连接处进行融合，形成一个既包含原始空间信息，又包含时空特征的增强型特征图</p>
+<p>残差结构能保留原始的图像和通过ssm提取的特征信息，从而避免信息的过度损失同时避免训练过程中梯度消失。这在医学影像分割任务中尤为重要，因为精确的分割往往依赖于对细微结构和边界的准确捕捉。</p>
+<p><strong>ReSU-Net 模型的构建</strong>：</p>
+<ul>
+<li>将 RSSM 模块集成到 UNETR 网络中时，面临了哪些挑战？是如何解决的？</li>
+</ul>
+<p>一方面是框架的兼容性，我尝试使用开源代码，但由于框架兼容性的问题，导致运行时出现了报错。经过进一步研究，我发现MONAI框架已经集成了完善的UNETR模型，并且提供了上采样和下采样模块的独立调用功能。我所使用的其他对比模型，包括VNet、UNet和SegResNet，也都采用了这个框架。通过这个框架，我能够更好地管理和集成各个模块。此外，我还通过仔细设计接口和模块之间的数据传递方式，确保RSSM模块能够顺利地嵌入到UNETR网络中，实现了模块间的无缝对接。</p>
+<p>RSSM模块的引入带来了额外的超参数，特别是在状态空间模型的配置和残差结构的选择上，这增加了模型训练时的调优难度。此外，新增模块可能导致模型的收敛速度变慢，甚至在某些情况下出现不收敛的情况。在模型训练初期，使用小规模数据集和较短的训练周期来快速验证不同超参数的组合效果。在模型训练过程中，应用渐进学习率衰减和自适应优化算法（如AdamW），以加速模型收敛。此外，借助提前停止（early stopping）机制，防止模型过拟合或陷入局部最优解。</p>
+<ul>
+<li>ReSU-Net 与 nnUNet、SegResNet 等流行模型相比，有哪些具体的性能优势？是什么技术手段导致了这些优势？</li>
+</ul>
+<p>全局与局部特征的结合：ReSU-Net通过引入残差结构与状态空间模型（SSM）相结合的方法，在局部特征提取的基础上，增强了对全局视觉上下文的捕捉能力。这种结合使得模型能够更好地理解复杂的解剖结构和细微的差异，提升了模型的表达能力。</p>
+<p>ReSU-Net结合了UNETR（一种基于Transformer的U-Net变体）结构的优势，利用Transformer的自注意力机制加强了对全局信息的捕捉，同时保留了U-Net网络强大的特征提取能力。这种结构的结合使得ReSU-Net在复杂的多器官分割任务中表现得更加稳健。</p>
+<p>性能优势体现在计算效率基本持平的情况下，在腹部多器官分割数据集上分割精度有较为明显的提升</p>
+<p>ReSU-Net的核心创新在于RSSM（Residual State Space Module）模块，这个模块结合了残差结构与Mamba的状态空间模型结构。通过在残差结构中引入状态空间建模，模型能够更好地捕捉到时间和空间上的依赖关系，从而提升了特征表达的丰富性和模型的泛化能力。</p>
+<p><strong>QLoRA</strong> 是一种新的微调大型语言模型（LLM）的方法，它能够在节省内存的同时保持速度。其工作原理是首先将LLM进行4位量化，从而显著减少模型的内存占用。接着，使用低阶适配器（LoRA）方法对量化的LLM进行微调。LoRA使得改进后的模型能够保留原始LLM的大部分准确性，同时具有更小的体积和更快的速度。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144038544.png" alt="image-20240918144038544"></p>
+<p>BGE</p>
+<p>.Pre-Training<br>使用纯文本的悟道语料，不是文本对。目的是得到更强大的表征能力。做法是采用RetroMAE的训练策略：先对text X进行随机Mask，然后进行encoding，再额外训练一个light-weight decoder（如单层transformer）进行重构。通过这一过程，强迫encoder学习到良好的embedding。作者认为，解码器结构简单，只有单层transformer，而且输入句子的掩码率很高，会使得解码变得具有挑战性，可以迫使生成高质量的句子嵌入，以便可以以良好的保真度恢复原始输入。</p>
+<p>2.general-purpose fine-tuning<br>预训练模型通过对 C-MTP（无标签）进行对比学习进行微调，以区分配对文本与其负样本。</p>
+<p>对比学习的一个关键因素是负样本。没有特意挖掘难负样本，而是纯粹依赖批内负样本，并借助大批次（高达 19,200）来提高嵌入的区分性。</p>
+<p>3.Task-specific fine-tuning<br>BGE适合各种类型的任务，如检索、摘要等等。它们包含的任务类型各异，可能会相互影响。<br>为了将通用的也能在各类任务中有优异表现，采用了以下两个方法：</p>
+<p>基于指令的微调： 输入数据会被区分，以帮助模型适应不同任务。对于每个文本对 (p,<br>q)，会在查询侧附加一个特定任务的指令。指令是一个言语提示，明确了任务的性质，例如“为这个句子生成表示以用于检索相关文章：”。<br>负样本更新：除了批内负样本，每个文本对 (p, q) 还会挖掘一个难负样本 q’。难负样本从任务的原始语料库中挖掘，遵循了ANN<br>风格的采样策略。难负样本通常与目标文本相似，但并不匹配，从而增加了模型的训练难度，提升了模型的区分能力。</p>
+<p><strong>计算效率与临床应用</strong>：</p>
+<ul>
+<li>如何在保证分割精度的同时，优化算法的计算效率？具体的优化策略有哪些？</li>
+</ul>
+<p>计算效率：</p>
+<p>mamba计算效率接近线性，相较transformer的n^2复杂度方面有了提升，同时减少模型的参数量和计算复杂度</p>
+<p>跳跃连接与多尺度特征融合：利用跳跃连接（skip connections）和多尺度特征融合，可以在不增加计算复杂度的情况下提升模型性能。</p>
+<p>另一方面就是训练采用多GPU并行化训练，也可以调高训练效率</p>
+<p>算法优化：</p>
+<p>选择能快速收敛的损失函数 这里采用了dice和交叉熵加权的损失函数</p>
+<p>图像预处理：在输入模型之前对图像进行裁剪和下采样，以减少输入数据的尺寸，从而降低计算负担。可以通过上下采样策略来确保关键特征仍然被保留。使用区域兴趣提取（ROI）技术，仅对感兴趣的部分区域进行处理，而不是对整个图像进行分割。</p>
+<ul>
+<li>在临床应用场景中，ReSU-Net 的计算效率如何满足实时性或大规模处理的需求？</li>
+</ul>
+<p>在实际临床部署时,可以构建GPU服务器集群,并行处理多个患者的图像数据,从而显著提升整体的吞吐量和效率,满足更多样本的推理需求。</p>
+<p><strong>实验与结果</strong>：</p>
+<ul>
+<li>Abdomen MRI 数据集的特点是什么？为什么选择这个数据集进行模型验证？</li>
+</ul>
+<p>他们的数据集来着来自Multi-Modality Abdominal Multi-Organ Segmentation Challenge 2022，该比赛提供从多中心、多供应商、多模式、多阶段、多疾病患者收集的 500 次 CT 和 100 次 MRI 扫描，每个患者都有 15 个腹部器官的体素级注释，这些数据从龙岗区中心医院（中国深圳）和龙岗区人民医院（中国深圳）收集，具有较高的可靠性。</p>
+<ul>
+<li>实验中，ReSU-Net 模型是如何在该数据集上表现出优于其他模型的性能的？具体的评估指标和实验条件是什么？</li>
+</ul>
+<p>Abdomen MRI 的验证集中包含50张不同患者的腹部ct影像，我用了dice系数评估多目标分割性能。训练过程使用nnunet框架保证变量一直，只有网络结构不同，所有模型均在单张3090上训练500轮。</p>
+<p><strong>Mamba的基本原理</strong>：</p>
+<ul>
+<li>请解释Mamba在深度学习中的核心思想和原理是什么？与传统的状态空间模型（SSM）相比，它有哪些优势？</li>
+<li>Mamba是如何在序列建模中处理长时间依赖关系的？它与Transformer模型在这方面有何异同？</li>
+</ul>
+<p><strong>Mamba与SSM的结合</strong>：</p>
+<ul>
+<li>在RSSM模块中，Mamba的SSM结构是如何与残差结构结合的？这种结合的具体实现方式是什么？</li>
+<li>Mamba的SSM结构是如何通过全局视觉上下文建模和位置嵌入来增强模型的？这些技术对多器官分割任务有什么独特的贡献？</li>
+</ul>
+<p><strong>Mamba在医学影像中的应用</strong>：</p>
+<ul>
+<li>在腹部多器官分割任务中，Mamba的SSM结构相比其他序列模型（如LSTM或GRU）有哪些独特优势？</li>
+<li>Mamba的SSM结构在应对医学影像中的噪声和不确定性方面表现如何？如何优化Mamba以处理这些挑战？</li>
+</ul>
+<p><strong>Mamba与ReSU-Net的集成</strong>：</p>
+<ul>
+<li>在将Mamba集成到ReSU-Net时，哪些Mamba特性最为关键？它们如何提升了模型的分割精度和计算效率？</li>
+<li>在实际操作中，Mamba的复杂性是否会影响ReSU-Net的训练时间或推理速度？如果有，如何进行权衡和优化？</li>
+</ul>
+<p><strong>Mamba的可解释性</strong>：</p>
+<ul>
+<li>Mamba在捕捉复杂时空依赖关系时，其内部机制的可解释性如何？在临床应用中，如何解释Mamba的输出？</li>
+<li>是否有特定的可视化方法或工具可以帮助理解Mamba在医学影像分割中的决策过程？</li>
+</ul>
+<p><strong>Mamba的未来发展</strong>：</p>
+<ul>
+<li>你认为Mamba在医学影像分析中的应用前景如何？未来的研究方向可能是什么？</li>
+<li>有没有考虑将Mamba与其他新兴技术（如图神经网络或生成对抗网络）结合，以进一步提升医学影像分割的效果？</li>
+</ul>
+<h3 id="专业知识复习"><a href="#专业知识复习" class="headerlink" title="专业知识复习"></a>专业知识复习</h3><p><strong>knn</strong></p>
+<p><img src="C:\Users\wwwttlll\AppData\Roaming\Typora\typora-user-images\image-20240709153633672.png" alt="image-20240709153633672"></p>
+<p>常用的方法：<br>（1）从k=1开始，使用检验集估计分类器的误差率。<br>（2）重复该过程，每次K增值1，允许增加一个近邻。<br>（3）选取产生最小误差率的K。</p>
+<p>注意：<br>（1）一般k的取值不超过20，上限是n的开方，随着数据集的增大，K的值也要增大。<br>（2）一般k值选取比较小的数值，并采用交叉验证法选择最优的k值。</p>
+<p>kd树方法（平衡二叉树）</p>
+<p>依次选择坐标轴对空间切分，选择训练实例点在选定坐标轴上的中位数（一组数据按大小顺序排列起来，处于中间的一个数或最中间两个数的平均值。本文在最中间有两个数时选择最大值作中位数）为切分点，这样得到的kd树是平衡的。注意，平衡的kd树搜索时未必是最优的。</p>
+<p><strong>聚类</strong></p>
+<p>kmeans k个聚类中心，分配数据，计算新的中心</p>
+<p>1、优点<br>  （1）简单易懂：<br>  K-means算法的原理直观易懂，通过迭代的方式将数据划分为K个聚类，使得每个数据点到其所属聚类的质心距离之和最小。这种简单直观的思想使得K-means算法易于被理解和接受，适合初学者入门学习。</p>
+<p>  （2）计算效率高：<br>  K-means算法在迭代过程中，主要涉及到距离计算和均值计算，这些计算相对简单且高效。因此，在处理大规模数据集时，K-means算法通常能够在较短的时间内完成聚类任务，适合用于实时处理或大规模数据处理场景。</p>
+<p>  （3）易于实现：<br>  K-means算法的实现相对简单，只需按照初始化、分配、更新和迭代的步骤进行即可。这使得K-means算法在编程实践中易于实现和调试，降低了使用门槛。</p>
+<p>2、 局限性<br>  （1）对初始聚类中心敏感：<br>  K-means算法的聚类结果在很大程度上受到初始聚类中心选择的影响。如果初始聚类中心选择不当，可能会导致聚类结果出现偏差或不稳定。为了缓解这一问题，可以采用一些启发式方法（如K-means++算法）来优化初始聚类中心的选择。</p>
+<p>  （2）可能陷入局部最优：<br>  K-means算法在迭代过程中采用贪心策略，每一步都试图找到当前最优解。然而，这种策略可能导致算法陷入局部最优解，而无法达到全局最优。为了克服这一问题，可以尝试使用不同的初始聚类中心进行多次运行，或者结合其他优化算法来改进K-means算法的性能。</p>
+<p>  （3）需要预先设定聚类数K：<br>  K-means算法需要提前设定聚类数K，这个值的选择往往需要根据具体问题和数据特点来确定。如果K值选择不当，可能会导致聚类结果不符合实际情况或无法有效揭示数据的内在结构。在实际应用中，可以通过一些评估指标（如轮廓系数、肘部法则等）来辅助确定合适的K值。</p>
+<p>pca</p>
+<p>朴素贝叶斯</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144051482.png" alt="image-20240918144051482"></p>
+<p>决策树</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144059508.png" alt="image-20240918144059508"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144110057.png" alt="image-20240918144110057"></p>
+<p>CART决策树使用基尼指数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144125169.png" alt="image-20240918144125169"></p>
+<p>支持向量机</p>
+<p>找到一个平面<strong>函数间隔</strong>最大化</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144143181.png" alt="image-20240918144143181"></p>
+<p>拉格朗日乘子法可得到其“对偶问题”，<strong>SMO</strong>算法是支持向量机学习的一种快速算法，其特点是不断地将原二次规划问题分解为只有两个变量的二次规划子问题，并对子问题进行解析求解，直到所有变量满足 KKT 条件为止。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144209542.png" alt="image-20240918144209542"></p>
+<h3 id="Dice-系数（Dice-Coefficient）"><a href="#Dice-系数（Dice-Coefficient）" class="headerlink" title="Dice 系数（Dice Coefficient）"></a>Dice 系数（Dice Coefficient）</h3><p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20240918144222248.png" alt="image-20240918144222248"></p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li><strong>对类不平衡问题有良好的适应性</strong>：Dice损失在处理正负样本不平衡时表现优越，因为它直接度量预测和真实标签之间的重叠区域。</li>
+<li><strong>直接优化分割性能</strong>：Dice系数是一个衡量两个集合相似度的指标，直接与分割任务的性能相关。</li>
+<li><strong>平滑的梯度</strong>：在分割任务中，Dice损失的梯度相对平滑，有助于稳定训练过程。</li>
+</ol>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li><strong>对小目标不敏感</strong>：在处理包含大量背景的小目标时，Dice损失可能会受到背景区域的影响，从而降低对小目标的敏感性。</li>
+<li><strong>难以解释</strong>：相比于交叉熵损失，Dice损失的数学含义不如交叉熵直观明了。</li>
+<li><strong>数值稳定性问题</strong>：在某些情况下，Dice损失可能会出现数值不稳定的问题，需要进行特殊处理（如加上一个小的常数epsilon）。</li>
+</ol>
+<h3 id="交叉熵损失（Cross-Entropy-Loss）"><a href="#交叉熵损失（Cross-Entropy-Loss）" class="headerlink" title="交叉熵损失（Cross-Entropy Loss）"></a>交叉熵损失（Cross-Entropy Loss）</h3><h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ol>
+<li><strong>直观易懂</strong>：交叉熵损失直接衡量了预测概率与实际类别之间的差异，具有明确的统计学意义。</li>
+<li><strong>适用范围广</strong>：交叉熵损失在分类任务中广泛应用，适用于多种任务和网络架构。</li>
+<li><strong>数值稳定性好</strong>：交叉熵损失在计算过程中通常不会出现数值不稳定的问题。</li>
+</ol>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li><strong>对类不平衡敏感</strong>：交叉熵损失在处理正负样本不平衡时可能表现不佳，通常需要调整权重来应对不平衡问题。</li>
+<li><strong>间接优化分割性能</strong>：交叉熵损失并不直接度量分割性能，可能导致分割边缘不精确。</li>
+<li><strong>对噪声敏感</strong>：在存在噪声的情况下，交叉熵损失可能会受到影响，需要进行额外的预处理或正则化。</li>
+</ol>
+<p>langchain lora</p>
+<h2 id="算法复习"><a href="#算法复习" class="headerlink" title="算法复习"></a>算法复习</h2><h4 id="stl"><a href="#stl" class="headerlink" title="stl"></a><strong>stl</strong></h4><p>迭代器遍历map</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line"> </span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    std::map&lt;std::uint32_t, std::string&gt; myMap = &#123;&#123;1, &quot;one&quot;&#125;, &#123;2, &quot;two&quot;&#125;, &#123;3, &quot;three&quot;&#125;&#125;;</span><br><span class="line"> </span><br><span class="line">    // 使用迭代器倒序遍历map</span><br><span class="line">    std::map&lt;std::uint32_t, std::string&gt;::iterator iter;</span><br><span class="line">    for (iter = myMap.begin(); iter != myMap.end(); ++iter) </span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; iter-&gt;first &lt;&lt; &quot; =&gt; &quot; &lt;&lt; iter-&gt;second &lt;&lt; &#x27;\n&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>map排序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//默认定义格式（默认按key升序存储）： key, value，其中key可以是任意类型</span><br><span class="line">std::map&lt;std::uint32_t, std::string&gt; myMap;  //key 值为 std::uint32_t 类型</span><br><span class="line">std::map&lt;std::string, std::string&gt; myMap;    //key 值为 std::string 类型</span><br><span class="line"></span><br><span class="line">//指定数据按key升序存储</span><br><span class="line">std::map&lt;std::uint32_t, std::string, std::greater&lt;std::uint32_t&gt; &gt; myMap; </span><br><span class="line"></span><br><span class="line">//指定数据按key升序存储</span><br><span class="line">std::map&lt;std::uint32_t, std::string, std::less&lt;std::uint32_t&gt; &gt; myMap; </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>vector二分查找元素</p>
+<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>筛法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for(int i = 2; i * i &lt;= N; i++) &#123;</span><br><span class="line">       if(!prime[i])</span><br><span class="line">       for(int j = i * i; j &lt;= N; j += i)&#123;</span><br><span class="line">           prime[j] = 1;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>最小生成树</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define int long long</span><br><span class="line">struct node&#123;</span><br><span class="line">    int v,u,w;</span><br><span class="line">    bool operator &lt; (const node &amp;a) const&#123;</span><br><span class="line">        return w&gt;a.w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">node nd[200011];</span><br><span class="line">priority_queue&lt;node&gt;q;//堆</span><br><span class="line">int f[200011];</span><br><span class="line">int F(int x) &#123;//并查集</span><br><span class="line">	if (f[x] == x) return x;</span><br><span class="line">	return f[x] = F(f[x]);</span><br><span class="line">&#125;</span><br><span class="line">signed main()&#123;</span><br><span class="line">    int n,m; scanf(&quot;%lld%lld&quot;,&amp;n,&amp;m);//多少个点 多少条边</span><br><span class="line">    for(int i = 1; i &lt;= n; i++)f[i] = i;</span><br><span class="line">    for(int i = 1; i &lt;= m; i++)&#123;</span><br><span class="line">        int u,v,x;//u-&gt;v 权值为x;</span><br><span class="line">        scanf(&quot;%lld%lld%lld&quot;,&amp;u,&amp;v,&amp;x);</span><br><span class="line">        nd[i].u = u;</span><br><span class="line">        nd[i].v = v;</span><br><span class="line">        nd[i].w = x;</span><br><span class="line">        q.push(nd[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    while(q.size())&#123;</span><br><span class="line">        node a = q.top(); q.pop();</span><br><span class="line">        int x = F(a.u);</span><br><span class="line">        int y = F(a.v);</span><br><span class="line">        if (x != y) &#123;</span><br><span class="line">            f[x] = y;</span><br><span class="line">            ans += a.w;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%lld\n&quot;,ans);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>二分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">while (l &lt; r)&#123;</span><br><span class="line">       int mid = l + r &gt;&gt; 1;	//(l+r)/2</span><br><span class="line">       if (check(mid))  r = mid;    // check()判断mid是否满足性质</span><br><span class="line">       else l = mid + 1;</span><br><span class="line">   &#125;</span><br><span class="line">while (l &lt; r)&#123;</span><br><span class="line">       int mid = l + r + 1 &gt;&gt; 1;	//(l+r+1)/2</span><br><span class="line">       if (check(mid))  l = mid;</span><br><span class="line">       else r = mid - 1;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>dijkstra</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">#define pii pair&lt;int,int&gt;</span><br><span class="line">#define tii tuple&lt;int,int,int&gt;</span><br><span class="line">#define debug() cout &lt;&lt; &quot;wwwttlll&quot; &lt;&lt; endl;</span><br><span class="line">#define author wwwttlll</span><br><span class="line">// #define int long long</span><br><span class="line">#define endl &#x27;\n&#x27;</span><br><span class="line">long long read()&#123;</span><br><span class="line">    long long ret=0,f=1;char ch=getchar();</span><br><span class="line">    while(ch&gt;&#x27;9&#x27;||ch&lt;&#x27;0&#x27;)&#123;if(ch==&#x27;-&#x27;)f=-f;ch=getchar();&#125;</span><br><span class="line">    while(ch&gt;=&#x27;0&#x27;&amp;&amp;ch&lt;=&#x27;9&#x27;) ret=ret*10+ch-&#x27;0&#x27;,ch=getchar();</span><br><span class="line">    return ret*f;</span><br><span class="line">&#125;</span><br><span class="line">const int N = 2e5 + 11;</span><br><span class="line">int n,m,root;</span><br><span class="line">int x,y,z;</span><br><span class="line">priority_queue &lt;pair&lt;int,int&gt; &gt;q;</span><br><span class="line">int d[N];</span><br><span class="line">vector&lt;pair&lt;int,int&gt; &gt;a[N];</span><br><span class="line">// stack&lt;int&gt; s[N];</span><br><span class="line">void dijkstra(int root) &#123;</span><br><span class="line">    memset(d, 0x3f, sizeof d);</span><br><span class="line">    d[root] = 0;</span><br><span class="line">    q.push(&#123;0,root&#125;);</span><br><span class="line">    while(!q.empty())&#123;</span><br><span class="line">        int u1 = q.top().first;</span><br><span class="line">        int u2 = q.top().second;</span><br><span class="line">        q.pop();</span><br><span class="line">        if(-u1 &gt; d[u2] ) continue;</span><br><span class="line">        for(int i = 0 ; i &lt; a[u2].size(); i++)&#123;</span><br><span class="line">            int v = a[u2][i].first;</span><br><span class="line">            int w = a[u2][i].second;</span><br><span class="line">            if(d[v] &gt; d[u2] + w)&#123;</span><br><span class="line">                d[v] = d[u2] + w;</span><br><span class="line">                q.push(&#123;-d[v],v&#125;);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">signed main()&#123;</span><br><span class="line">    n = read(); m = read(); root = read();</span><br><span class="line">    for(int i = 1; i &lt;= m; i++) &#123;</span><br><span class="line">        x = read(); y = read(); z = read();</span><br><span class="line">        a[x].push_back(&#123;y,z&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    dijkstra(root);</span><br><span class="line">    for(int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">        cout &lt;&lt; d[i] &lt;&lt; ((i == n) ? &#x27;\n&#x27; : &#x27; &#x27;); ;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%A4%8F%E4%BB%A4%E8%90%A5/" rel="tag"># 夏令营</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/06/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/" rel="next" title="数据结构复习">
+                <i class="fa fa-chevron-left"></i> 数据结构复习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/09/18/GrabCut%20%E5%A4%8D%E7%8E%B0/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wwwttlll" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/wwwttlll?spm=1001.2100.3001.5343" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-csdn"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.luogu.com.cn/user/155947" target="_blank" title="luogu">
+                      
+                        <i class="fa fa-fw fa-luogu"></i>luogu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="wwwttlll@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%8F%E4%BB%A4%E8%90%A5"><span class="nav-number">1.</span> <span class="nav-text">夏令营</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E8%AF%95%E5%A4%8D%E4%B9%A0"><span class="nav-number">1.1.</span> <span class="nav-text">面试复习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.1.1.</span> <span class="nav-text">项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86%E5%A4%8D%E4%B9%A0"><span class="nav-number">1.1.2.</span> <span class="nav-text">专业知识复习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dice-%E7%B3%BB%E6%95%B0%EF%BC%88Dice-Coefficient%EF%BC%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">Dice 系数（Dice Coefficient）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1%EF%BC%88Cross-Entropy-Loss%EF%BC%89"><span class="nav-number">1.1.4.</span> <span class="nav-text">交叉熵损失（Cross-Entropy Loss）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-1"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0"><span class="nav-number">1.2.</span> <span class="nav-text">算法复习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stl"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">stl</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">算法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wwwttlll</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "./public/search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
