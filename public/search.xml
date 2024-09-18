@@ -1292,8 +1292,7 @@ f(n) = 2*f(n-1)+1</script><p>通过递归，我们可以得到f(n-1) 来更新f(
         <category>刷题日志</category>
       </categories>
       <tags>
-        <tag>dp</tag>
-        <tag>单调栈 - 算法</tag>
+        <tag>单调栈</tag>
       </tags>
   </entry>
   <entry>
