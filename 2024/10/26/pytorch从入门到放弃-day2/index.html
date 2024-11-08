@@ -79,13 +79,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="wwwttlll">
-<meta property="og:url" content="http://wwwttlll.github.io/archives/2023/03/index.html">
+<meta name="description" content="pytorch从入门到放弃 day2卷积层池化层 尝试构建网络  完整的网络训练123456789101112131415161718192021222324import torch.nn as nnclass Net(nn.Module):    def __init__(self):        super(Net, self).__init__()        self.conv1 &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pytorch从入门到放弃 day2">
+<meta property="og:url" content="http://wwwttlll.github.io/2024/10/26/pytorch%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83-day2/index.html">
 <meta property="og:site_name" content="wwwttlll">
+<meta property="og:description" content="pytorch从入门到放弃 day2卷积层池化层 尝试构建网络  完整的网络训练123456789101112131415161718192021222324import torch.nn as nnclass Net(nn.Module):    def __init__(self):        super(Net, self).__init__()        self.conv1 &#x3D;">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20241104090109898.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20241104141326972.png">
+<meta property="article:published_time" content="2024-10-26T13:43:13.000Z">
+<meta property="article:modified_time" content="2024-11-04T10:44:05.962Z">
 <meta property="article:author" content="wwwttlll">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20241104090109898.png">
 
 
 
@@ -115,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://wwwttlll.github.io/archives/2023/03/"/>
+  <link rel="canonical" href="http://wwwttlll.github.io/2024/10/26/pytorch从入门到放弃-day2/"/>
 
 
 
 
 
-  <title>Archive | wwwttlll</title>
+  <title>pytorch从入门到放弃 day2 | wwwttlll</title>
   
 
 
@@ -140,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -268,110 +275,145 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 40 posts in total. Keep on posting.
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wwwttlll.github.io/2024/10/26/pytorch%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83-day2/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wwwttlll">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">pytorch从入门到放弃 day2</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-10-26T21:43:13+08:00">
+                2024-10-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2023">2023</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2023/03/31/to-do-list/" itemprop="url">
-              
-                <span itemprop="name">to do list</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2023-03-31T09:17:19+08:00"
-              content="2023-03-31" >
-          03-31
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2023/03/29/Pre-Trained-Image-Processing-Transformer/" itemprop="url">
-              
-                <span itemprop="name">Pre-Trained Image Processing Transformer</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2023-03-29T12:49:15+08:00"
-              content="2023-03-29" >
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h1 id="pytorch从入门到放弃-day2"><a href="#pytorch从入门到放弃-day2" class="headerlink" title="pytorch从入门到放弃 day2"></a>pytorch从入门到放弃 day2</h1><h2 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h2><h2 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h2><p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20241104090109898.png" alt="image-20241104090109898"></p>
+<p>尝试构建网络</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ggotlogg/Picture@main/image-20241104141326972.png" alt="image-20241104141326972"></p>
+<h2 id="完整的网络训练"><a href="#完整的网络训练" class="headerlink" title="完整的网络训练"></a>完整的网络训练</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Net</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(Net, self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">3</span>,<span class="number">32</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">        self.pool1 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">32</span>,<span class="number">32</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">        self.pool2 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.conv3 = nn.Conv2d(<span class="number">32</span>,<span class="number">64</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">        self.pool3 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.flatten = nn.Flatten()</span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">64</span>*<span class="number">4</span>*<span class="number">4</span>, <span class="number">64</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">64</span>, <span class="number">10</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        conv1_x = self.conv1(x)</span><br><span class="line">        pool1_x = self.pool1(conv1_x)</span><br><span class="line">        conv2_x = self.conv2(pool1_x)</span><br><span class="line">        pool2_x = self.pool2(conv2_x)</span><br><span class="line">        conv3_x = self.conv3(pool2_x)</span><br><span class="line">        pool3_x = self.pool3(conv3_x)</span><br><span class="line">        flatten_x = self.flatten(pool3_x)</span><br><span class="line">        fc1_x = self.fc1(flatten_x)</span><br><span class="line">        fc2_x = self.fc2(fc1_x)</span><br><span class="line">        <span class="keyword">return</span> fc2_x</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">model = Net()</span><br><span class="line">CEloss = nn.CrossEntropyLoss()</span><br><span class="line">opt = torch.optim.Adam(model.parameters(), lr=<span class="number">0.01</span>) </span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    loss = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> data, label <span class="keyword">in</span> train_loader:</span><br><span class="line">        opt.zero_grad() <span class="comment"># 清空之前计算的梯度</span></span><br><span class="line">        output = model(data)</span><br><span class="line">        celoss = CEloss(output, label) <span class="comment"># 计算loss</span></span><br><span class="line">        loss += celoss</span><br><span class="line">        celoss.backward() <span class="comment"># 反向传播</span></span><br><span class="line">        opt.step() <span class="comment"># 重新计算梯度</span></span><br><span class="line">    <span class="built_in">print</span>(loss)</span><br></pre></td></tr></table></figure>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/09/18/pytorch%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83DAY1/" rel="next" title="pytorch从入门到放弃 day1">
+                <i class="fa fa-chevron-left"></i> pytorch从入门到放弃 day1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -379,6 +421,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -399,8 +445,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -492,6 +547,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pytorch%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83-day2"><span class="nav-number">1.</span> <span class="nav-text">pytorch从入门到放弃 day2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">卷积层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%A0%E5%8C%96%E5%B1%82"><span class="nav-number">1.2.</span> <span class="nav-text">池化层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83"><span class="nav-number">1.3.</span> <span class="nav-text">完整的网络训练</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -645,6 +716,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
